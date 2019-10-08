@@ -1,9 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
+import QtQuick.Dialogs 1.3
 
 //import "../controller/"
 import SettingsController 1.0
+import ProcessController 1.0
 
 /*Item {*/
 
@@ -11,6 +13,23 @@ ApplicationWindow {
 
     QMLSettingsController {
         id: settingsCtrl
+    }
+
+    QMLProcessController {
+        id: processCtrl
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: qsTr("Choose a folder")
+        folder: processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pFolderPath)
+        selectFolder: true
+        onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
+        //Component.onCompleted: {
+        //    console.log("pFolderPath: " + processCtrl.pProcessBean.pFolderPath)
+        //    console.log("resolved: " + processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pFolderPath))
+        //    console.log("folder: " + folder.toString())
+        //}
     }
 
     width: 640
@@ -29,7 +48,7 @@ ApplicationWindow {
             id: tabBar
             width: parent.width
             Layout.fillWidth: true
-            currentIndex: 2
+            currentIndex: 0
             TabButton {
                 text: qsTr("Process")
             }
@@ -39,6 +58,7 @@ ApplicationWindow {
             TabButton {
                 text: qsTr("Camera Settings")
             }
+            Component.onCompleted: tabBar.currentIndex = 0
 
         }
 
@@ -71,38 +91,29 @@ ApplicationWindow {
                         height: 100
                         Layout.fillWidth: true
                         rows: 3
-                        columns: 2
+                        columns: 3
 
                         TextField {
-                            id: textField1
-                            text: qsTr("Text Field")
+                            id: tfFolderPath
+                            text: processCtrl.pProcessBean.pFolderPath
                             placeholderText: qsTr("")
                             Layout.fillWidth: true
                         }
 
 
                         Button {
-                            id: button
+                            id: bChangeFolder
                             width: 200
                             height: 40
-                            text: qsTr("Button")
-                            Layout.fillWidth: true
+                            text: qsTr("Change Folder")
+                            Layout.fillWidth: false
+                            onClicked: fileDialog.open()
                         }
 
-                        TextField {
-                            id: textField
-                            placeholderText: "Inserire la path"
-                            height: 40
-                            Layout.fillHeight: false
-                            Layout.fillWidth: true
-                        }
-
-                        Item {
-                            Layout.rowSpan: 1
-                            Layout.preferredHeight: 2
-                            Layout.preferredWidth: 4
-                            Layout.fillWidth: true
-                            Layout.fillHeight: false
+                        Button {
+                            id: bSavePath
+                            text: qsTr("Save Path")
+                            onClicked: processCtrl.saveParameters()
                         }
 
                         Item {
@@ -111,6 +122,7 @@ ApplicationWindow {
                             Layout.fillHeight: true
                             Layout.fillWidth: true
                         }
+
 
                     }
 
@@ -312,11 +324,3 @@ ApplicationWindow {
     }
 
 }
-
-/*##^## Designer {
-    D{i:20;anchors_height:100;anchors_width:100}D{i:21;anchors_height:100;anchors_width:100;anchors_x:76;anchors_y:85}
-D{i:22;anchors_height:100;anchors_width:100;anchors_x:76;anchors_y:85}D{i:26;anchors_height:100;anchors_width:100}
-D{i:31;anchors_height:100;anchors_width:100}D{i:32;anchors_height:100;anchors_width:100;anchors_x:76;anchors_y:85}
-D{i:33;anchors_height:100;anchors_width:100;anchors_x:76;anchors_y:85}D{i:37;anchors_height:100;anchors_width:100}
-}
- ##^##*/

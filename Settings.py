@@ -19,7 +19,7 @@ class Settings(metaclass=Singleton):
 
     def __init__(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
-        folder += "/" + Settings._fileFolder
+        # folder += "/" + Settings._fileFolder
         if not os.path.exists(folder):
             os.makedirs(folder)
 
@@ -34,6 +34,10 @@ class Settings(metaclass=Singleton):
                 "ip": "192.168.100.21",
                 "port": 21
             }
+            config["SW"] = {
+                "folderPath" : QStandardPaths.writableLocation(QStandardPaths.HomeLocation)
+
+            }
 
             with open(filePath, 'w') as fp:
                 config.write(fp)
@@ -45,6 +49,7 @@ class Settings(metaclass=Singleton):
         self._laserPort = int(config["Laser"]["port"])
         self._cameraIp = config["Camera"]["ip"]
         self._cameraPort = int(config["Camera"]["port"])
+        self._folderPath = config["SW"]["folderPath"]
 
     def getLaserIp(self):
         return self._laserIp
@@ -70,9 +75,15 @@ class Settings(metaclass=Singleton):
     def setCameraPort(self, port: int):
         self._cameraPort = port
 
+    def getFolderPath(self):
+        return self._folderPath
+
+    def setFolderPath(self, path: str):
+        self._folderPath = path
+
     def saveCurrentParameters(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
-        folder += "/" + Settings._fileFolder
+        # folder += "/" + Settings._fileFolder
         if not os.path.exists(folder):
             os.makedirs(folder)
 
@@ -86,6 +97,9 @@ class Settings(metaclass=Singleton):
         config["Camera"] = {
             "ip": self.getCameraIp(),
             "port": self.getCameraPort()
+        }
+        config["SW"] = {
+            "folderPath": self.getFolderPath()
         }
 
         with open(filePath, 'w') as fp:

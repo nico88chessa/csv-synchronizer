@@ -5,17 +5,22 @@ from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 from controller.SettingsController import SettingsController
+from controller.ProcessController import ProcessController
 
 if __name__ == "__main__":
 
     # Set up the application window
     app = QGuiApplication(sys.argv)
 
+    app.setOrganizationName("DV")
+    app.setApplicationName("CSV-Synchronizer")
+
     # Load the QML file
     qmlFile = os.path.join(os.path.dirname(__file__), "./ui/main.qml")
     #view.setSource(QUrl.fromLocalFile(os.path.abspath(qml_file)))
 
     qmlRegisterType(SettingsController, "SettingsController", 1, 0, "QMLSettingsController")
+    qmlRegisterType(ProcessController, "ProcessController", 1, 0, "QMLProcessController")
 
     engine = QQmlApplicationEngine()
     engine.load(qmlFile)
