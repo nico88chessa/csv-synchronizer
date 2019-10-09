@@ -4,6 +4,8 @@ import sys
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
+from bean.ProcessBean import ProcessBean
+from bean.SettingsBean import SettingsBean
 from controller.SettingsController import SettingsController
 from controller.ProcessController import ProcessController
 
@@ -21,6 +23,8 @@ if __name__ == "__main__":
 
     qmlRegisterType(SettingsController, "SettingsController", 1, 0, "QMLSettingsController")
     qmlRegisterType(ProcessController, "ProcessController", 1, 0, "QMLProcessController")
+    qmlRegisterType(ProcessBean, "ProcessBean", 1, 0, "QMLProcessBean")
+    qmlRegisterType(SettingsBean, "SettingsBean", 1, 0, "QMLSettingsBean")
 
     engine = QQmlApplicationEngine()
     engine.load(qmlFile)

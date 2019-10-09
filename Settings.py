@@ -12,10 +12,10 @@ class Settings(metaclass=Singleton):
     _fileFolder = "CSVDaemon"
     _filename = "config.ini"
 
-    _laserIp: str
-    _laserPort: int
-    _cameraIp: str
-    _cameraPort: int
+    # _laserIp: str
+    # _laserPort: int
+    # _cameraIp: str
+    # _cameraPort: int
 
     def __init__(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
@@ -28,15 +28,18 @@ class Settings(metaclass=Singleton):
             config = configparser.ConfigParser()
             config["Laser"] = {
                 "ip": "192.168.100.20",
-                "port": 21
+                "port": 21,
+                "pollingTimeMs": 1000,
+                "remotePath": ".",
             }
             config["Camera"] = {
                 "ip": "192.168.100.21",
-                "port": 21
+                "port": 21,
+                "pollingTimeMs": 1000,
+                "remotePath": ".",
             }
             config["SW"] = {
-                "folderPath" : QStandardPaths.writableLocation(QStandardPaths.HomeLocation)
-
+                "localFolderPath" : QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
             }
 
             with open(filePath, 'w') as fp:
@@ -45,41 +48,69 @@ class Settings(metaclass=Singleton):
         config = configparser.ConfigParser()
         config.read(filePath)
 
-        self._laserIp = config["Laser"]["ip"]
-        self._laserPort = int(config["Laser"]["port"])
-        self._cameraIp = config["Camera"]["ip"]
-        self._cameraPort = int(config["Camera"]["port"])
-        self._folderPath = config["SW"]["folderPath"]
+        self.__laserIp = config["Laser"]["ip"]
+        self.__laserPort = int(config["Laser"]["port"])
+        self.__laserPollingTimeMs = int(config["Laser"]["pollingTimeMs"])
+        self.__laserRemotePath = config["Laser"]["remotePath"]
+        self.__cameraIp = config["Camera"]["ip"]
+        self.__cameraPort = int(config["Camera"]["port"])
+        self.__cameraPollingTimeMs = int(config["Camera"]["pollingTimeMs"])
+        self.__cameraRemotePath = config["Camera"]["remotePath"]
+        self.__localFolderPath = config["SW"]["localFolderPath"]
 
     def getLaserIp(self):
-        return self._laserIp
+        return self.__laserIp
 
     def setLaserIp(self, ip):
-        self._laserIp = ip
+        self.__laserIp = ip
 
     def getLaserPort(self) -> int:
-        return self._laserPort
+        return self.__laserPort
 
     def setLaserPort(self, port: int):
-        self._laserPort = port
+        self.__laserPort = port
+
+    def getLaserPollingTime(self) -> int:
+        return self.__laserPollingTimeMs
+
+    def setLaserPollingTime(self, timeMs: int):
+        self.__laserPollingTimeMs = timeMs
+
+    def getLaserRemotePath(self):
+        return self.__laserRemotePath
+
+    def setLaserRemotePath(self, path: str):
+        self.__laserRemotePath = path
 
     def getCameraIp(self):
-        return self._cameraIp
+        return self.__cameraIp
 
     def setCameraIp(self, ip):
-        self._cameraIp = ip
+        self.__cameraIp = ip
 
     def getCameraPort(self) -> int:
-        return self._cameraPort
+        return self.__cameraPort
 
     def setCameraPort(self, port: int):
-        self._cameraPort = port
+        self.__cameraPort = port
 
-    def getFolderPath(self):
-        return self._folderPath
+    def getCameraPollingTimeMs(self) -> int:
+        return self.__cameraPollingTimeMs
 
-    def setFolderPath(self, path: str):
-        self._folderPath = path
+    def setCameraPollingTimeMs(self, timeMs: int):
+        self.__cameraPollingTimeMs = timeMs
+
+    def getCameraRemotePath(self):
+        return self.__cameraRemotePath
+
+    def setCameraRemotePath(self, path: str):
+        self.__cameraRemotePath = path
+
+    def getLocalFolderPath(self):
+        return self.__localFolderPath
+
+    def setLocalFolderPath(self, path: str):
+        self.__localFolderPath = path
 
     def saveCurrentParameters(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
@@ -92,16 +123,19 @@ class Settings(metaclass=Singleton):
         config = configparser.ConfigParser()
         config["Laser"] = {
             "ip": self.getLaserIp(),
-            "port": self.getLaserPort()
+            "port": self.getLaserPort(),
+            "pollingTimeMs": self.getLaserPollingTime(),
+            "remotePath": self.getLaserRemotePath(),
         }
         config["Camera"] = {
             "ip": self.getCameraIp(),
-            "port": self.getCameraPort()
+            "port": self.getCameraPort(),
+            "pollingTimeMs": self.getCameraPollingTimeMs(),
+            "remotePath": self.getCameraRemotePath(),
         }
         config["SW"] = {
-            "folderPath": self.getFolderPath()
+            "localFolderPath": self.getLocalFolderPath(),
         }
 
         with open(filePath, 'w') as fp:
             config.write(fp)
-

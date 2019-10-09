@@ -7,18 +7,18 @@ from PySide2.QtQml import qmlRegisterType
 class ProcessBean(QObject):
 
     @Signal
-    def folderPathChanged(self): pass
+    def localFolderPathChanged(self): pass
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._folderPath = str
+        self.__localFolderPath = str
 
-    def getFolderPath(self) -> str:
-        return self._folderPath
+    def getLocalFolderPath(self) -> str:
+        return self.__localFolderPath
 
-    def setFolderPath(self, path: str):
-        if (self._folderPath != path):
-            self._folderPath = path
-            self.folderPathChanged.emit()
+    def setLocalFolderPath(self, path: str):
+        if (self.__localFolderPath != path):
+            self.__localFolderPath = path
+            self.localFolderPathChanged.emit()
 
-    pFolderPath = Property(str, getFolderPath, setFolderPath, notify=folderPathChanged)
+    pLocalFolderPath = Property(str, getLocalFolderPath, setLocalFolderPath, notify=localFolderPathChanged)

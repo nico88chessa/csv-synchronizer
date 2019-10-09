@@ -6,30 +6,55 @@ import QtQuick.Dialogs 1.3
 //import "../controller/"
 import SettingsController 1.0
 import ProcessController 1.0
+import ProcessBean 1.0
+import SettingsBean 1.0
 
 /*Item {*/
 
 ApplicationWindow {
 
+    id: mainWindow
+
+    // definizione segnali
+    Connections {
+        target: mainWindow
+        onClosing: {
+            processCtrl.closingApplicationSignal()
+        }
+    }
+
+    Component.onCompleted: {
+        settingsCtrl.initBean()
+        processCtrl.initBean()
+    }
+
+    // definizione oggetti C++
+    QMLSettingsBean {
+        id: settingsBean
+    }
+
+    QMLProcessBean {
+        id: processBean
+    }
+
     QMLSettingsController {
         id: settingsCtrl
+        pSettingsBean: settingsBean
     }
 
     QMLProcessController {
         id: processCtrl
+        pProcessBean: processBean
+        pSettingsBean: settingsBean
     }
 
+    // definizione UI
     FileDialog {
         id: fileDialog
         title: qsTr("Choose a folder")
-        folder: processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pFolderPath)
+        folder: processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pLocalFolderPath)
         selectFolder: true
         onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
-        //Component.onCompleted: {
-        //    console.log("pFolderPath: " + processCtrl.pProcessBean.pFolderPath)
-        //    console.log("resolved: " + processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pFolderPath))
-        //    console.log("folder: " + folder.toString())
-        //}
     }
 
     width: 640
@@ -48,7 +73,7 @@ ApplicationWindow {
             id: tabBar
             width: parent.width
             Layout.fillWidth: true
-            currentIndex: 0
+            currentIndex: 2
             TabButton {
                 text: qsTr("Process")
             }
@@ -95,7 +120,7 @@ ApplicationWindow {
 
                         TextField {
                             id: tfFolderPath
-                            text: processCtrl.pProcessBean.pFolderPath
+                            text: processCtrl.pProcessBean.pLocalFolderPath
                             placeholderText: qsTr("")
                             Layout.fillWidth: true
                         }
@@ -136,13 +161,9 @@ ApplicationWindow {
                         }
 
                         Button {
-                            id: bStart
-                            text: qsTr("Button")
-                        }
-
-                        Button {
                             id: bStop
                             text: qsTr("Button")
+                            onClicked: processCtrl.startWatcher()
                         }
 
                     }
@@ -199,6 +220,22 @@ ApplicationWindow {
                             onEditingFinished: settingsCtrl.pSettingsBean.pLaserPort = tfLaserPort.text
                         }
 
+                        Text {
+                            id: tLaserPollingTimeMs
+                            text: qsTr("Polling Time [ms]")
+                            font.pixelSize: 12
+                        }
+
+                        TextField {
+                            id: tfLaserPollingTimeMs
+                            text: settingsCtrl.pSettingsBean.pLaserPollingTimeMs
+                            validator: IntValidator {
+                                bottom: 100;
+                                top: 100000;
+                            }
+                            onEditingFinished: settingsCtrl.pSettingsBean.pLaserPollingTimeMs = tfLaserPollingTimeMs.text
+                        }
+
                         Item {
                             id: element3
                             width: 200
@@ -209,6 +246,8 @@ ApplicationWindow {
                             Layout.fillWidth: false
                             Layout.fillHeight: true
                         }
+
+
 
                     }
 
@@ -282,6 +321,22 @@ ApplicationWindow {
                             placeholderText: "Camera Port"
                             inputMask: "00000"
                             onEditingFinished: settingsCtrl.pSettingsBean.pCameraPort = tfCameraPort.text
+                        }
+
+                        Text {
+                            id: tCameraPollingTimeMs
+                            text: qsTr("Polling Time [ms]")
+                            font.pixelSize: 12
+                        }
+
+                        TextField {
+                            id: tfCameraPollingTimeMs
+                            text: settingsCtrl.pSettingsBean.pCameraPollingTimeMs
+                            validator: IntValidator {
+                                bottom: 100;
+                                top: 100000;
+                            }
+                            onEditingFinished: settingsCtrl.pSettingsBean.pCameraPollingTimeMs = tfCameraPollingTimeMs.text
                         }
 
                         Item {
