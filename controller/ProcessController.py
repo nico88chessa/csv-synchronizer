@@ -99,4 +99,8 @@ class ProcessController(QObject):
         self.__watcherThread.finished.connect(self.__watcherThread.deleteLater)
         self.__watcherThread.finished.connect(self.__csvWatcher.deleteLater)
 
+        self.__csvWatcher.itemsPathUpdatedSignal.connect(
+            lambda items: self.__processBean.setLaserFolderItems(items)
+        )
+
         self.__watcherThread.start()

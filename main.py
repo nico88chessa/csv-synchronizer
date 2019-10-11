@@ -26,6 +26,7 @@ if __name__ == "__main__":
     qmlRegisterType(ProcessBean, "ProcessBean", 1, 0, "QMLProcessBean")
     qmlRegisterType(SettingsBean, "SettingsBean", 1, 0, "QMLSettingsBean")
 
+
     engine = QQmlApplicationEngine()
     engine.load(qmlFile)
 

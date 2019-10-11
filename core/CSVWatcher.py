@@ -9,6 +9,7 @@ class CSVWatcher(QObject):
     isConnectedSignal = Signal(bool)
     stoppedSignal = Signal()
     startedSignal = Signal()
+    itemsPathUpdatedSignal = Signal(list)
 
 
     def __init__(self, parent = None, remotePath = "", ftpAddress = "", ftpPort = int(), intervalMs = int()):
@@ -59,6 +60,7 @@ class CSVWatcher(QObject):
         res = None
         try:
             res = self.ftpController.nlst(self.remotePath)
+            self.itemsPathUpdatedSignal.emit(res)
         except:
             print("An exception occurred")
             self.isConnectedSignal.emit(False)
