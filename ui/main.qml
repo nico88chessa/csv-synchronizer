@@ -1,9 +1,9 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Dialogs 1.3
 
-import "../controller/"
+//import "../controller/"
 import SettingsController 1.0
 import ProcessController 1.0
 import ProcessBean 1.0
@@ -35,7 +35,7 @@ ApplicationWindow {
 
     QMLProcessBean {
         id: processBean
-        onLaserFolderItemsChanged: lvCameraFolder.forceLayout()
+//        onLaserFolderItemsChanged: lvCameraFolder.forceLayout()
 //        onLaserFolderItemsChanged: mainWindow.width = (mainWindow.width == 800 ? 640 : 800)
     }
 
@@ -59,10 +59,10 @@ ApplicationWindow {
         onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
     }
 
-    width: 640
-    height: 480
-    minimumWidth: 640
-    minimumHeight: 480
+    width: minimumWidth
+    height: minimumHeight
+    minimumWidth: 800
+    minimumHeight: 600
     visible: true
 
     GridLayout {
@@ -149,7 +149,8 @@ ApplicationWindow {
                     RowLayout {
                         id: rowLayout
                         width: 100
-                        height: 100
+                        height: 250
+                        Layout.minimumHeight: 250
                         scale: 1
                         Layout.fillHeight: false
                         visible: true
@@ -157,7 +158,6 @@ ApplicationWindow {
 
                         GridLayout {
                             id: gLaserView
-                            height: 100
                             columnSpacing: 10
                             rowSpacing: 10
                             Layout.columnSpan: 1
@@ -165,7 +165,7 @@ ApplicationWindow {
                             Layout.rowSpan: 1
                             rows: 1
                             Layout.fillWidth: true
-                            Layout.fillHeight: false
+                            Layout.fillHeight: true
                             columns: 3
 
                             Text {
@@ -182,59 +182,71 @@ ApplicationWindow {
                                 Layout.preferredHeight: 40
                                 Layout.preferredWidth: 40
                                 Layout.fillWidth: false
+
+
+                                Connections {
+                                    target: processCtrl
+                                    onLaserFolderWatcherConnectedSignal: rbLaserConnected.updateButton(Boolean)
+                                }
+
+                                background: Rectangle {
+                                    id: rbLaserConnectedRect
+                                    radius: rbLaserConnected.radius
+                                    color: "red"
+                                }
+
+                                function updateButton(isConnected) {
+                                    if (isConnected)
+                                        rbLaserConnectedRect.color = "green"
+                                    else
+                                        rbLaserConnectedRect.color = "red"
+                                }
+
                             }
 
                             ListView {
                                 id: lvLaserFolder
                                 x: 0
                                 y: 0
-                                width: 110
-                                height: 160
-                                Layout.fillHeight: false
+                                clip: true
+                                Layout.fillHeight: true
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: true
                                 delegate: Item {
+                                    id: lvLaserFolderItem
                                     x: 5
-                                    width: 80
+                                    width: parent.width
                                     height: 40
+
                                     Row {
-                                        id: row1
-                                        Rectangle {
-                                            width: 40
-                                            height: 40
-                                            color: colorCode
-                                        }
-
+                                        id: lvLaserFolderItemRow
                                         Text {
-                                            text: name
-                                            anchors.verticalCenter: parent.verticalCenter
+                                            padding: 10
+                                            Rectangle {
+                                                parent: lvLaserFolderItem
+                                                width: parent.width
+                                                height: parent.height
+                                                anchors.top: parent.top
+                                                color: "#112233FF"
+                                            }
+                                            parent: lvLaserFolderItem
+                                            text: modelData
                                             font.bold: true
+                                            anchors.verticalCenter: parent.verticalCenter
                                         }
-                                        spacing: 10
                                     }
                                 }
-
-                                model: ListModel {
-                                    ListElement {
-                                        name: "Grey"
-                                        colorCode: "grey"
-                                    }
-
-                                    ListElement {
-                                        name: "Red"
-                                        colorCode: "red"
-                                    }
-
-                                    ListElement {
-                                        name: "Blue"
-                                        colorCode: "blue"
-                                    }
-
-                                    ListElement {
-                                        name: "Green"
-                                        colorCode: "green"
-                                    }
+                                spacing: 4
+                                ScrollBar.vertical: ScrollBar {
+                                    parent: lvLaserFolder
+                                    anchors.top: lvLaserFolder.top
+                                    anchors.bottom: lvLaserFolder.bottom
+                                    interactive: true
+                                    policy: "AlwaysOn"
+                                    clip: true
                                 }
+
+                                model: processBean.pLaserFolderItems
                             }
 
                         }
@@ -252,6 +264,7 @@ ApplicationWindow {
                             id: gCameraView
                             width: 100
                             height: 100
+                            Layout.fillHeight: true
                             rows: 1
                             columns: 2
 
@@ -272,8 +285,8 @@ ApplicationWindow {
 
                             ListView {
                                 id: lvCameraFolder
-                                width: 110
-                                height: 160
+                                Layout.fillHeight: true
+                                clip: true
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: true
                                 delegate: Item {
@@ -351,9 +364,6 @@ ApplicationWindow {
                         }
 
                     }
-
-
-
 
                 }
             }
@@ -566,3 +576,25 @@ ApplicationWindow {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

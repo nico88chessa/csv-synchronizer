@@ -21,6 +21,11 @@ class ProcessController(QObject):
     @Signal
     def closingApplicationSignal(self): pass
 
+    # @Signal
+    # def laserFolderWatcherConnectedSignal(self, isConnected: bool): pass
+
+    laserFolderWatcherConnectedSignal = Signal(bool)
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.__processBean : ProcessBean
@@ -102,5 +107,6 @@ class ProcessController(QObject):
         self.__csvWatcher.itemsPathUpdatedSignal.connect(
             lambda items: self.__processBean.setLaserFolderItems(items)
         )
+        self.__csvWatcher.isConnectedSignal.connect(self.laserFolderWatcherConnectedSignal)
 
         self.__watcherThread.start()
