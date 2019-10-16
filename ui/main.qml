@@ -61,8 +61,8 @@ ApplicationWindow {
         onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
     }
 
-    minimumWidth: 800
-    minimumHeight: 600
+    minimumWidth: 1024
+    minimumHeight: 768
     visible: true
 
     GridLayout {
@@ -256,6 +256,8 @@ ApplicationWindow {
                                 Layout.fillWidth: true
                                 spacing: 4
                                 model: processBean.pLaserFolderItems
+                                opacity: processBean.pLaserConnectionUp ? 1.0 : 0.4
+                                enabled: processBean.pLaserConnectionUp
 
                                 delegate: Item {
                                     id: lvLaserFolderItem
@@ -430,6 +432,8 @@ ApplicationWindow {
                                 Layout.fillWidth: true
                                 spacing: 4
                                 model: processBean.pCameraFolderItems
+                                opacity: processBean.pCameraConnectionUp ? 1.0 : 0.4
+                                enabled: processBean.pCameraConnectionUp
 
                                 delegate: Item {
                                     id: lvCameraFolderItem
@@ -467,7 +471,6 @@ ApplicationWindow {
                                     policy: "AlwaysOn"
                                     clip: true
                                 }
-
 
                             }
 
