@@ -19,17 +19,14 @@ if __name__ == "__main__":
 
     # Load the QML file
     qmlFile = os.path.join(os.path.dirname(__file__), "./ui/main.qml")
-    #view.setSource(QUrl.fromLocalFile(os.path.abspath(qml_file)))
 
     qmlRegisterType(SettingsController, "SettingsController", 1, 0, "QMLSettingsController")
     qmlRegisterType(ProcessController, "ProcessController", 1, 0, "QMLProcessController")
     qmlRegisterType(ProcessBean, "ProcessBean", 1, 0, "QMLProcessBean")
     qmlRegisterType(SettingsBean, "SettingsBean", 1, 0, "QMLSettingsBean")
 
-
     engine = QQmlApplicationEngine()
     engine.load(qmlFile)
-
 
     if not engine.rootObjects():
         sys.exit(-1)
@@ -38,4 +35,3 @@ if __name__ == "__main__":
 
     res = app.exec_()
     sys.exit(res)
-

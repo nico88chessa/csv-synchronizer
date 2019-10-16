@@ -14,6 +14,8 @@ import SettingsBean 1.0
 ApplicationWindow {
 
     id: mainWindow
+    width: 1024
+    height: 768
 
     // definizione segnali
     Connections {
@@ -59,8 +61,6 @@ ApplicationWindow {
         onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
     }
 
-    width: minimumWidth
-    height: minimumHeight
     minimumWidth: 800
     minimumHeight: 600
     visible: true
@@ -149,8 +149,7 @@ ApplicationWindow {
                     RowLayout {
                         id: rowLayout
                         width: 100
-                        height: 250
-                        Layout.minimumHeight: 250
+                        height: 450
                         scale: 1
                         Layout.fillHeight: false
                         visible: true
@@ -171,35 +170,77 @@ ApplicationWindow {
                             Text {
                                 id: tLaser
                                 text: qsTr("Laser Folder")
+                                Layout.columnSpan: 3
                                 Layout.preferredWidth: 100
                                 Layout.fillWidth: true
                                 font.pixelSize: 12
                             }
 
+                            Text {
+                                id: tLaserWatcher
+                                text: qsTr("Watcher")
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 2
+                                font.pixelSize: 12
+                            }
+
                             RoundButton {
-                                id: rbLaserConnected
+                                id: rbLaserWatcher
+                                text: ""
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                Layout.preferredHeight: 40
+                                Layout.preferredWidth: 40
+                                background: Rectangle {
+                                    id: rbLaserWatcherRect
+                                    radius: rbLaserWatcher.radius
+                                    color: "red"
+                                }
+
+                                Connections {
+                                    target: processBean
+                                    onLaserWatcherRunningChanged: rbLaserWatcher.updateButton(processBean.pLaserWatcherRunning)
+                                }
+
+                                function updateButton(isRunning) {
+                                    if (isRunning)
+                                        rbLaserWatcherRect.color = "green"
+                                    else
+                                        rbLaserWatcherRect.color = "red"
+                                }
+
+                            }
+
+                            Text {
+                                id: tLaserConnection
+                                text: qsTr("Connection")
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 2
+                                font.pixelSize: 12
+                            }
+
+                            RoundButton {
+                                id: rbLaserConnection
                                 text: ""
                                 Layout.preferredHeight: 40
                                 Layout.preferredWidth: 40
-                                Layout.fillWidth: false
-
-
-                                Connections {
-                                    target: processCtrl
-                                    onLaserFolderWatcherConnectedSignal: rbLaserConnected.updateButton(Boolean)
-                                }
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
                                 background: Rectangle {
-                                    id: rbLaserConnectedRect
-                                    radius: rbLaserConnected.radius
+                                    id: rbLaserConnectionRect
+                                    radius: rbLaserConnection.radius
                                     color: "red"
+                                }
+
+                                Connections {
+                                    target: processBean
+                                    onLaserConnectionUpChanged: rbLaserConnection.updateButton(processBean.pLaserConnectionUp)
                                 }
 
                                 function updateButton(isConnected) {
                                     if (isConnected)
-                                        rbLaserConnectedRect.color = "green"
+                                        rbLaserConnectionRect.color = "green"
                                     else
-                                        rbLaserConnectedRect.color = "red"
+                                        rbLaserConnectionRect.color = "red"
                                 }
 
                             }
@@ -208,10 +249,14 @@ ApplicationWindow {
                                 id: lvLaserFolder
                                 x: 0
                                 y: 0
+                                Layout.minimumHeight: 200
                                 clip: true
                                 Layout.fillHeight: true
-                                Layout.columnSpan: 2
+                                Layout.columnSpan: 3
                                 Layout.fillWidth: true
+                                spacing: 4
+                                model: processBean.pLaserFolderItems
+
                                 delegate: Item {
                                     id: lvLaserFolderItem
                                     x: 5
@@ -220,8 +265,15 @@ ApplicationWindow {
 
                                     Row {
                                         id: lvLaserFolderItemRow
+
                                         Text {
                                             padding: 10
+                                            id: lvLaserFolderItemText
+                                            parent: lvLaserFolderItem
+                                            text: modelData
+                                            font.bold: true
+                                            anchors.verticalCenter: parent.verticalCenter
+
                                             Rectangle {
                                                 parent: lvLaserFolderItem
                                                 width: parent.width
@@ -229,14 +281,10 @@ ApplicationWindow {
                                                 anchors.top: parent.top
                                                 color: "#112233FF"
                                             }
-                                            parent: lvLaserFolderItem
-                                            text: modelData
-                                            font.bold: true
-                                            anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
                                 }
-                                spacing: 4
+
                                 ScrollBar.vertical: ScrollBar {
                                     parent: lvLaserFolder
                                     anchors.top: lvLaserFolder.top
@@ -246,8 +294,34 @@ ApplicationWindow {
                                     clip: true
                                 }
 
-                                model: processBean.pLaserFolderItems
                             }
+
+                            Item {
+                                id: element
+                                width: 0
+                                height: 0
+                                Layout.fillHeight: false
+                                Layout.fillWidth: true
+                                visible: true
+                            }
+
+                            Button {
+                                id: bStartLaserWatcher
+                                text: qsTr("Start")
+                                enabled: !processBean.pLaserWatcherRunning
+                                onClicked: processCtrl.startLaserWatcher()
+                            }
+
+                            Button {
+                                id: bStopLaserWatcher
+                                text: qsTr("Stop")
+                                enabled: processBean.pLaserWatcherRunning
+                                onClicked: processCtrl.stopLaserWatcher()
+                            }
+
+
+
+
 
                         }
 
@@ -262,79 +336,167 @@ ApplicationWindow {
 
                         GridLayout {
                             id: gCameraView
-                            width: 100
-                            height: 100
+                            columnSpacing: 10
+                            rowSpacing: 10
                             Layout.fillHeight: true
                             rows: 1
-                            columns: 2
+                            columns: 3
 
                             Text {
                                 id: tCamera
                                 text: qsTr("Camera Folder")
+                                Layout.columnSpan: 3
                                 Layout.preferredWidth: 100
                                 Layout.fillWidth: true
                                 font.pixelSize: 12
                             }
 
+                            Text {
+                                id: tCameraWatcher
+                                text: qsTr("Watcher")
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                font.pixelSize: 12
+                            }
+
                             RoundButton {
-                                id: rbCameraConnected
+                                id: rbCameraWatcher
                                 text: ""
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                                 Layout.preferredHeight: 40
                                 Layout.preferredWidth: 40
+
+                                background: Rectangle {
+                                    id: rbCameraWatcherRect
+                                    radius: rbLaserConnection.radius
+                                    color: "red"
+                                }
+
+                                Connections {
+                                    target: processBean
+                                    onCameraWatcherRunningChanged: rbCameraWatcher.updateButton(processBean.pCameraWatcherRunning)
+                                }
+
+                                function updateButton(isRunning) {
+                                    if (isRunning)
+                                        rbCameraWatcherRect.color = "green"
+                                    else
+                                        rbCameraWatcherRect.color = "red"
+                                }
+
+                            }
+
+                            Text {
+                                id: tCameraConnection
+                                text: qsTr("Connection")
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                font.pixelSize: 12
+                            }
+
+                            RoundButton {
+                                id: rbCameraConnection
+                                text: ""
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                Layout.preferredHeight: 40
+                                Layout.preferredWidth: 40
+
+                                background: Rectangle {
+                                    id: rbCameraConnectionRect
+                                    radius: rbLaserConnection.radius
+                                    color: "red"
+                                }
+
+                                Connections {
+                                    target: processBean
+                                    onCameraConnectionUpChanged: rbCameraConnection.updateButton(processBean.pCameraConnectionUp)
+                                }
+
+                                function updateButton(isConnected) {
+                                    if (isConnected)
+                                        rbCameraConnectionRect.color = "green"
+                                    else
+                                        rbCameraConnectionRect.color = "red"
+                                }
+
                             }
 
                             ListView {
                                 id: lvCameraFolder
+                                Layout.minimumHeight: 200
                                 Layout.fillHeight: true
                                 clip: true
-                                Layout.columnSpan: 2
+                                Layout.columnSpan: 3
                                 Layout.fillWidth: true
+                                spacing: 4
+                                model: processBean.pCameraFolderItems
+
                                 delegate: Item {
+                                    id: lvCameraFolderItem
                                     x: 5
-                                    width: 80
+                                    width: parent.width
                                     height: 40
+
                                     Row {
-                                        id: row2
-                                        Rectangle {
-                                            width: 40
-                                            height: 40
-                                            color: "red"
-                                        }
+                                        id: lvCameraFolderItemRow
 
                                         Text {
+                                            padding: 10
+                                            id: lvCameraFolderItemText
+                                            parent: lvCameraFolderItem
                                             text: modelData
-                                            anchors.verticalCenter: parent.verticalCenter
                                             font.bold: true
+                                            anchors.verticalCenter: parent.verticalCenter
+
+                                            Rectangle {
+                                                parent: lvCameraFolderItem
+                                                width: parent.width
+                                                height: parent.height
+                                                anchors.top: parent.top
+                                                color: "#112233FF"
+                                            }
                                         }
                                         spacing: 10
                                     }
                                 }
-                                model: processBean.pLaserFolderItems
-//                                model: ["apples", "oranges", "pears"]
 
-//                                model: ListModel {
-//                                    ListElement {
-//                                        name: "Grey"
-//                                        colorCode: "grey"
-//                                    }
+                                ScrollBar.vertical: ScrollBar {
+                                    anchors.top: lvCameraFolder.top
+                                    anchors.bottom: lvCameraFolder.bottom
+                                    interactive: true
+                                    policy: "AlwaysOn"
+                                    clip: true
+                                }
 
-//                                    ListElement {
-//                                        name: "Red"
-//                                        colorCode: "red"
-//                                    }
-
-//                                    ListElement {
-//                                        name: "Blue"
-//                                        colorCode: "blue"
-//                                    }
-
-//                                    ListElement {
-//                                        name: "Green"
-//                                        colorCode: "green"
-//                                    }
-//                                }
 
                             }
+
+                            Item {
+                                id: element1
+                                width: 0
+                                height: 0
+                                Layout.fillHeight: false
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 1
+                            }
+
+                            Button {
+                                id: bStarCameraWatcher
+                                text: qsTr("Start")
+                                enabled: !processBean.pCameraWatcherRunning
+                                onClicked: processCtrl.startCameraWatcher()
+                            }
+
+                            Button {
+                                id: bStopCameraWatcher
+                                text: qsTr("Stop")
+                                enabled: processBean.pCameraWatcherRunning
+                                onClicked: processCtrl.stopCameraWatcher()
+                            }
+
+
+
+
 
                         }
 
@@ -342,8 +504,9 @@ ApplicationWindow {
 
                     Item {
                         id: spacer
-                        width: 200
-                        height: 200
+                        width: 0
+                        height: 0
+                        Layout.fillWidth: true
                         Layout.fillHeight: true
                     }
 
@@ -357,12 +520,11 @@ ApplicationWindow {
                             Layout.fillWidth: true
                         }
 
-                        Button {
-                            id: bStop
-                            text: qsTr("Button")
-                            onClicked: processCtrl.startWatcher()
-                        }
+                    }
 
+                    Button {
+                        id: button2
+                        text: qsTr("Button")
                     }
 
                 }

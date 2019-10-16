@@ -39,7 +39,7 @@ class Settings(metaclass=Singleton):
                 "remotePath": ".",
             }
             config["SW"] = {
-                "localFolderPath" : QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
+                "localFolderPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
             }
 
             with open(filePath, 'w') as fp:

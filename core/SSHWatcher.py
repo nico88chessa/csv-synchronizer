@@ -1,39 +1,37 @@
-import time
+import sys
 
 from PySide2.QtCore import QTimer, Slot, QObject, Signal
-from ftplib import FTP
+import paramiko
 
 
-class CSVWatcher(QObject):
+class SSHWatcher(QObject):
 
     isConnectedSignal = Signal(bool)
     stoppedSignal = Signal()
     startedSignal = Signal()
     itemsPathUpdatedSignal = Signal(list)
 
-    def __init__(self, parent=None, remotePath="", ftpAddress="", ftpPort=0, intervalMs=1000):
+    def __init__(self, userName, password, parent=None, remotePath="", sshAddress="", intervalMs=1000):
         super().__init__(parent)
-        self.remotePath = remotePath
-        self.ftpAddress = ftpAddress
-        self.ftpPort = ftpPort
-        self.timer = QTimer(self)
-        self.timeoutMs = intervalMs
-        self.timer.setInterval(self.timeoutMs)
+        self.__remotePath = remotePath
+        self.__sshAddress = sshAddress
+        self.__timer = QTimer(self)
+        self.__timeoutMs = intervalMs
+        self.__timer.setInterval(self.timeoutMs)
+        self.__userName = userName
+        self.__pwd = password
 
-        self.ftpController = FTP()
-        self.ftpController.host = self.ftpAddress
-        self.ftpController.port = self.ftpPort
+        self.__sshClient = paramiko.SSHClient()
         self.setupSignalsAndSlots()
 
     def setupSignalsAndSlots(self):
-        self.timer.timeout.connect(self.process)
+        self.__timer.timeout.connect(self.process)
 
     @Slot()
     def startProcess(self):
         try:
             # self.ftpController.connect(host="192.168.1.1")
-            self.ftpController.connect()
-            self.ftpController.login()
+            self.__sshClient = self.client.connect(self.__sshAddress, username=self.__userName, password=self.__pwd)
             # self.nlst()
             self.timer.start()
             self.startedSignal.emit()
@@ -44,7 +42,7 @@ class CSVWatcher(QObject):
     @Slot()
     def stopProcess(self):
         self.timer.stop()
-        self.ftpController.close()
+        self.__sshClient.close()
         self.isConnectedSignal.emit(False)
         self.stoppedSignal.emit()
 
@@ -58,10 +56,10 @@ class CSVWatcher(QObject):
     def process(self):
         res = None
         try:
-            res = self.ftpController.nlst(self.remotePath)
-            self.itemsPathUpdatedSignal.emit(res)
+            stdin, stdout, stderr = self.__sshClient.exec_command('ls')
+            self.itemsPathUpdatedSignal.emit(stdout)
         except:
-            print("An exception occurred")
+            print("Unexpected error:", sys.exc_info()[0])
             self.isConnectedSignal.emit(False)
             self.restartProcess()
 

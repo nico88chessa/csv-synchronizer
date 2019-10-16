@@ -1,28 +1,24 @@
-import time
+import os
+import sys
 
-from PySide2.QtCore import QTimer, Slot, QObject, Signal
-from ftplib import FTP
+from PySide2.QtCore import QObject, Signal, QTimer, Slot
 
 
-class CSVWatcher(QObject):
+class FSWatcher(QObject):
 
-    isConnectedSignal = Signal(bool)
-    stoppedSignal = Signal()
-    startedSignal = Signal()
     itemsPathUpdatedSignal = Signal(list)
+    isConnectedSignal = Signal(bool)
+    startedSignal = Signal()
+    stoppedSignal = Signal()
+    pathUnreachableSignal = Signal()
 
-    def __init__(self, parent=None, remotePath="", ftpAddress="", ftpPort=0, intervalMs=1000):
+    def __init__(self, path: str, intervalMs: int, parent=None):
         super().__init__(parent)
-        self.remotePath = remotePath
-        self.ftpAddress = ftpAddress
-        self.ftpPort = ftpPort
+        self.__path = path
         self.timer = QTimer(self)
         self.timeoutMs = intervalMs
         self.timer.setInterval(self.timeoutMs)
-
-        self.ftpController = FTP()
-        self.ftpController.host = self.ftpAddress
-        self.ftpController.port = self.ftpPort
+        self.__isConnected = False
         self.setupSignalsAndSlots()
 
     def setupSignalsAndSlots(self):
@@ -31,22 +27,17 @@ class CSVWatcher(QObject):
     @Slot()
     def startProcess(self):
         try:
-            # self.ftpController.connect(host="192.168.1.1")
-            self.ftpController.connect()
-            self.ftpController.login()
-            # self.nlst()
             self.timer.start()
             self.startedSignal.emit()
-            self.isConnectedSignal.emit(True)
         except:
+            self.setConnected(False)
             self.restartProcess()
 
     @Slot()
     def stopProcess(self):
         self.timer.stop()
-        self.ftpController.close()
-        self.isConnectedSignal.emit(False)
         self.stoppedSignal.emit()
+        self.setConnected(False)
 
     @Slot()
     def restartProcess(self):
@@ -58,11 +49,20 @@ class CSVWatcher(QObject):
     def process(self):
         res = None
         try:
-            res = self.ftpController.nlst(self.remotePath)
+            res = os.listdir(self.__path)
+            self.setConnected(True)
             self.itemsPathUpdatedSignal.emit(res)
         except:
-            print("An exception occurred")
-            self.isConnectedSignal.emit(False)
+            print("Unexpected error:", sys.exc_info()[0])
+            self.pathUnreachableSignal.emit()
             self.restartProcess()
 
         print(res)
+
+    def isConnected(self):
+        return self.__isConnected
+
+    def setConnected(self, isConnected: bool):
+        if self.__isConnected != isConnected:
+            self.__isConnected = isConnected
+            self.isConnectedSignal.emit(self.__isConnected)

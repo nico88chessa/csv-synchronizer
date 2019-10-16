@@ -1,7 +1,4 @@
-from typing import Type
-
 from PySide2.QtCore import QObject, Property, Signal
-from PySide2.QtQml import qmlRegisterType
 
 
 class SettingsBean(QObject):
@@ -35,36 +32,36 @@ class SettingsBean(QObject):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.__laserIp = str
-        self.__laserPort = int
-        self.__laserPollingTimeMs = int
-        self.__laserRemotePath = str
-        self.__cameraIp = str
-        self.__cameraPort = int
-        self.__cameraPollingTimeMs = int
-        self.__cameraRemotePath = str
+        self.__laserIp: str = ""
+        self.__laserPort: int = 0
+        self.__laserPollingTimeMs = 0
+        self.__laserRemotePath: str = ""
+        self.__cameraIp: str = ""
+        self.__cameraPort = 0
+        self.__cameraPollingTimeMs = 0
+        self.__cameraRemotePath: str = ""
 
     def getLaserIp(self):
         return self.__laserIp
 
     def setLaserIp(self, ip):
-        if (ip != self.__laserIp):
+        if ip != self.__laserIp:
             self.__laserIp = ip
             self.laserIpChanged.emit()
 
-    def getLaserPort(self) -> Type[int]:
+    def getLaserPort(self) -> int:
         return self.__laserPort
 
-    def setLaserPort(self, port : int):
-        if (port != self.__laserPort):
+    def setLaserPort(self, port: int):
+        if port != self.__laserPort:
             self.__laserPort = port
             self.laserPortChanged.emit()
 
-    def getLaserPollingTimeMs(self) -> Type[int]:
+    def getLaserPollingTimeMs(self) -> int:
         return self.__laserPollingTimeMs
 
-    def setLaserPollingTimeMs(self, pollingTimeMs : int):
-        if (pollingTimeMs != self.__laserPollingTimeMs):
+    def setLaserPollingTimeMs(self, pollingTimeMs: int):
+        if pollingTimeMs != self.__laserPollingTimeMs:
             self.__laserPollingTimeMs = pollingTimeMs
             self.laserPollingTimeMsChanged.emit()
 
@@ -72,7 +69,7 @@ class SettingsBean(QObject):
         return self.__laserRemotePath
 
     def setLaserRemotePath(self, remotePath: str):
-        if (self.__laserRemotePath != remotePath):
+        if self.__laserRemotePath != remotePath:
             self.__laserRemotePath = remotePath
             self.laserRemotePathChanged.emit()
 
@@ -80,7 +77,7 @@ class SettingsBean(QObject):
         return self.__cameraIp
 
     def setCameraIp(self, ip):
-        if (ip != self.__cameraIp):
+        if ip != self.__cameraIp:
             self.__cameraIp = ip
             self.cameraIpChanged.emit()
 
@@ -88,15 +85,15 @@ class SettingsBean(QObject):
         return self.__cameraPort
 
     def setCameraPort(self, port: int):
-        if (port != self.__cameraPort):
+        if port != self.__cameraPort:
             self.__cameraPort = port
             self.cameraPortChanged.emit()
 
-    def getCameraPollingTimeMs(self) -> Type[int]:
+    def getCameraPollingTimeMs(self) -> int:
         return self.__cameraPollingTimeMs
 
     def setCameraPollingTimeMs(self, pollingTimeMs: int):
-        if (pollingTimeMs != self.__cameraPollingTimeMs):
+        if pollingTimeMs != self.__cameraPollingTimeMs:
             self.__cameraPollingTimeMs = pollingTimeMs
             self.cameraPollingTimeMsChanged.emit()
 
@@ -104,7 +101,7 @@ class SettingsBean(QObject):
         return self.__cameraRemotePath
 
     def setCameraRemotePath(self, remotePath: str):
-        if (self.__cameraRemotePath != remotePath):
+        if self.__cameraRemotePath != remotePath:
             self.__cameraRemotePath = remotePath
             self.cameraRemotePathChanged.emit()
 
@@ -114,5 +111,6 @@ class SettingsBean(QObject):
     pLaserRemotePath = Property(str, getLaserRemotePath, setLaserRemotePath, notify=laserRemotePathChanged)
     pCameraIp = Property(str, getCameraIp, setCameraIp, notify=cameraIpChanged)
     pCameraPort = Property(int, getCameraPort, setCameraPort, notify=cameraPortChanged)
-    pCameraPollingTimeMs = Property(int, getCameraPollingTimeMs, setCameraPollingTimeMs, notify=cameraPollingTimeMsChanged)
+    pCameraPollingTimeMs = Property(int, getCameraPollingTimeMs, setCameraPollingTimeMs,
+                                    notify=cameraPollingTimeMsChanged)
     pCameraRemotePath = Property(str, getCameraRemotePath, setCameraRemotePath, notify=cameraRemotePathChanged)
