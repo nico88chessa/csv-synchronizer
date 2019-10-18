@@ -204,4 +204,22 @@ class ProcessController(QObject):
 
             self.__csvRegeneratorThread.setRowMargin(self.__settingsBean.getLocalRowMargin())
 
+            self.__csvRegeneratorThread.downloadStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegenerationDownloadStepStatus(value))
+
+            self.__csvRegeneratorThread.creationCsvSignal.connect(
+                lambda value: self.__processBean.setCsvRegenerationCreationStepStatus(value))
+
+            self.__csvRegeneratorThread.sendingLaserSignal.connect(
+                lambda value: self.__processBean.setCsvRegenerationSendingLaserStatus(value))
+
+            self.__csvRegeneratorThread.sendingCameraSignal.connect(
+                lambda value: self.__processBean.setCsvRegenerationSendingCameraStatus(value))
+
+            self.__csvRegeneratorThread.started.connect(
+                lambda value: self.__processBean.setCsvRegenerationThreadRunning(True))
+
+            self.__csvRegeneratorThread.finished.connect(
+                lambda value: self.__processBean.setCsvRegenerationThreadRunning(False))
+
             self.__csvRegeneratorThread.start()

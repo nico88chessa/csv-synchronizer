@@ -2,6 +2,7 @@ from typing import List
 
 from PySide2.QtCore import QObject, Property, Signal, QStringListModel, QMetaMethod
 
+from core.CSVRegenerator import CSVRegeneratorStepStatus
 
 class ProcessBean(QObject):
 
@@ -14,6 +15,12 @@ class ProcessBean(QObject):
     cameraWatcherRunningChanged = Signal()
     laserConnectionUpChanged = Signal()
     cameraConnectionUpChanged = Signal()
+    errorFileFoundedChanged = Signal()
+    csvRegenerationThreadRunningChanged = Signal()
+    csvRegenerationDownloadStepStatusChanged = Signal()
+    csvRegenerationCreationStepStatusChanged = Signal()
+    csvRegenerationSendingLaserStatusChanged = Signal()
+    csvRegenerationSendingCameraStatusChanged = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -23,6 +30,13 @@ class ProcessBean(QObject):
         self.__isCameraWatcherRunning = False
         self.__isLaserConnectionUp = False
         self.__isCameraConnectionUp = False
+        self.__errorFileFounded = False
+        self.__csvRegenerationThreadRunning: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationDownloadStepStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationCreationStepStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationSendingLaserStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationSendingCameraStatus: int = CSVRegeneratorStepStatus.IDLE
+
 
     def getLaserFolderItems(self):
         return self.__laserFolderItems
@@ -87,6 +101,55 @@ class ProcessBean(QObject):
             self.__isCameraConnectionUp = connectionUp
             self.cameraConnectionUpChanged.emit()
 
+    def isErrorFileFounded(self):
+        return self.__errorFileFounded
+
+    def setErrorFileFounded(self, founded: bool):
+        if self.__errorFileFounded != founded:
+            self.__errorFileFounded = founded
+            self.errorFileFoundedChanged.emit()
+
+    def getCsvRegenerationThreadRunning(self):
+        return self.__csvRegenerationThreadRunning
+
+    def setCsvRegenerationThreadRunning(self, status: int):
+        if self.__csvRegenerationThreadRunning != status:
+            self.__csvRegenerationThreadRunning = status
+            self.csvRegenerationThreadRunningChanged.emit()
+
+    def getCsvRegenerationDownloadStepStatus(self):
+        return self.__csvRegenerationDownloadStepStatus
+
+    def setCsvRegenerationDownloadStepStatus(self, status: int):
+        if self.__csvRegenerationDownloadStepStatus != status:
+            self.__csvRegenerationDownloadStepStatus = status
+            self.csvRegenerationDownloadStepStatusChanged.emit()
+
+    def getCsvRegenerationCreationStepStatus(self):
+        return self.__csvRegenerationCreationStepStatus
+
+    def setCsvRegenerationCreationStepStatus(self, status: int):
+        if self.__csvRegenerationCreationStepStatus != status:
+            self.__csvRegenerationCreationStepStatus = status
+            self.csvRegenerationCreationStepStatusChanged.emit()
+
+    def getCsvRegenerationSendingLaserStatus(self):
+        return self.__csvRegenerationSendingLaserStatus
+
+    def setCsvRegenerationSendingLaserStatus(self, status: int):
+        if self.__csvRegenerationSendingLaserStatus != status:
+            self.__csvRegenerationSendingLaserStatus = status
+            self.csvRegenerationSendingLaserStatusChanged.emit()
+
+    def getCsvRegenerationSendingCameraStatus(self):
+        return self.__csvRegenerationSendingCameraStatus
+
+    def setCsvRegenerationSendingCameraStatus(self, status: int):
+        if self.__csvRegenerationSendingCameraStatus != status:
+            self.__csvRegenerationSendingCameraStatus = status
+            self.csvRegenerationSendingCameraStatusChanged.emit()
+
+
     pLaserFolderItems = Property("QStringList", getLaserFolderItems, setLaserFolderItems,
                                  notify=laserFolderItemsChanged)
     pCameraFolderItems = Property("QStringList", getCameraFolderItems, setCameraFolderItems,
@@ -97,3 +160,20 @@ class ProcessBean(QObject):
     pCameraWatcherRunning = Property(bool, isCameraWatcherRunning, setCameraWatcherRunning,
                                      notify=cameraWatcherRunningChanged)
     pCameraConnectionUp = Property(bool, isCameraConnectionUp, setCameraConnectionUp, notify=cameraConnectionUpChanged)
+    pErrorFileFounded = Property(bool, isErrorFileFounded, setErrorFileFounded, notify=errorFileFoundedChanged)
+
+    pCsvRegenerationThreadRunning = Property(int, getCsvRegenerationThreadRunning,
+                                             setCsvRegenerationThreadRunning,
+                                             notify=csvRegenerationThreadRunningChanged)
+    pCsvRegenerationDownloadStepStatus = Property(int, getCsvRegenerationDownloadStepStatus,
+                                                  setCsvRegenerationDownloadStepStatus,
+                                                  notify=csvRegenerationDownloadStepStatusChanged)
+    pCsvRegenerationCreationStepStatus = Property(int, getCsvRegenerationCreationStepStatus,
+                                                  setCsvRegenerationCreationStepStatus,
+                                                  notify=csvRegenerationCreationStepStatusChanged)
+    pCsvRegenerationSendingLaserStatus = Property(int, getCsvRegenerationSendingLaserStatus,
+                                                  setCsvRegenerationSendingLaserStatus,
+                                                  notify=csvRegenerationSendingLaserStatusChanged)
+    pCsvRegenerationSendingCameraStatus = Property(int, getCsvRegenerationSendingCameraStatus,
+                                                   setCsvRegenerationSendingCameraStatus,
+                                                   notify=csvRegenerationSendingCameraStatusChanged)

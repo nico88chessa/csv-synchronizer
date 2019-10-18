@@ -525,12 +525,217 @@ ApplicationWindow {
 
                     }
 
-                    Item {
-                        id: spacer
-                        width: 0
-                        height: 0
-                        Layout.fillWidth: true
+                    Frame {
+                        id: fRegeneration
+                        width: 200
+                        height: 200
+                        opacity: 1
+                        padding: 0
+                        leftPadding: 0
+                        rightPadding: 0
+                        bottomPadding: 0
+                        topPadding: 0
                         Layout.fillHeight: true
+                        Layout.fillWidth: true
+
+                        GridLayout {
+                            id: gRegeneration
+                            columns: 6
+                            rows: 2
+                            visible: true
+                            anchors.fill: parent
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+
+                            function getColor(status) {
+                                if (status === 0)
+                                    return "lightGray"
+                                else if (status === 1)
+                                    return "orange"
+                                else if (status === 2)
+                                    return "green"
+                                else
+                                    return "red"
+                            }
+
+                            Item {
+                                id: itemErrorFounded
+                                width: 150
+                                height: 70
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 6
+                                RoundButton {
+                                    id: rbErrorFounded
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: processCtrl.pErrorFileFounded ? "red" : "green"
+                                    }
+                                }
+                                Text {
+                                    id: tErrorFounded
+                                    text: qsTr("ERROR FOUNDED")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemStart
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbItemStart
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegenerationThreadRunning)
+                                    }
+                                }
+                                Text {
+                                    id: tItemStart
+                                    text: qsTr("START CSV CREATION")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemDownload
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbItemDownload
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegenerationDownloadStepStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tItemDownload
+                                    text: qsTr("DOWNLOAD")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemCreationFile
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbItemCreationFile
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegenerationCreationStepStatus)
+                                    }
+                                }
+                                Text {
+                                    id: ttemCreationFile
+                                    text: qsTr("CREATION CSV")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: sendingToLaser
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbSendingToLaser
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegenerationSendingLaserStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tSendingToLaser
+                                    text: qsTr("SENDING TO LASER")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: sendingToCamera
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbSendingToCamera
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegenerationSendingCameraStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tSendingToCamera
+                                    text: qsTr("SENDING TO CAMERA")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemEnd
+                                width: 150
+                                height: 70
+                                RoundButton {
+                                    id: rbItemEnd
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: "red"
+                                    }
+                                }
+                                Text {
+                                    id: tItemEnd
+                                    text: qsTr("ENDED")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                        }
                     }
 
                     GridLayout {
@@ -544,6 +749,9 @@ ApplicationWindow {
                         }
 
                     }
+
+
+
 
                 }
             }
@@ -950,7 +1158,24 @@ ApplicationWindow {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /*##^## Designer {
-    D{i:65;anchors_width:200}D{i:64;anchors_height:100;anchors_width:100}D{i:63;anchors_height:100;anchors_width:100}
+    D{i:65;anchors_height:100;anchors_width:100}D{i:66;anchors_height:100;anchors_width:100}
+D{i:68;anchors_width:200}D{i:67;anchors_height:100;anchors_width:200}D{i:80;anchors_height:100;anchors_width:100}
+D{i:81;anchors_height:100;anchors_width:100}D{i:60;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}
+D{i:83;anchors_height:100;anchors_width:200}D{i:82;anchors_height:100;anchors_width:200}
+D{i:87;anchors_width:200}D{i:86;anchors_height:100;anchors_width:200}D{i:85;anchors_height:100;anchors_width:200}
+D{i:84;anchors_height:100;anchors_width:200}
 }
  ##^##*/

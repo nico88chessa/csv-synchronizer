@@ -3,8 +3,15 @@ import os
 import shutil
 from enum import IntEnum
 
-from PySide2.QtCore import QThread, QMutexLocker, QMutex
+from PySide2.QtCore import QThread, QMutexLocker, QMutex, Signal
 from ftplib import FTP
+
+
+class CSVRegeneratorStepStatus(IntEnum):
+    IDLE = 0,
+    IN_PROGRESS = 1,
+    ENDED_OK = 2,
+    ENDED_KO = 3
 
 
 class ThreadExitCode(IntEnum):
@@ -24,6 +31,12 @@ class ThreadExitCode(IntEnum):
 
 
 class CSVRegenerator(QThread):
+
+    downloadStepSignal = Signal(int)
+    creationCsvSignal = Signal(int)
+    sendingLaserSignal = Signal(int)
+    sendingCameraSignal = Signal(int)
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -105,6 +118,12 @@ class CSVRegenerator(QThread):
         self.__errorFilename = filename
 
     def run(self):
+
+        self.downloadStepSignal.emit(CSVRegeneratorStepStatus.IDLE)
+        self.creationCsvSignal.emit(CSVRegeneratorStepStatus.IDLE)
+        self.sendingLaserSignal.emit(CSVRegeneratorStepStatus.IDLE)
+        self.sendingCameraSignal.emit(CSVRegeneratorStepStatus.IDLE)
+
         locker = QMutexLocker(self.__mutex)
 
         rowMargin = self.__rowMargin
@@ -142,6 +161,7 @@ class CSVRegenerator(QThread):
         if not canContinue:
             self.exit(ThreadExitCode.FILES_NOT_FOUNDED)
 
+        self.downloadStepSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
         # mi collego in FTP al laser
         ftpController = FTP()
@@ -152,6 +172,7 @@ class CSVRegenerator(QThread):
             ftpController.login()
         except ftplib.all_errors as ftpErr:
             print("Error on FTP: " + ftpErr)
+            self.downloadStepSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(ThreadExitCode.FTP_LASER_CONNECTION_ERROR)
 
         CSVFileLocalPath = localDownloadingPath + "\\" + csvFilename
@@ -175,8 +196,10 @@ class CSVRegenerator(QThread):
             print("Error on FTP:" + str(ftpErr))
             errorCode = ThreadExitCode.FTP_LASER_DOWNLOAD_FILES_ERROR
             ftpController.close()
+            self.downloadStepSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
+        self.downloadStepSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
 
         # se ho scaricato il file csv, lo elimino dal laser
         try:
@@ -189,6 +212,7 @@ class CSVRegenerator(QThread):
             ftpController.close()
             self.exit(errorCode)
 
+        self.creationCsvSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
         # apro il file in error in lettura per vedere l'indice dell'ultima stringa stampata
         lineToSeek = 0
@@ -213,6 +237,7 @@ class CSVRegenerator(QThread):
             fp.close()
 
         if not canContinue:
+            self.creationCsvSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
 
@@ -238,6 +263,7 @@ class CSVRegenerator(QThread):
             errorCode = ThreadExitCode.CSV_LOCAL_FILE_OPENING_ERROR
 
         if errorCode != ThreadExitCode.NO_ERROR:
+            self.creationCsvSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
 
@@ -255,8 +281,12 @@ class CSVRegenerator(QThread):
             fp.close()
 
         if errorCode != ThreadExitCode.NO_ERROR:
+            self.creationCsvSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
+        self.creationCsvSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
+
+        self.sendingLaserSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
         # invio il nuovo file csv al laser
         try:
@@ -271,6 +301,7 @@ class CSVRegenerator(QThread):
             ftpController.close()
 
         if errorCode != ThreadExitCode.NO_ERROR:
+            self.sendingLaserSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
 
@@ -283,8 +314,12 @@ class CSVRegenerator(QThread):
             print("Error on FTP:" + str(ftpErr))
             errorCode = ThreadExitCode.FTP_LASER_REMOVING_FILES_ERROR
             ftpController.close()
+            self.sendingLaserSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
             self.exit(errorCode)
 
+        self.sendingLaserSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
+
+        self.sendingCameraSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
         # cancello il file csv dalla camera
         csvCameraPath = cameraPath + "\\" + csvFilename
@@ -296,6 +331,7 @@ class CSVRegenerator(QThread):
             print("Impossibile rimuovere il file: " + csvCameraPath)
 
         if errorCode != ThreadExitCode.NO_ERROR:
+            self.sendingCameraSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
             self.exit(errorCode)
 
 
@@ -306,4 +342,8 @@ class CSVRegenerator(QThread):
             errorCode = ThreadExitCode.FTP_LASER_SENDING_FILE_ERROR
             print("Impossibile copiare il nuovo fil csv in camera: " + CSVNewFileLocalPath)
 
+        if errorCode != ThreadExitCode.NO_ERROR:
+            self.sendingCameraSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
+
+        self.sendingCameraSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
         self.exit(errorCode)
