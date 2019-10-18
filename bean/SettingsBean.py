@@ -3,43 +3,52 @@ from PySide2.QtCore import QObject, Property, Signal
 
 class SettingsBean(QObject):
 
-    @Signal
-    def laserIpChanged(self): pass
+    cameraRemotePathChanged = Signal()
+    cameraPollingTimeMsChanged = Signal()
 
-    @Signal
-    def laserPortChanged(self): pass
+    laserIpChanged = Signal()
+    laserPortChanged = Signal()
+    laserPollingTimeMsChanged = Signal()
+    laserRemotePathChanged = Signal()
 
-    @Signal
-    def laserPollingTimeMsChanged(self): pass
-
-    @Signal
-    def laserRemotePathChanged(self):
-        pass
-
-    @Signal
-    def cameraIpChanged(self): pass
-
-    @Signal
-    def cameraPortChanged(self): pass
-
-    @Signal
-    def cameraPollingTimeMsChanged(self):
-        pass
-
-    @Signal
-    def cameraRemotePathChanged(self):
-        pass
+    localRowMarginChanged = Signal()
+    localCsvFilenameChanged = Signal()
+    localLaserErrorFilenameChanged = Signal()
+    localLoadingPathChanged = Signal()
+    localDownloadingPathChanged = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        self.__cameraRemotePath: str = ""
+        self.__cameraPollingTimeMs = 0
+
         self.__laserIp: str = ""
         self.__laserPort: int = 0
         self.__laserPollingTimeMs = 0
         self.__laserRemotePath: str = ""
-        self.__cameraIp: str = ""
-        self.__cameraPort = 0
-        self.__cameraPollingTimeMs = 0
-        self.__cameraRemotePath: str = ""
+
+        self.__localRowMargin: int = 0
+        self.__localCsvFilename: str = ""
+        self.__localLaserErrorFilename: str = ""
+        self.__localLoadingPath: str = ""
+        self.__localDownloadingPath: str = ""
+
+    def getCameraRemotePath(self) -> str:
+        return self.__cameraRemotePath
+
+    def setCameraRemotePath(self, remotePath: str):
+        if self.__cameraRemotePath.lower() != remotePath.lower():
+            self.__cameraRemotePath = remotePath
+            self.cameraRemotePathChanged.emit()
+
+    def getCameraPollingTimeMs(self) -> int:
+        return self.__cameraPollingTimeMs
+
+    def setCameraPollingTimeMs(self, pollingTimeMs: int):
+        if pollingTimeMs != self.__cameraPollingTimeMs:
+            self.__cameraPollingTimeMs = pollingTimeMs
+            self.cameraPollingTimeMsChanged.emit()
 
     def getLaserIp(self):
         return self.__laserIp
@@ -69,48 +78,63 @@ class SettingsBean(QObject):
         return self.__laserRemotePath
 
     def setLaserRemotePath(self, remotePath: str):
-        if self.__laserRemotePath != remotePath:
+        if self.__laserRemotePath.lower() != remotePath.lower():
             self.__laserRemotePath = remotePath
             self.laserRemotePathChanged.emit()
 
-    def getCameraIp(self):
-        return self.__cameraIp
+    def getLocalRowMargin(self) -> int:
+        return self.__localRowMargin
 
-    def setCameraIp(self, ip):
-        if ip != self.__cameraIp:
-            self.__cameraIp = ip
-            self.cameraIpChanged.emit()
+    def setLocalRowMargin(self, margin: int):
+        if self.__localRowMargin != margin:
+            self.__localRowMargin = margin
+            self.localRowMarginChanged.emit()
 
-    def getCameraPort(self) -> int:
-        return self.__cameraPort
+    def getLocalCsvFilename(self):
+        return self.__localCsvFilename
 
-    def setCameraPort(self, port: int):
-        if port != self.__cameraPort:
-            self.__cameraPort = port
-            self.cameraPortChanged.emit()
+    def setLocalCsvFilename(self, csvFilename: str):
+        if self.__localCsvFilename.lower() != csvFilename.lower():
+            self.__localCsvFilename = csvFilename
+            self.localCsvFilenameChanged.emit()
 
-    def getCameraPollingTimeMs(self) -> int:
-        return self.__cameraPollingTimeMs
+    def getLocalLaserErrorFilename(self):
+        return self.__localLaserErrorFilename
 
-    def setCameraPollingTimeMs(self, pollingTimeMs: int):
-        if pollingTimeMs != self.__cameraPollingTimeMs:
-            self.__cameraPollingTimeMs = pollingTimeMs
-            self.cameraPollingTimeMsChanged.emit()
+    def setLocalLaserErrorFilename(self, errorFilename: str):
+        if self.__localLaserErrorFilename.lower() != errorFilename.lower():
+            self.__localLaserErrorFilename = errorFilename
+            self.localLaserErrorFilenameChanged.emit()
 
-    def getCameraRemotePath(self) -> str:
-        return self.__cameraRemotePath
+    def getLocalLoadingPath(self):
+        return self.__localLoadingPath
 
-    def setCameraRemotePath(self, remotePath: str):
-        if self.__cameraRemotePath != remotePath:
-            self.__cameraRemotePath = remotePath
-            self.cameraRemotePathChanged.emit()
+    def setLocalLoadingPath(self, loadingPath: str):
+        if self.__localLoadingPath.lower() != loadingPath.lower():
+            self.__localLoadingPath = loadingPath
+            self.localLoadingPathChanged.emit()
+
+    def getLocalDownloadingPath(self):
+        return self.__localDownloadingPath
+
+    def setLocalDownloadingPath(self, downloadingPath: str):
+        if self.__localDownloadingPath.lower() != downloadingPath.lower():
+            self.__localDownloadingPath = downloadingPath
+            self.localDownloadingPathChanged.emit()
 
     pLaserIp = Property(str, getLaserIp, setLaserIp, notify=laserIpChanged)
     pLaserPort = Property(int, getLaserPort, setLaserPort, notify=laserPortChanged)
     pLaserPollingTimeMs = Property(int, getLaserPollingTimeMs, setLaserPollingTimeMs, notify=laserPollingTimeMsChanged)
     pLaserRemotePath = Property(str, getLaserRemotePath, setLaserRemotePath, notify=laserRemotePathChanged)
-    pCameraIp = Property(str, getCameraIp, setCameraIp, notify=cameraIpChanged)
-    pCameraPort = Property(int, getCameraPort, setCameraPort, notify=cameraPortChanged)
+
+    pCameraRemotePath = Property(str, getCameraRemotePath, setCameraRemotePath, notify=cameraRemotePathChanged)
     pCameraPollingTimeMs = Property(int, getCameraPollingTimeMs, setCameraPollingTimeMs,
                                     notify=cameraPollingTimeMsChanged)
-    pCameraRemotePath = Property(str, getCameraRemotePath, setCameraRemotePath, notify=cameraRemotePathChanged)
+
+    pLocalRowMargin = Property(int, getLocalRowMargin, setLocalRowMargin, notify=localRowMarginChanged)
+    pLocalCsvFilename = Property(str, getLocalCsvFilename, setLocalCsvFilename, notify=localCsvFilenameChanged)
+    pLocalLaserErrorFilename = Property(str, getLocalLaserErrorFilename, setLocalLaserErrorFilename,
+                                        notify=localLaserErrorFilenameChanged)
+    pLocalLoadingPath = Property(str, getLocalLoadingPath, setLocalLoadingPath, notify=localLoadingPathChanged)
+    pLocalDownloadingPath = Property(str, getLocalDownloadingPath, setLocalDownloadingPath,
+                                     notify=localDownloadingPathChanged)

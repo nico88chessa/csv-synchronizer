@@ -2,7 +2,7 @@ from PySide2.QtCore import QObject, Slot, Property, Signal, QThread
 
 from bean.SettingsBean import SettingsBean
 from Settings import Settings
-from core.CSVWatcher import CSVWatcher
+from core.FTPWatcher import FTPWatcher
 
 
 class SettingsController(QObject):
@@ -32,10 +32,14 @@ class SettingsController(QObject):
         self.__settingsBean.setLaserPollingTimeMs(s.getLaserPollingTime())
         self.__settingsBean.setLaserRemotePath(s.getLaserRemotePath())
 
-        self.__settingsBean.setCameraIp(s.getCameraIp())
-        self.__settingsBean.setCameraPort(s.getCameraPort())
         self.__settingsBean.setCameraPollingTimeMs(s.getCameraPollingTimeMs())
         self.__settingsBean.setCameraRemotePath(s.getCameraRemotePath())
+
+        self.__settingsBean.setLocalRowMargin(s.getLocalRowMargin())
+        self.__settingsBean.setLocalCsvFilename(s.getLocalCsvFilename())
+        self.__settingsBean.setLocalLaserErrorFilename(s.getLocalLaserErrorFilename())
+        self.__settingsBean.setLocalLoadingPath(s.getLocalLoadingPath())
+        self.__settingsBean.setLocalDownloadingPath(s.getLocalDownloadingPath())
 
     @Slot(None)
     def saveParameters(self):
@@ -45,9 +49,14 @@ class SettingsController(QObject):
         s.setLaserPort(self.__settingsBean.getLaserPort())
         s.setLaserPollingTime(self.__settingsBean.getLaserPollingTimeMs())
         s.setLaserRemotePath(self.__settingsBean.getLaserRemotePath())
-        s.setCameraIp(self.__settingsBean.getCameraIp())
-        s.setCameraPort(self.__settingsBean.getCameraPort())
+
         s.setCameraPollingTimeMs(self.__settingsBean.getCameraPollingTimeMs())
         s.setCameraRemotePath(self.__settingsBean.getCameraRemotePath())
+
+        s.setLocalRowMargin(self.__settingsBean.getLocalRowMargin())
+        s.setLocalCsvFilename(self.__settingsBean.getLocalCsvFilename())
+        s.setLocalLaserErrorFilename(self.__settingsBean.getLocalLaserErrorFilename())
+        s.setLocalLoadingPath(self.__settingsBean.getLocalLoadingPath())
+        s.setLocalDownloadingPath(self.__settingsBean.getLocalDownloadingPath())
 
         s.saveCurrentParameters()

@@ -52,12 +52,13 @@ class FSWatcher(QObject):
             res = os.listdir(self.__path)
             self.setConnected(True)
             self.itemsPathUpdatedSignal.emit(res)
-        except:
-            print("Unexpected error:", sys.exc_info()[0])
+        except OSError as err:
+            print("FSWatcher error:", err)
             self.pathUnreachableSignal.emit()
+            self.setConnected(False)
             self.restartProcess()
 
-        print(res)
+        # print(res)
 
     def isConnected(self):
         return self.__isConnected

@@ -1,10 +1,11 @@
+import ftplib
 import time
 
 from PySide2.QtCore import QTimer, Slot, QObject, Signal
 from ftplib import FTP
 
 
-class CSVWatcher(QObject):
+class FTPWatcher(QObject):
 
     isConnectedSignal = Signal(bool)
     stoppedSignal = Signal()
@@ -32,13 +33,16 @@ class CSVWatcher(QObject):
     def startProcess(self):
         try:
             # self.ftpController.connect(host="192.168.1.1")
+            self.startedSignal.emit()
             self.ftpController.connect()
             self.ftpController.login()
             # self.nlst()
             self.timer.start()
-            self.startedSignal.emit()
             self.isConnectedSignal.emit(True)
-        except:
+
+        except ftplib.all_errors as ftpErr:
+            print("FTPWatcher error:" + str(ftpErr))
+            self.ftpController.close()
             self.restartProcess()
 
     @Slot()
@@ -60,9 +64,10 @@ class CSVWatcher(QObject):
         try:
             res = self.ftpController.nlst(self.remotePath)
             self.itemsPathUpdatedSignal.emit(res)
-        except:
-            print("An exception occurred")
+        except ftplib.all_errors as ftpErr:
+            print("FTPWatcher error: " + str(ftpErr))
             self.isConnectedSignal.emit(False)
+            self.ftpController.close()
             self.restartProcess()
 
-        print(res)
+        # print(res)

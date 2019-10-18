@@ -12,11 +12,6 @@ class Settings(metaclass=Singleton):
     _fileFolder = "CSVDaemon"
     _filename = "config.ini"
 
-    # _laserIp: str
-    # _laserPort: int
-    # _cameraIp: str
-    # _cameraPort: int
-
     def __init__(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
         # folder += "/" + Settings._fileFolder
@@ -33,13 +28,15 @@ class Settings(metaclass=Singleton):
                 "remotePath": ".",
             }
             config["Camera"] = {
-                "ip": "192.168.100.21",
-                "port": 21,
+                "remotePath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
                 "pollingTimeMs": 1000,
-                "remotePath": ".",
             }
             config["SW"] = {
-                "localFolderPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
+                "rowMargin": 10,
+                "csvFilename": "lista.csv",
+                "laserErrorFilename": "error.txt",
+                "loadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
+                "downloadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
             }
 
             with open(filePath, 'w') as fp:
@@ -52,11 +49,15 @@ class Settings(metaclass=Singleton):
         self.__laserPort = int(config["Laser"]["port"])
         self.__laserPollingTimeMs = int(config["Laser"]["pollingTimeMs"])
         self.__laserRemotePath = config["Laser"]["remotePath"]
-        self.__cameraIp = config["Camera"]["ip"]
-        self.__cameraPort = int(config["Camera"]["port"])
-        self.__cameraPollingTimeMs = int(config["Camera"]["pollingTimeMs"])
+
         self.__cameraRemotePath = config["Camera"]["remotePath"]
-        self.__localFolderPath = config["SW"]["localFolderPath"]
+        self.__cameraPollingTimeMs = int(config["Camera"]["pollingTimeMs"])
+
+        self.__localRowMargin = int(config["SW"]["rowMargin"])
+        self.__localCsvFilename = config["SW"]["csvFilename"]
+        self.__localLaserErrorFilename = config["SW"]["laserErrorFilename"]
+        self.__localLoadingPath = config["SW"]["loadingPath"]
+        self.__localDownloadingPath = config["SW"]["downloadingPath"]
 
     def getLaserIp(self):
         return self.__laserIp
@@ -82,18 +83,6 @@ class Settings(metaclass=Singleton):
     def setLaserRemotePath(self, path: str):
         self.__laserRemotePath = path
 
-    def getCameraIp(self):
-        return self.__cameraIp
-
-    def setCameraIp(self, ip):
-        self.__cameraIp = ip
-
-    def getCameraPort(self) -> int:
-        return self.__cameraPort
-
-    def setCameraPort(self, port: int):
-        self.__cameraPort = port
-
     def getCameraPollingTimeMs(self) -> int:
         return self.__cameraPollingTimeMs
 
@@ -106,11 +95,35 @@ class Settings(metaclass=Singleton):
     def setCameraRemotePath(self, path: str):
         self.__cameraRemotePath = path
 
-    def getLocalFolderPath(self):
-        return self.__localFolderPath
+    def getLocalRowMargin(self) -> int:
+        return self.__localRowMargin
 
-    def setLocalFolderPath(self, path: str):
-        self.__localFolderPath = path
+    def setLocalRowMargin(self, margin: int):
+        self.__localRowMargin = margin
+
+    def getLocalCsvFilename(self):
+        return self.__localCsvFilename
+
+    def setLocalCsvFilename(self, csvFilename: str):
+        self.__localCsvFilename = csvFilename
+
+    def getLocalLaserErrorFilename(self):
+        return self.__localLaserErrorFilename
+
+    def setLocalLaserErrorFilename(self, errorFilename: str):
+        self.__localLaserErrorFilename = errorFilename
+
+    def getLocalLoadingPath(self):
+        return self.__localLoadingPath
+
+    def setLocalLoadingPath(self, loadingPath: str):
+        self.__localLoadingPath = loadingPath
+
+    def getLocalDownloadingPath(self):
+        return self.__localDownloadingPath
+
+    def setLocalDownloadingPath(self, downloadingPath: str):
+        self.__localDownloadingPath = downloadingPath
 
     def saveCurrentParameters(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
@@ -128,13 +141,15 @@ class Settings(metaclass=Singleton):
             "remotePath": self.getLaserRemotePath(),
         }
         config["Camera"] = {
-            "ip": self.getCameraIp(),
-            "port": self.getCameraPort(),
             "pollingTimeMs": self.getCameraPollingTimeMs(),
             "remotePath": self.getCameraRemotePath(),
         }
         config["SW"] = {
-            "localFolderPath": self.getLocalFolderPath(),
+            "rowMargin": self.getLocalRowMargin(),
+            "csvFilename": self.getLocalCsvFilename(),
+            "laserErrorFilename": self.getLocalLaserErrorFilename(),
+            "loadingPath": self.getLocalLoadingPath(),
+            "downloadingPath": self.getLocalDownloadingPath()
         }
 
         with open(filePath, 'w') as fp:

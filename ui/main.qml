@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Dialogs 1.3
@@ -37,8 +37,8 @@ ApplicationWindow {
 
     QMLProcessBean {
         id: processBean
-//        onLaserFolderItemsChanged: lvCameraFolder.forceLayout()
-//        onLaserFolderItemsChanged: mainWindow.width = (mainWindow.width == 800 ? 640 : 800)
+        //        onLaserFolderItemsChanged: lvCameraFolder.forceLayout()
+        //        onLaserFolderItemsChanged: mainWindow.width = (mainWindow.width == 800 ? 640 : 800)
     }
 
     QMLSettingsController {
@@ -50,15 +50,6 @@ ApplicationWindow {
         id: processCtrl
         pProcessBean: processBean
         pSettingsBean: settingsBean
-    }
-
-    // definizione UI
-    FileDialog {
-        id: fileDialog
-        title: qsTr("Choose a folder")
-        folder: processCtrl.getUrlFromNativePath(processCtrl.pProcessBean.pLocalFolderPath)
-        selectFolder: true
-        onAccepted: processCtrl.handleUrlPath(fileDialog.fileUrl)
     }
 
     minimumWidth: 1024
@@ -75,15 +66,12 @@ ApplicationWindow {
             id: tabBar
             width: parent.width
             Layout.fillWidth: true
-            currentIndex: 2
+            currentIndex: 1
             TabButton {
                 text: qsTr("Process")
             }
             TabButton {
-                text: qsTr("Laser Settings")
-            }
-            TabButton {
-                text: qsTr("Camera Settings")
+                text: qsTr("Settings")
             }
             Component.onCompleted: tabBar.currentIndex = 0
 
@@ -117,31 +105,55 @@ ApplicationWindow {
                         width: 100
                         height: 100
                         Layout.fillWidth: true
-                        rows: 3
-                        columns: 3
+                        rows: 2
+                        columns: 2
 
                         TextField {
                             id: tfFolderPath
-                            text: processCtrl.pProcessBean.pLocalFolderPath
-                            placeholderText: qsTr("")
+                            text: settingsBean.pLocalLoadingPath
                             Layout.fillWidth: true
+                            onEditingFinished: processCtrl.setLocalLoadingPath(tfFolderPath.text)
                         }
 
-
                         Button {
+
+                            FileDialog {
+                                id: localLoadingPathFileDialog
+                                title: qsTr("Choose a folder")
+                                selectFolder: true
+                                onAccepted: processCtrl.setLocalLoadingPath(localLoadingPathFileDialog.fileUrl)
+                            }
+
                             id: bChangeFolder
-                            width: 200
+                            width: 120
                             height: 40
                             text: qsTr("Change Folder")
-                            Layout.fillWidth: false
-                            onClicked: fileDialog.open()
+                            Layout.minimumWidth: 120
+                            rightPadding: 15
+                            leftPadding: 15
+                            onClicked: {
+                                localLoadingPathFileDialog.folder = processCtrl.getUrlFromNativePath(settingsBean.pLocalLoadingPath)
+                                localLoadingPathFileDialog.open()
+                            }
+                        }
+
+                        TextField {
+                            id: tfCsvFilenameRO
+                            text: settingsBean.pLocalCsvFilename
+                            Layout.fillWidth: true
+                            readOnly: true
                         }
 
                         Button {
-                            id: bSavePath
-                            text: qsTr("Save Path")
-                            onClicked: processCtrl.saveParameters()
+                            id: bSendToDevices
+                            width: 120
+                            text: qsTr("Send to devices")
+                            Layout.minimumWidth: 120
+                            rightPadding: 15
+                            leftPadding: 15
+                            onClicked: processCtrl.sendCsvFileToDevices()
                         }
+
 
 
                     }
@@ -186,10 +198,12 @@ ApplicationWindow {
 
                             RoundButton {
                                 id: rbLaserWatcher
+                                width: 30
+                                height: 30
                                 text: ""
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                Layout.preferredHeight: 40
-                                Layout.preferredWidth: 40
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
                                 background: Rectangle {
                                     id: rbLaserWatcherRect
                                     radius: rbLaserWatcher.radius
@@ -220,9 +234,11 @@ ApplicationWindow {
 
                             RoundButton {
                                 id: rbLaserConnection
+                                width: 30
+                                height: 30
                                 text: ""
-                                Layout.preferredHeight: 40
-                                Layout.preferredWidth: 40
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
                                 background: Rectangle {
@@ -363,10 +379,12 @@ ApplicationWindow {
 
                             RoundButton {
                                 id: rbCameraWatcher
+                                width: 30
+                                height: 30
                                 text: ""
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                Layout.preferredHeight: 40
-                                Layout.preferredWidth: 40
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
 
                                 background: Rectangle {
                                     id: rbCameraWatcherRect
@@ -398,10 +416,12 @@ ApplicationWindow {
 
                             RoundButton {
                                 id: rbCameraConnection
+                                width: 30
+                                height: 30
                                 text: ""
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                Layout.preferredHeight: 40
-                                Layout.preferredWidth: 40
+                                Layout.preferredHeight: 30
+                                Layout.preferredWidth: 30
 
                                 background: Rectangle {
                                     id: rbCameraConnectionRect
@@ -525,215 +545,389 @@ ApplicationWindow {
 
                     }
 
-                    Button {
-                        id: button2
-                        text: qsTr("Button")
-                    }
-
                 }
             }
 
             Item {
-                id: laserSettings
+                id: settings
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-                ColumnLayout {
-                    id: columnLayout
+                GridLayout {
+                    id: gridLayout
+                    layoutDirection: Qt.LeftToRight
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.top: parent.top
                     anchors.rightMargin: 10
                     anchors.leftMargin: 10
                     anchors.bottomMargin: 10
                     anchors.topMargin: 10
-                    anchors.fill: parent
+                    columnSpacing: 50
+                    rowSpacing: 50
+                    columns: 2
 
-                    GridLayout {
-                        id: glLaser
-                        Layout.fillHeight: true
+                    ColumnLayout {
+                        id: cameraSettingsLayout
                         Layout.fillWidth: true
-                        columns: 2
-                        columnSpacing: 5
-
-                        Text {
-                            id: tLaserIp
-                            text: qsTr("Laser IP")
-                            Layout.minimumWidth: 120
-                            Layout.fillWidth: false
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfLaserIp
-                            text: settingsCtrl.pSettingsBean.pLaserIp
-                            placeholderText: "Laser IP address"
-                            inputMask: "000.000.000.000"
-                            onEditingFinished: settingsCtrl.pSettingsBean.pLaserIp = text
-                        }
-
-                        Text {
-                            id: tLaserPort
-                            text: qsTr("Laser Port")
-                            Layout.minimumWidth: 120
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfLaserPort
-                            text: "%0".arg(settingsCtrl.pSettingsBean.pLaserPort)
-                            placeholderText: "Laser Port"
-                            inputMask: "00000"
-                            onEditingFinished: settingsCtrl.pSettingsBean.pLaserPort = tfLaserPort.text
-                        }
-
-                        Text {
-                            id: tLaserPollingTimeMs
-                            text: qsTr("Polling Time [ms]")
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfLaserPollingTimeMs
-                            text: settingsCtrl.pSettingsBean.pLaserPollingTimeMs
-                            validator: IntValidator {
-                                bottom: 100;
-                                top: 100000;
-                            }
-                            onEditingFinished: settingsCtrl.pSettingsBean.pLaserPollingTimeMs = tfLaserPollingTimeMs.text
-                        }
-
-                        Item {
-                            id: element3
-                            width: 200
-                            height: 200
-                            Layout.columnSpan: 2
-                            Layout.preferredHeight: 1
-                            Layout.preferredWidth: 0
-                            Layout.fillWidth: false
+                        GridLayout {
+                            id: gridLayout2
                             Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 5
+
+                            Text {
+                                id: tCameraPath
+                                text: qsTr("Camera path")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfCameraPath
+                                Layout.fillWidth: true
+                                text: settingsBean.pCameraRemotePath
+                                onEditingFinished: processCtrl.setCameraRemotePath(tfCameraPath.text)
+                            }
+
+                            Button {
+
+                                FileDialog {
+                                    id: cameraFileDialog
+                                    title: qsTr("Choose a folder")
+                                    selectFolder: true
+                                    onAccepted: processCtrl.setCameraRemotePath(cameraFileDialog.fileUrl)
+                                }
+
+                                id: bCameraFolder
+                                text: qsTr("Change Folder")
+                                rightPadding: 15
+                                leftPadding: 15
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                Layout.columnSpan: 2
+                                onClicked: {
+                                    cameraFileDialog.folder = processCtrl.getUrlFromNativePath(settingsBean.pCameraRemotePath)
+                                    cameraFileDialog.open()
+                                }
+
+                            }
+
+                            Text {
+                                id: tCameraPollingTimeMs
+                                text: qsTr("Polling time [ms]")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfCameraPollingTimeMs
+                                text: settingsBean.pCameraPollingTimeMs
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                validator: IntValidator {
+                                    bottom: 100;
+                                    top: 100000;
+                                }
+                                onEditingFinished: settingsBean.pCameraPollingTimeMs = tfCameraPollingTimeMs.text
+                            }
+
+                            Item {
+                                id: element4
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: false
+                                Layout.fillHeight: true
+                                Layout.preferredWidth: 0
+                                Layout.preferredHeight: 1
+                            }
+
+
+
+
                         }
 
+                        GridLayout {
+                            id: gridLayout3
+                            Layout.fillWidth: true
 
+                            Button {
+                                id: bCameraSet
+                                text: qsTr("Set camera configuration")
+                                Layout.fillWidth: true
+                                rightPadding: 15
+                                leftPadding: 15
+                                onClicked: settingsCtrl.saveParameters()
+                            }
+                        }
+                    }
+
+                    ColumnLayout {
+                        id: laserSettingsLayout
+                        Layout.fillWidth: true
+
+                        GridLayout {
+                            id: glLaser
+                            Layout.fillHeight: true
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 5
+
+                            Text {
+                                id: tLaserIp
+                                text: qsTr("Laser IP")
+                                Layout.minimumWidth: 120
+                                Layout.fillWidth: false
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserIp
+                                text: settingsBean.pLaserIp
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                placeholderText: "Laser IP address"
+                                inputMask: "000.000.000.000"
+                                onEditingFinished: settingsBean.pLaserIp = text
+                            }
+
+                            Text {
+                                id: tLaserPort
+                                text: qsTr("Laser port")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserPort
+                                text: "%0".arg(settingsBean.pLaserPort)
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                placeholderText: "Laser Port"
+                                inputMask: "00000"
+                                onEditingFinished: settingsBean.pLaserPort = tfLaserPort.text
+                            }
+
+                            Text {
+                                id: tLaserPollingTimeMs
+                                text: qsTr("Polling time [ms]")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserPollingTimeMs
+                                text: settingsBean.pLaserPollingTimeMs
+                                Layout.columnSpan: 1
+                                Layout.fillWidth: true
+                                validator: IntValidator {
+                                    bottom: 100;
+                                    top: 100000;
+                                }
+                                onEditingFinished: settingsBean.pLaserPollingTimeMs = tfLaserPollingTimeMs.text
+                            }
+
+                            Text {
+                                id: tLaserRemotePath
+                                text: qsTr("Laser remote path")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserRemotePath
+                                text: settingsBean.pLaserRemotePath
+                                Layout.fillWidth: true
+                                onEditingFinished: settingsBean.pLaserRemotePath = tfLaserRemotePath.text
+                            }
+
+                            Item {
+                                id: element3
+                                Layout.columnSpan: 2
+                                Layout.preferredHeight: 1
+                                Layout.preferredWidth: 0
+                                Layout.fillHeight: true
+                            }
+
+                        }
+
+                        GridLayout {
+                            id: gridLayout1
+                            columns: 2
+                            Layout.fillWidth: true
+
+                            Button {
+                                id: bLaserSet
+                                text: qsTr("Set laser configuration")
+                                Layout.fillWidth: true
+                                rightPadding: 15
+                                leftPadding: 15
+                                onClicked: settingsCtrl.saveParameters()
+                            }
+
+                        }
 
                     }
 
-                    GridLayout {
-                        id: gridLayout1
+                    ColumnLayout {
+                        id: localSettingsLayout
                         width: 100
                         height: 100
+                        Layout.fillHeight: true
+                        Layout.columnSpan: 1
 
-                        Item {
-                            id: element2
-                            width: 200
-                            height: 200
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 0
-                            Layout.preferredWidth: -1
+                        GridLayout {
+                            id: gridLayout4
+                            width: 100
+                            height: 100
+                            columns: 2
+
+                            Text {
+                                id: tRigheScarto
+                                text: qsTr("Righe scarto")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfRigheScarto
+                                text: settingsBean.pLocalRowMargin
+                                validator: IntValidator {
+                                    bottom: 0;
+                                    top: 20;
+                                }
+                                onEditingFinished: settingsBean.pLocalRowMargin = tfRigheScarto.text
+                                Layout.fillWidth: true
+                            }
+
+                            Text {
+                                id: tCsvFilename
+                                text: qsTr("Nome file CSV")
+                                Layout.minimumWidth: 120
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfCsvFilename
+                                text: settingsBean.pLocalCsvFilename
+                                Layout.fillWidth: true
+                                onEditingFinished: settingsBean.pLocalCsvFilename = tfCsvFilename.text
+                            }
+
+                            Text {
+                                id: tLaserErrorFilename
+                                text: qsTr("Nome file errore laser")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserErrorFilename
+                                text: settingsBean.pLocalLaserErrorFilename
+                                Layout.fillWidth: true
+                                onEditingFinished: settingsBean.pLocalLaserErrorFilename = tfLaserErrorFilename.text
+                            }
+
+                            Text {
+                                id: tLoadingPath
+                                text: qsTr("Loading path")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLoadingPath
+                                text: settingsBean.pLocalLoadingPath
+                                Layout.fillWidth: true
+                                onEditingFinished: processCtrl.setLocalLoadingPath(tfLoadingPath.text)
+                            }
+
+                            Button {
+
+                                FileDialog {
+                                    id: localLoadingPathFileDialog2
+                                    title: qsTr("Choose a folder")
+                                    selectFolder: true
+                                    onAccepted: processCtrl.setLocalLoadingPath(localLoadingPathFileDialog2.fileUrl)
+                                }
+
+                                id: bLoadingPath
+                                text: qsTr("Change loading path")
+                                rightPadding: 15
+                                leftPadding: 15
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                Layout.columnSpan: 2
+                                onClicked: {
+                                    localLoadingPathFileDialog2.folder = processCtrl.getUrlFromNativePath(settingsBean.pLocalLoadingPath)
+                                    localLoadingPathFileDialog2.open()
+                                }
+                            }
+
+                            Text {
+                                id: tDownloadPath
+                                text: qsTr("Downloading path")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfDownloadPath
+                                text: settingsBean.pLocalDownloadingPath
+                                Layout.fillWidth: true
+                                onEditingFinished: settingsBean.pLocalDownloadingPath = tfDownloadPath.text
+                            }
+
+                            Button {
+
+                                FileDialog {
+                                    id: localDownloadingPathFileDialog
+                                    title: qsTr("Choose a folder")
+                                    selectFolder: true
+                                    onAccepted: processCtrl.setLocalDownloadingPath(localDownloadingPathFileDialog.fileUrl)
+                                }
+
+                                id: bDownloadPath
+                                text: qsTr("Change downloading path")
+                                rightPadding: 15
+                                leftPadding: 15
+                                Layout.columnSpan: 2
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                onClicked: {
+                                    localDownloadingPathFileDialog.folder = processCtrl.getUrlFromNativePath(settingsBean.pLocalDownloadingPath)
+                                    localDownloadingPathFileDialog.open()
+                                }
+                            }
+
+                            Button {
+                                id: bLocalSet
+                                text: qsTr("Set local configuration")
+                                Layout.columnSpan: 2
+                                Layout.fillWidth: true
+                                onClicked: settingsCtrl.saveParameters()
+                            }
+
+
+
                         }
-
-                        Button {
-                            id: bLaserSet
-                            text: qsTr("Set Laser Configuration")
-                            onClicked: settingsCtrl.saveParameters()
-                        }
-
                     }
+
+                    ColumnLayout {
+                        id: tempLayout
+                        width: 100
+                        height: 100
+                        Layout.fillHeight: true
+                    }
+
+                    Item {
+                        id: spacer2
+                        width: 0
+                        height: 0
+                        Layout.fillHeight: true
+                    }
+
+
+
+
 
                 }
             }
 
-            Item {
-                id: cameraSettings
-
-                ColumnLayout {
-                    id: columnLayout1
-                    anchors.fill: parent
-                    anchors.bottomMargin: 10
-                    anchors.rightMargin: 10
-                    anchors.topMargin: 10
-                    anchors.leftMargin: 10
-                    GridLayout {
-                        id: gridLayout2
-                        Layout.fillWidth: true
-                        columns: 2
-                        Layout.fillHeight: true
-                        columnSpacing: 5
-                        Text {
-                            id: tCameraIp
-                            text: qsTr("Camera IP")
-                            Layout.fillWidth: false
-                            Layout.minimumWidth: 120
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfCameraIp
-                            text: settingsCtrl.pSettingsBean.pCameraIp
-                            placeholderText: "Camera IP address"
-                            inputMask: "000.000.000.000"
-                            onEditingFinished: settingsCtrl.pSettingsBean.pCameraIp = tfCameraIp.text
-                        }
-
-                        Text {
-                            id: tCameraPort
-                            text: qsTr("Camera Port")
-                            Layout.minimumWidth: 120
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfCameraPort
-                            text: settingsCtrl.pSettingsBean.pCameraPort
-                            placeholderText: "Camera Port"
-                            inputMask: "00000"
-                            onEditingFinished: settingsCtrl.pSettingsBean.pCameraPort = tfCameraPort.text
-                        }
-
-                        Text {
-                            id: tCameraPollingTimeMs
-                            text: qsTr("Polling Time [ms]")
-                            font.pixelSize: 12
-                        }
-
-                        TextField {
-                            id: tfCameraPollingTimeMs
-                            text: settingsCtrl.pSettingsBean.pCameraPollingTimeMs
-                            validator: IntValidator {
-                                bottom: 100;
-                                top: 100000;
-                            }
-                            onEditingFinished: settingsCtrl.pSettingsBean.pCameraPollingTimeMs = tfCameraPollingTimeMs.text
-                        }
-
-                        Item {
-                            id: element4
-                            width: 200
-                            height: 200
-                            Layout.columnSpan: 2
-                            Layout.fillWidth: false
-                            Layout.fillHeight: true
-                            Layout.preferredWidth: 0
-                            Layout.preferredHeight: 1
-                        }
-                    }
-
-                    GridLayout {
-                        id: gridLayout3
-                        width: 100
-                        height: 100
-                        Item {
-                            id: element5
-                            width: 200
-                            height: 200
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: -1
-                            Layout.preferredHeight: 0
-                        }
-
-                        Button {
-                            id: bCameraSet
-                            text: qsTr("Set Camera Configuration")
-                            onClicked: settingsCtrl.saveParameters()
-                        }
-                    }
-                }
-            }
 
         }
 
@@ -756,10 +950,7 @@ ApplicationWindow {
 
 
 
-
-
-
-
-
-
-
+/*##^## Designer {
+    D{i:65;anchors_width:200}D{i:64;anchors_height:100;anchors_width:100}D{i:63;anchors_height:100;anchors_width:100}
+}
+ ##^##*/

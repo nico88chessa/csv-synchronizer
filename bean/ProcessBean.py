@@ -7,8 +7,7 @@ class ProcessBean(QObject):
 
     __isCameraWatcherRunning: bool
     __isLaserWatcherRunning: bool
-    
-    localFolderPathChanged = Signal()
+
     laserFolderItemsChanged = Signal()
     cameraFolderItemsChanged = Signal()
     laserWatcherRunningChanged = Signal()
@@ -18,7 +17,6 @@ class ProcessBean(QObject):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.__localFolderPath = str
         self.__laserFolderItems: List[str] = list()
         self.__cameraFolderItems: List[str] = list()
         self.__isLaserWatcherRunning = False
@@ -26,23 +24,18 @@ class ProcessBean(QObject):
         self.__isLaserConnectionUp = False
         self.__isCameraConnectionUp = False
 
-    def getLocalFolderPath(self):
-        return self.__localFolderPath
-
-    def setLocalFolderPath(self, path: str):
-        if self.__localFolderPath != path:
-            self.__localFolderPath = path
-            self.localFolderPathChanged.emit()
-
     def getLaserFolderItems(self):
         return self.__laserFolderItems
 
     def setLaserFolderItems(self, items: list):
         isModified = False
-        for i in items:
-            if i not in self.__laserFolderItems:
-                isModified = True
-                break
+        if len(self.__laserFolderItems) != len(items):
+            isModified = True
+        if not isModified:
+            for i in items:
+                if i not in self.__laserFolderItems:
+                    isModified = True
+                    break
         if isModified:
             self.__laserFolderItems = items
             self.laserFolderItemsChanged.emit()
@@ -52,6 +45,8 @@ class ProcessBean(QObject):
 
     def setCameraFolderItems(self, items: list):
         isModified = False
+        if len(self.__cameraFolderItems) != len(items):
+            isModified = True
         for i in items:
             if i not in self.__cameraFolderItems:
                 isModified = True
@@ -92,7 +87,6 @@ class ProcessBean(QObject):
             self.__isCameraConnectionUp = connectionUp
             self.cameraConnectionUpChanged.emit()
 
-    pLocalFolderPath = Property(str, getLocalFolderPath, setLocalFolderPath, notify=localFolderPathChanged)
     pLaserFolderItems = Property("QStringList", getLaserFolderItems, setLaserFolderItems,
                                  notify=laserFolderItemsChanged)
     pCameraFolderItems = Property("QStringList", getCameraFolderItems, setCameraFolderItems,
