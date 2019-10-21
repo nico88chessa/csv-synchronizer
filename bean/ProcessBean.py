@@ -21,6 +21,7 @@ class ProcessBean(QObject):
     csvRegenerationCreationStepStatusChanged = Signal()
     csvRegenerationSendingLaserStatusChanged = Signal()
     csvRegenerationSendingCameraStatusChanged = Signal()
+    csvRegenerationExitCodeChanged = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -31,11 +32,12 @@ class ProcessBean(QObject):
         self.__isLaserConnectionUp = False
         self.__isCameraConnectionUp = False
         self.__errorFileFounded = False
-        self.__csvRegenerationThreadRunning: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationThreadRunning: bool = False
         self.__csvRegenerationDownloadStepStatus: int = CSVRegeneratorStepStatus.IDLE
         self.__csvRegenerationCreationStepStatus: int = CSVRegeneratorStepStatus.IDLE
         self.__csvRegenerationSendingLaserStatus: int = CSVRegeneratorStepStatus.IDLE
         self.__csvRegenerationSendingCameraStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegenerationExitCode: int = 0
 
 
     def getLaserFolderItems(self):
@@ -109,10 +111,10 @@ class ProcessBean(QObject):
             self.__errorFileFounded = founded
             self.errorFileFoundedChanged.emit()
 
-    def getCsvRegenerationThreadRunning(self):
+    def isCsvRegenerationThreadRunning(self):
         return self.__csvRegenerationThreadRunning
 
-    def setCsvRegenerationThreadRunning(self, status: int):
+    def setCsvRegenerationThreadRunning(self, status: bool):
         if self.__csvRegenerationThreadRunning != status:
             self.__csvRegenerationThreadRunning = status
             self.csvRegenerationThreadRunningChanged.emit()
@@ -149,6 +151,14 @@ class ProcessBean(QObject):
             self.__csvRegenerationSendingCameraStatus = status
             self.csvRegenerationSendingCameraStatusChanged.emit()
 
+    def getCsvRegenerationExitCode(self):
+        return self.__csvRegenerationExitCode
+
+    def setCsvRegenerationExitCode(self, exitCode: int):
+        if self.__csvRegenerationExitCode != exitCode:
+            self.__csvRegenerationExitCode = exitCode
+            self.csvRegenerationExitCodeChanged.emit()
+
 
     pLaserFolderItems = Property("QStringList", getLaserFolderItems, setLaserFolderItems,
                                  notify=laserFolderItemsChanged)
@@ -162,7 +172,7 @@ class ProcessBean(QObject):
     pCameraConnectionUp = Property(bool, isCameraConnectionUp, setCameraConnectionUp, notify=cameraConnectionUpChanged)
     pErrorFileFounded = Property(bool, isErrorFileFounded, setErrorFileFounded, notify=errorFileFoundedChanged)
 
-    pCsvRegenerationThreadRunning = Property(int, getCsvRegenerationThreadRunning,
+    pCsvRegenerationThreadRunning = Property(bool, isCsvRegenerationThreadRunning,
                                              setCsvRegenerationThreadRunning,
                                              notify=csvRegenerationThreadRunningChanged)
     pCsvRegenerationDownloadStepStatus = Property(int, getCsvRegenerationDownloadStepStatus,
@@ -177,3 +187,6 @@ class ProcessBean(QObject):
     pCsvRegenerationSendingCameraStatus = Property(int, getCsvRegenerationSendingCameraStatus,
                                                    setCsvRegenerationSendingCameraStatus,
                                                    notify=csvRegenerationSendingCameraStatusChanged)
+    pCsvRegenerationExitCode = Property(int, getCsvRegenerationExitCode,
+                                        setCsvRegenerationExitCode,
+                                        notify=csvRegenerationExitCodeChanged)

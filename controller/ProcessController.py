@@ -1,3 +1,8 @@
+import ftplib
+import os
+import shutil
+from ftplib import FTP
+
 from PySide2.QtCore import QObject, Slot, Property, Signal, QDir, QUrl, QThread, QMetaObject
 
 from bean.SettingsBean import SettingsBean
@@ -6,6 +11,7 @@ from Settings import Settings
 from core.CSVRegenerator import CSVRegenerator
 from core.FSWatcher import FSWatcher
 from core.FTPWatcher import FTPWatcher
+from core.Logger import Logger
 from core.SSHWatcher import SSHWatcher
 
 
@@ -14,6 +20,7 @@ class ProcessController(QObject):
     processBeanChanged = Signal()
     settingsBeanChanged = Signal()
     closingApplicationSignal = Signal()
+    showDialogSignal = Signal(str, arguments=['message'])
     # laserFolderWatcherConnectedSignal = Signal(bool, arguments=['isConnected'])
 
     def __init__(self, parent=None):
@@ -52,10 +59,12 @@ class ProcessController(QObject):
     def freeResources(self):
         if isinstance(self.__ftpWatcherThread, QThread):
             if self.__processBean.isLaserWatcherRunning():
+                Logger().debug("Stop laser watcher thread")
                 QMetaObject.invokeMethod(self.__ftpWatcher, "stopProcess")
 
         if isinstance(self.__fsWatcherThread, QThread):
             if self.__processBean.isCameraWatcherRunning():
+                Logger().debug("Stop camera watcher thread")
                 QMetaObject.invokeMethod(self.__fsWatcher, "stopProcess")
 
     @Slot()
@@ -65,22 +74,24 @@ class ProcessController(QObject):
     @Slot(None)
     def saveParameters(self):
         s = Settings()
-
         s.saveCurrentParameters()
 
     @Slot(str)
     def setLocalLoadingPath(self, path: str):
         path = self.handleUrlPath(path)
+        Logger().debug("Impostato loading path: " + path)
         self.__settingsBean.setLocalLoadingPath(path)
 
     @Slot(str)
     def setLocalDownloadingPath(self, path: str):
         path = self.handleUrlPath(path)
+        Logger().debug("Impostato downloading path: " + path)
         self.__settingsBean.setLocalDownloadingPath(path)
 
     @Slot(str)
     def setCameraRemotePath(self, path: str):
         path = self.handleUrlPath(path)
+        Logger().debug("Impostato camera path: " + path)
         self.__settingsBean.setCameraRemotePath(path)
 
     def handleUrlPath(self, path: str) -> str:
@@ -101,6 +112,8 @@ class ProcessController(QObject):
 
     @Slot(None)
     def startLaserWatcher(self):
+        Logger().debug("Start laser watcher thread")
+
         self.__ftpWatcherThread = QThread()
         self.__ftpWatcherThread.setObjectName("CSVWatcherThread")
         self.__ftpWatcher = FTPWatcher(remotePath=self.__settingsBean.getLaserRemotePath(),
@@ -132,14 +145,19 @@ class ProcessController(QObject):
         self.__ftpWatcherThread.finished.connect(self.__ftpWatcherThread.deleteLater)
         self.__ftpWatcherThread.finished.connect(self.__ftpWatcher.deleteLater)
 
+        Logger().debug("Laser watcher thread avviato")
+
         self.__ftpWatcherThread.start()
 
     @Slot(None)
     def stopLaserWatcher(self):
+        Logger().debug("Stop laser watcher thread")
         QMetaObject.invokeMethod(self.__ftpWatcher, "stopProcess")
 
     @Slot(None)
     def startCameraWatcher(self):
+        Logger().debug("Start camera watcher thread")
+
         self.__fsWatcherThread = QThread()
         self.__fsWatcherThread.setObjectName("FSWatcherThread")
         self.__fsWatcher = FSWatcher(path=self.__settingsBean.getCameraRemotePath(),
@@ -164,31 +182,95 @@ class ProcessController(QObject):
         self.__fsWatcherThread.finished.connect(self.__fsWatcherThread.deleteLater)
         self.__fsWatcherThread.finished.connect(self.__fsWatcher.deleteLater)
 
+        Logger().debug("Camera watcher thread avviato")
+
         self.__fsWatcherThread.start()
 
     @Slot(None)
     def stopCameraWatcher(self):
+        Logger().debug("Stop camera watcher thread")
         QMetaObject.invokeMethod(self.__fsWatcher, "stopProcess")
 
     @Slot(None)
     def sendCsvFileToDevices(self):
-        # TODO
-        pass
+
+        localDownloadingPath = self.__settingsBean.getLocalDownloadingPath()
+        csvFilename = self.__settingsBean.getLocalCsvFilename()
+        csvLocalPath = localDownloadingPath + "\\" + csvFilename
+        cameraPath = self.__settingsBean.getCameraRemotePath()
+        csvCameraPath = cameraPath + "\\" + csvFilename
+
+        if not os.path.exists(csvLocalPath):
+            Logger().error("File "+csvLocalPath+" non trovato")
+            self.showDialogSignal.emit("Nessun file trovato nella cartella locale")
+            return
+
+        # invio file csv al laser
+        Logger().info("Invio file " + csvFilename + " al laser")
+
+        ftpController = FTP()
+        ftpController.host = self.__settingsBean.getLaserIp()
+        ftpController.port = self.__settingsBean.getLaserPort()
+        laserFTPRemotePath = self.__settingsBean.getLaserRemotePath()
+
+        try:
+            ftpController.connect()
+            ftpController.login()
+            ftpController.cwd(laserFTPRemotePath)
+            cmd = "STOR " + csvFilename
+            Logger().debug("Comando: " + cmd)
+            fp = open(csvLocalPath, "rb")
+            ftpController.storbinary(cmd, fp)
+
+        except ftplib.all_errors as ftpErr:
+            Logger().error("Error on FTP:" + str(ftpErr))
+            ftpController.close()
+            self.showDialogSignal.emit("Errore invio file csv al laser")
+            return
+
+        # invio il file csv alla camera
+        Logger().info("Invio file " + csvFilename + " alla camera")
+        try:
+            shutil.copy(csvLocalPath, csvCameraPath)
+        except:
+            Logger().error("Impossibile copiare il file csv in camera")
+            self.showDialogSignal.emit("Errore invio file csv alla camera")
+            return
+
+        self.showDialogSignal.emit("Invio completato correttamente")
+
 
     def analizeFolderItems(self):
+
+
+        # Logger().debug("Analisi lista file laser")
+
+        items = self.getProcessBean().getLaserFolderItems()
+        isErrorFounded = False
+        isCsvFounded = False
+
+        for item in items:
+            if item.lower() == self.__settingsBean.getLocalLaserErrorFilename().lower():
+                # Logger().debug("Trovato error file: "+self.__settingsBean.getLocalLaserErrorFilename().lower())
+                isErrorFounded = True
+            if item.lower() == self.__settingsBean.getLocalCsvFilename().lower():
+                # Logger().debug("Trovato csv file: "+self.__settingsBean.getLocalCsvFilename().lower())
+                isCsvFounded = True
+            if isCsvFounded and isErrorFounded:
+                break
+
+        self.__processBean.setErrorFileFounded(isErrorFounded)
 
         if self.__csvRegeneratorThread.isRunning():
             return
 
-        items = self.getProcessBean().getLaserFolderItems()
-        isCSVExpired = False
 
-        for item in items:
-            if item.lower() == 'error.txt'.lower():
-                isCSVExpired = True
-                break
+        if isCsvFounded and isErrorFounded:
 
-        if isCSVExpired:
+            Logger().debug("Trovato error file: "+self.__settingsBean.getLocalLaserErrorFilename().lower())
+            Logger().debug("Trovato csv file: "+self.__settingsBean.getLocalCsvFilename().lower())
+
+            Logger().debug("Avvio thread per rigenerazione file")
             self.__csvRegeneratorThread.setLaserFileList(items)
             self.__csvRegeneratorThread.setLaserConnectionParameters(self.__settingsBean.getLaserIp(),
                                                                     self.__settingsBean.getLaserPort(),
@@ -216,10 +298,13 @@ class ProcessController(QObject):
             self.__csvRegeneratorThread.sendingCameraSignal.connect(
                 lambda value: self.__processBean.setCsvRegenerationSendingCameraStatus(value))
 
+            self.__csvRegeneratorThread.exitCodeSignal.connect(
+                lambda value: self.__processBean.setCsvRegenerationExitCode(value))
+
             self.__csvRegeneratorThread.started.connect(
-                lambda value: self.__processBean.setCsvRegenerationThreadRunning(True))
+                lambda: self.__processBean.setCsvRegenerationThreadRunning(True))
 
             self.__csvRegeneratorThread.finished.connect(
-                lambda value: self.__processBean.setCsvRegenerationThreadRunning(False))
+                lambda: self.__processBean.setCsvRegenerationThreadRunning(False))
 
             self.__csvRegeneratorThread.start()

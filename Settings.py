@@ -38,6 +38,12 @@ class Settings(metaclass=Singleton):
                 "loadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
                 "downloadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
             }
+            config["Logging"] = {
+                "path": QStandardPaths.writableLocation(QStandardPaths.AppLocalDataLocation),
+                "filename": "log.txt",
+                "levels": "CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET",
+                "currentLevel": "DEBUG"
+            }
 
             with open(filePath, 'w') as fp:
                 config.write(fp)
@@ -58,6 +64,11 @@ class Settings(metaclass=Singleton):
         self.__localLaserErrorFilename = config["SW"]["laserErrorFilename"]
         self.__localLoadingPath = config["SW"]["loadingPath"]
         self.__localDownloadingPath = config["SW"]["downloadingPath"]
+
+        self.__loggingPath = config["Logging"]["path"]
+        self.__loggingFilename = config["Logging"]["filename"]
+        self.__loggingLevels = config["Logging"]["levels"]
+        self.__loggingCurrentLevel = config["Logging"]["currentLevel"]
 
     def getLaserIp(self):
         return self.__laserIp
@@ -125,6 +136,21 @@ class Settings(metaclass=Singleton):
     def setLocalDownloadingPath(self, downloadingPath: str):
         self.__localDownloadingPath = downloadingPath
 
+    def getLoggingPath(self):
+        return self.__loggingPath
+
+    def getLoggingFilename(self):
+        return self.__loggingFilename
+
+    def getLoggingFilepath(self):
+        return self.__loggingPath + "/" + self.__loggingFilename
+
+    def getLoggingLevels(self):
+        return self.__loggingLevels
+
+    def getLoggingCurrentLevel(self):
+        return self.__loggingCurrentLevel
+
     def saveCurrentParameters(self):
         folder = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
         # folder += "/" + Settings._fileFolder
@@ -150,6 +176,13 @@ class Settings(metaclass=Singleton):
             "laserErrorFilename": self.getLocalLaserErrorFilename(),
             "loadingPath": self.getLocalLoadingPath(),
             "downloadingPath": self.getLocalDownloadingPath()
+        }
+
+        config["Logging"] = {
+            "path": self.getLoggingPath(),
+            "filename": self.getLoggingFilename(),
+            "levels": self.getLoggingCurrentLevel(),
+            "currentLevel": self.getLoggingCurrentLevel()
         }
 
         with open(filePath, 'w') as fp:

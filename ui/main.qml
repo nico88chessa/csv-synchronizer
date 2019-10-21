@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.5
 import QtQuick.Dialogs 1.3
 
 //import "../controller/"
@@ -17,11 +17,33 @@ ApplicationWindow {
     width: 1024
     height: 768
 
+    Dialog {
+        id: operationDialog
+        standardButtons: Dialog.Ok
+        width: 200
+        height: 80
+
+        Text {
+            id: operationDialogText
+            anchors.centerIn: parent
+            text: ""
+        }
+
+    }
+
     // definizione segnali
     Connections {
         target: mainWindow
         onClosing: {
             processCtrl.closingApplicationSignal()
+        }
+    }
+
+    Connections {
+        target: processCtrl
+        onShowDialogSignal: {
+            operationDialogText.text = message
+            operationDialog.visible = true
         }
     }
 
@@ -66,7 +88,7 @@ ApplicationWindow {
             id: tabBar
             width: parent.width
             Layout.fillWidth: true
-            currentIndex: 1
+            currentIndex: 0
             TabButton {
                 text: qsTr("Process")
             }
@@ -127,8 +149,8 @@ ApplicationWindow {
                             id: bChangeFolder
                             width: 120
                             height: 40
-                            text: qsTr("Change Folder")
-                            Layout.minimumWidth: 120
+                            text: qsTr("Change local folder")
+                            Layout.minimumWidth: 140
                             rightPadding: 15
                             leftPadding: 15
                             onClicked: {
@@ -147,8 +169,8 @@ ApplicationWindow {
                         Button {
                             id: bSendToDevices
                             width: 120
-                            text: qsTr("Send to devices")
-                            Layout.minimumWidth: 120
+                            text: qsTr("Send CSV to devices")
+                            Layout.minimumWidth: 140
                             rightPadding: 15
                             leftPadding: 15
                             onClicked: processCtrl.sendCsvFileToDevices()
@@ -573,7 +595,7 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: processCtrl.pErrorFileFounded ? "red" : "green"
+                                        color: processBean.pErrorFileFounded ? "red" : "lightGray"
                                     }
                                 }
                                 Text {
@@ -598,7 +620,7 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: gRegeneration.getColor(processBean.pCsvRegenerationThreadRunning)
+                                        color: processBean.pCsvRegenerationThreadRunning ? "green" : "lightGray"
                                     }
                                 }
                                 Text {
@@ -723,7 +745,7 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: "red"
+                                        color: processBean.pCsvRegenerationThreadRunning ? "lightGray" : processBean.pCsvRegenerationExitCode === 0 ? "green" : "red"
                                     }
                                 }
                                 Text {
@@ -810,7 +832,8 @@ ApplicationWindow {
                                 }
 
                                 id: bCameraFolder
-                                text: qsTr("Change Folder")
+                                text: qsTr("Change camera folder")
+                                Layout.minimumWidth: 140
                                 rightPadding: 15
                                 leftPadding: 15
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -1170,12 +1193,23 @@ ApplicationWindow {
 
 
 
+
+
+
+
+
+
 /*##^## Designer {
-    D{i:65;anchors_height:100;anchors_width:100}D{i:66;anchors_height:100;anchors_width:100}
-D{i:68;anchors_width:200}D{i:67;anchors_height:100;anchors_width:200}D{i:80;anchors_height:100;anchors_width:100}
-D{i:81;anchors_height:100;anchors_width:100}D{i:60;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}
-D{i:83;anchors_height:100;anchors_width:200}D{i:82;anchors_height:100;anchors_width:200}
-D{i:87;anchors_width:200}D{i:86;anchors_height:100;anchors_width:200}D{i:85;anchors_height:100;anchors_width:200}
-D{i:84;anchors_height:100;anchors_width:200}
+    D{i:54;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}D{i:58;anchors_height:100;anchors_width:100}
+D{i:59;anchors_height:100;anchors_width:100}D{i:60;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}
+D{i:65;anchors_height:100;anchors_width:100}D{i:66;anchors_height:100;anchors_width:100}
+D{i:67;anchors_height:100;anchors_width:200}D{i:68;anchors_width:200}D{i:74;anchors_height:100;anchors_width:200}
+D{i:75;anchors_height:100;anchors_width:100}D{i:76;anchors_height:100;anchors_width:200}
+D{i:77;anchors_height:100;anchors_width:100}D{i:78;anchors_height:100;anchors_width:200}
+D{i:79;anchors_height:100;anchors_width:200}D{i:80;anchors_height:100;anchors_width:100}
+D{i:81;anchors_height:100;anchors_width:100}D{i:82;anchors_height:100;anchors_width:200}
+D{i:83;anchors_height:100;anchors_width:200}D{i:84;anchors_height:100;anchors_width:200}
+D{i:85;anchors_height:100;anchors_width:200}D{i:86;anchors_height:100;anchors_width:200}
+D{i:87;anchors_width:200}
 }
  ##^##*/

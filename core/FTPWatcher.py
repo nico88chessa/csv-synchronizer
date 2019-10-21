@@ -4,6 +4,8 @@ import time
 from PySide2.QtCore import QTimer, Slot, QObject, Signal
 from ftplib import FTP
 
+from core.Logger import Logger
+
 
 class FTPWatcher(QObject):
 
@@ -41,7 +43,7 @@ class FTPWatcher(QObject):
             self.isConnectedSignal.emit(True)
 
         except ftplib.all_errors as ftpErr:
-            print("FTPWatcher error:" + str(ftpErr))
+            Logger().error("FTPWatcher error:" + str(ftpErr))
             self.ftpController.close()
             self.restartProcess()
 
@@ -65,9 +67,7 @@ class FTPWatcher(QObject):
             res = self.ftpController.nlst(self.remotePath)
             self.itemsPathUpdatedSignal.emit(res)
         except ftplib.all_errors as ftpErr:
-            print("FTPWatcher error: " + str(ftpErr))
+            Logger().error("FTPWatcher error: " + str(ftpErr))
             self.isConnectedSignal.emit(False)
             self.ftpController.close()
             self.restartProcess()
-
-        # print(res)

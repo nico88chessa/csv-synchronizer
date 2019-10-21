@@ -3,6 +3,8 @@ import sys
 
 from PySide2.QtCore import QObject, Signal, QTimer, Slot
 
+from core.Logger import Logger
+
 
 class FSWatcher(QObject):
 
@@ -53,7 +55,7 @@ class FSWatcher(QObject):
             self.setConnected(True)
             self.itemsPathUpdatedSignal.emit(res)
         except OSError as err:
-            print("FSWatcher error:", err)
+            Logger().error("FSWatcher error:" + str(err))
             self.pathUnreachableSignal.emit()
             self.setConnected(False)
             self.restartProcess()

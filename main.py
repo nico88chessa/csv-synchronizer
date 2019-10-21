@@ -8,6 +8,7 @@ from bean.ProcessBean import ProcessBean
 from bean.SettingsBean import SettingsBean
 from controller.SettingsController import SettingsController
 from controller.ProcessController import ProcessController
+from core.Logger import Logger
 
 if __name__ == "__main__":
 
@@ -16,6 +17,8 @@ if __name__ == "__main__":
 
     app.setOrganizationName("DV")
     app.setApplicationName("CSV-Synchronizer")
+
+    Logger().info("Start applicazione CSV-Synchronizer")
 
     # Load the QML file
     qmlFile = os.path.join(os.path.dirname(__file__), "./ui/main.qml")
