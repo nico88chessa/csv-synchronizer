@@ -16,12 +16,19 @@ class ProcessBean(QObject):
     laserConnectionUpChanged = Signal()
     cameraConnectionUpChanged = Signal()
     errorFileFoundedChanged = Signal()
-    csvRegenerationThreadRunningChanged = Signal()
-    csvRegenerationDownloadStepStatusChanged = Signal()
-    csvRegenerationCreationStepStatusChanged = Signal()
-    csvRegenerationSendingLaserStatusChanged = Signal()
-    csvRegenerationSendingCameraStatusChanged = Signal()
-    csvRegenerationExitCodeChanged = Signal()
+    stopRegThreadChanged = Signal()
+
+    csvRegThreadRunningChanged = Signal()
+    csvRegThreadExitCodeChanged = Signal()
+    csvRegThreadCleanLocalFolderStatusChanged = Signal()
+    csvRegThreadCleanCameraFolderStatusChanged = Signal()
+    csvRegThreadRenameLaserItemsStatusChanged = Signal()
+    csvRegThreadDownloadItemsStatusChanged = Signal()
+    csvRegThreadCleanLaserFolderStatusChanged = Signal()
+    csvRegThreadCsvCreationProcessStatusChanged = Signal()
+    csvRegThreadSendCsvToLaserStatusChanged = Signal()
+    csvRegThreadSendCsvToCameraStatusChanged = Signal()
+    csvRegThreadCsvNewEmptyChanged = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -32,12 +39,19 @@ class ProcessBean(QObject):
         self.__isLaserConnectionUp = False
         self.__isCameraConnectionUp = False
         self.__errorFileFounded = False
-        self.__csvRegenerationThreadRunning: bool = False
-        self.__csvRegenerationDownloadStepStatus: int = CSVRegeneratorStepStatus.IDLE
-        self.__csvRegenerationCreationStepStatus: int = CSVRegeneratorStepStatus.IDLE
-        self.__csvRegenerationSendingLaserStatus: int = CSVRegeneratorStepStatus.IDLE
-        self.__csvRegenerationSendingCameraStatus: int = CSVRegeneratorStepStatus.IDLE
-        self.__csvRegenerationExitCode: int = 0
+        self.__stopRegThread = False
+
+        self.__csvRegThreadRunning: bool = False
+        self.__csvRegThreadExitCode: int = 0
+        self.__csvRegThreadCleanLocalFolderStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadCleanCameraFolderStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadRenameLaserItemsStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadDownloadItemsStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadCleanLaserFolderStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadCsvCreationProcessStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadSendCsvToLaserStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadSendCsvToCameraStatus: int = CSVRegeneratorStepStatus.IDLE
+        self.__csvRegThreadCsvNewEmpty: bool = False
 
 
     def getLaserFolderItems(self):
@@ -111,53 +125,101 @@ class ProcessBean(QObject):
             self.__errorFileFounded = founded
             self.errorFileFoundedChanged.emit()
 
-    def isCsvRegenerationThreadRunning(self):
-        return self.__csvRegenerationThreadRunning
+    def isStopRegThread(self):
+        return self.__stopRegThread
 
-    def setCsvRegenerationThreadRunning(self, status: bool):
-        if self.__csvRegenerationThreadRunning != status:
-            self.__csvRegenerationThreadRunning = status
-            self.csvRegenerationThreadRunningChanged.emit()
+    def setStopRegThread(self, stop: bool):
+        if self.__stopRegThread != stop:
+            self.__stopRegThread = stop
+            self.stopRegThreadChanged.emit()
 
-    def getCsvRegenerationDownloadStepStatus(self):
-        return self.__csvRegenerationDownloadStepStatus
+    def getCsvRegThreadRunning(self):
+        return self.__csvRegThreadRunning
 
-    def setCsvRegenerationDownloadStepStatus(self, status: int):
-        if self.__csvRegenerationDownloadStepStatus != status:
-            self.__csvRegenerationDownloadStepStatus = status
-            self.csvRegenerationDownloadStepStatusChanged.emit()
+    def setCsvRegThreadRunning(self, status: bool):
+        if self.__csvRegThreadRunning != status:
+            self.__csvRegThreadRunning = status
+            self.csvRegThreadRunningChanged.emit()
 
-    def getCsvRegenerationCreationStepStatus(self):
-        return self.__csvRegenerationCreationStepStatus
+    def getCsvRegThreadExitCode(self):
+        return self.__csvRegThreadExitCode
 
-    def setCsvRegenerationCreationStepStatus(self, status: int):
-        if self.__csvRegenerationCreationStepStatus != status:
-            self.__csvRegenerationCreationStepStatus = status
-            self.csvRegenerationCreationStepStatusChanged.emit()
+    def setCsvRegThreadExitCode(self, status: int):
+        if self.__csvRegThreadExitCode != status:
+            self.__csvRegThreadExitCode = status
+            self.csvRegThreadExitCodeChanged.emit()
 
-    def getCsvRegenerationSendingLaserStatus(self):
-        return self.__csvRegenerationSendingLaserStatus
+    def getCsvRegThreadCleanLocalFolderStatus(self):
+        return self.__csvRegThreadCleanLocalFolderStatus
 
-    def setCsvRegenerationSendingLaserStatus(self, status: int):
-        if self.__csvRegenerationSendingLaserStatus != status:
-            self.__csvRegenerationSendingLaserStatus = status
-            self.csvRegenerationSendingLaserStatusChanged.emit()
+    def setCsvRegThreadCleanLocalFolderStatus(self, status: int):
+        if self.__csvRegThreadCleanLocalFolderStatus != status:
+            self.__csvRegThreadCleanLocalFolderStatus = status
+            self.csvRegThreadCleanLocalFolderStatusChanged.emit()
 
-    def getCsvRegenerationSendingCameraStatus(self):
-        return self.__csvRegenerationSendingCameraStatus
+    def getCsvRegThreadCleanCameraFolderStatus(self):
+        return self.__csvRegThreadCleanCameraFolderStatus
 
-    def setCsvRegenerationSendingCameraStatus(self, status: int):
-        if self.__csvRegenerationSendingCameraStatus != status:
-            self.__csvRegenerationSendingCameraStatus = status
-            self.csvRegenerationSendingCameraStatusChanged.emit()
+    def setCsvRegThreadCleanCameraFolderStatus(self, status: int):
+        if self.__csvRegThreadCleanCameraFolderStatus != status:
+            self.__csvRegThreadCleanCameraFolderStatus = status
+            self.csvRegThreadCleanCameraFolderStatusChanged.emit()
 
-    def getCsvRegenerationExitCode(self):
-        return self.__csvRegenerationExitCode
+    def getCsvRegThreadRenameLaserItemsStatus(self):
+        return self.__csvRegThreadRenameLaserItemsStatus
 
-    def setCsvRegenerationExitCode(self, exitCode: int):
-        if self.__csvRegenerationExitCode != exitCode:
-            self.__csvRegenerationExitCode = exitCode
-            self.csvRegenerationExitCodeChanged.emit()
+    def setCsvRegThreadRenameLaserItemsStatus(self, status: int):
+        if self.__csvRegThreadRenameLaserItemsStatus != status:
+            self.__csvRegThreadRenameLaserItemsStatus = status
+            self.csvRegThreadRenameLaserItemsStatusChanged.emit()
+
+    def getCsvRegThreadDownloadItemsStatus(self):
+        return self.__csvRegThreadDownloadItemsStatus
+
+    def setCsvRegThreadDownloadItemsStatus(self, status: int):
+        if self.__csvRegThreadDownloadItemsStatus != status:
+            self.__csvRegThreadDownloadItemsStatus = status
+            self.csvRegThreadDownloadItemsStatusChanged.emit()
+
+    def getCsvRegThreadCleanLaserFolderStatus(self):
+        return self.__csvRegThreadCleanLaserFolderStatus
+
+    def setCsvRegThreadCleanLaserFolderStatus(self, status: int):
+        if self.__csvRegThreadCleanLaserFolderStatus != status:
+            self.__csvRegThreadCleanLaserFolderStatus = status
+            self.csvRegThreadCleanLaserFolderStatusChanged.emit()
+
+    def getCsvRegThreadCsvCreationProcessStatus(self):
+        return self.__csvRegThreadCsvCreationProcessStatus
+
+    def setCsvRegThreadCsvCreationProcessStatus(self, status: int):
+        if self.__csvRegThreadCsvCreationProcessStatus != status:
+            self.__csvRegThreadCsvCreationProcessStatus = status
+            self.csvRegThreadCsvCreationProcessStatusChanged.emit()
+
+    def getCsvRegThreadSendCsvToLaserStatus(self):
+        return self.__csvRegThreadSendCsvToLaserStatus
+
+    def setCsvRegThreadSendCsvToLaserStatus(self, status: int):
+        if self.__csvRegThreadSendCsvToLaserStatus != status:
+            self.__csvRegThreadSendCsvToLaserStatus = status
+            self.csvRegThreadSendCsvToLaserStatusChanged.emit()
+
+    def getCsvRegThreadSendCsvToCameraStatus(self):
+        return self.__csvRegThreadSendCsvToCameraStatus
+
+    def setCsvRegThreadSendCsvToCameraStatus(self, status: int):
+        if self.__csvRegThreadSendCsvToCameraStatus != status:
+            self.__csvRegThreadSendCsvToCameraStatus = status
+            self.csvRegThreadSendCsvToCameraStatusChanged.emit()
+
+    def isCsvRegThreadCsvNewEmpty(self):
+        return self.__csvRegThreadCsvNewEmpty
+
+    def setCsvRegThreadCsvNewEmpty(self, isEmpty: bool):
+        if self.__csvRegThreadCsvNewEmpty != isEmpty:
+            self.__csvRegThreadCsvNewEmpty = isEmpty
+            self.csvRegThreadCsvNewEmptyChanged.emit()
 
 
     pLaserFolderItems = Property("QStringList", getLaserFolderItems, setLaserFolderItems,
@@ -171,22 +233,45 @@ class ProcessBean(QObject):
                                      notify=cameraWatcherRunningChanged)
     pCameraConnectionUp = Property(bool, isCameraConnectionUp, setCameraConnectionUp, notify=cameraConnectionUpChanged)
     pErrorFileFounded = Property(bool, isErrorFileFounded, setErrorFileFounded, notify=errorFileFoundedChanged)
+    pStopRegThread = Property(bool, isStopRegThread, setStopRegThread, notify=stopRegThreadChanged)
 
-    pCsvRegenerationThreadRunning = Property(bool, isCsvRegenerationThreadRunning,
-                                             setCsvRegenerationThreadRunning,
-                                             notify=csvRegenerationThreadRunningChanged)
-    pCsvRegenerationDownloadStepStatus = Property(int, getCsvRegenerationDownloadStepStatus,
-                                                  setCsvRegenerationDownloadStepStatus,
-                                                  notify=csvRegenerationDownloadStepStatusChanged)
-    pCsvRegenerationCreationStepStatus = Property(int, getCsvRegenerationCreationStepStatus,
-                                                  setCsvRegenerationCreationStepStatus,
-                                                  notify=csvRegenerationCreationStepStatusChanged)
-    pCsvRegenerationSendingLaserStatus = Property(int, getCsvRegenerationSendingLaserStatus,
-                                                  setCsvRegenerationSendingLaserStatus,
-                                                  notify=csvRegenerationSendingLaserStatusChanged)
-    pCsvRegenerationSendingCameraStatus = Property(int, getCsvRegenerationSendingCameraStatus,
-                                                   setCsvRegenerationSendingCameraStatus,
-                                                   notify=csvRegenerationSendingCameraStatusChanged)
-    pCsvRegenerationExitCode = Property(int, getCsvRegenerationExitCode,
-                                        setCsvRegenerationExitCode,
-                                        notify=csvRegenerationExitCodeChanged)
+    pCsvRegThreadRunning = Property(bool, getCsvRegThreadRunning, setCsvRegThreadRunning,
+                                    notify=csvRegThreadRunningChanged)
+    pCsvRegThreadExitCode = Property(int, getCsvRegThreadExitCode, setCsvRegThreadExitCode,
+                                     notify=csvRegThreadExitCodeChanged)
+    pCsvRegThreadCleanLocalFolderStatus = Property(int,
+                                        getCsvRegThreadCleanLocalFolderStatus,
+                                        setCsvRegThreadCleanLocalFolderStatus,
+                                        notify=csvRegThreadCleanLocalFolderStatusChanged)
+    pCsvRegThreadCleanCameraFolderStatus = Property(int,
+                                                   getCsvRegThreadCleanCameraFolderStatus,
+                                                   setCsvRegThreadCleanCameraFolderStatus,
+                                                   notify=csvRegThreadCleanCameraFolderStatusChanged)
+    pCsvRegThreadRenameLaserItemsStatus = Property(int,
+                                             getCsvRegThreadRenameLaserItemsStatus,
+                                             setCsvRegThreadRenameLaserItemsStatus,
+                                             notify=csvRegThreadRenameLaserItemsStatusChanged)
+    pCsvRegThreadDownloadItemsStatus = Property(int,
+                                          getCsvRegThreadDownloadItemsStatus,
+                                          setCsvRegThreadDownloadItemsStatus,
+                                          notify=csvRegThreadDownloadItemsStatusChanged)
+    pCsvRegThreadCleanLaserFolderStatus = Property(int,
+                                             getCsvRegThreadCleanLaserFolderStatus,
+                                             setCsvRegThreadCleanLaserFolderStatus,
+                                             notify=csvRegThreadCleanLaserFolderStatusChanged)
+    pCsvRegThreadCsvCreationProcessStatus = Property(int,
+                                               getCsvRegThreadCsvCreationProcessStatus,
+                                               setCsvRegThreadCsvCreationProcessStatus,
+                                               notify=csvRegThreadCsvCreationProcessStatusChanged)
+    pCsvRegThreadSendCsvToLaserStatus = Property(int,
+                                           getCsvRegThreadSendCsvToLaserStatus,
+                                           setCsvRegThreadSendCsvToLaserStatus,
+                                           notify=csvRegThreadSendCsvToLaserStatusChanged)
+    pCsvRegThreadSendCsvToCameraStatus = Property(int,
+                                            getCsvRegThreadSendCsvToCameraStatus,
+                                            setCsvRegThreadSendCsvToCameraStatus,
+                                            notify=csvRegThreadSendCsvToCameraStatusChanged)
+    pCsvRegThreadCsvNewEmpty = Property(bool,
+                                        isCsvRegThreadCsvNewEmpty,
+                                        setCsvRegThreadCsvNewEmpty,
+                                        notify=csvRegThreadCsvNewEmptyChanged)

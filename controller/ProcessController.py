@@ -194,9 +194,9 @@ class ProcessController(QObject):
     @Slot(None)
     def sendCsvFileToDevices(self):
 
-        localDownloadingPath = self.__settingsBean.getLocalDownloadingPath()
+        localloadingPath = self.__settingsBean.getLocalLoadingPath()
         csvFilename = self.__settingsBean.getLocalCsvFilename()
-        csvLocalPath = localDownloadingPath + "\\" + csvFilename
+        csvLocalPath = localloadingPath + "\\" + csvFilename
         cameraPath = self.__settingsBean.getCameraRemotePath()
         csvCameraPath = cameraPath + "\\" + csvFilename
 
@@ -237,8 +237,13 @@ class ProcessController(QObject):
             self.showDialogSignal.emit("Errore invio file csv alla camera")
             return
 
+        self.__processBean.setCsvRegThreadCsvNewEmpty(False)
         self.showDialogSignal.emit("Invio completato correttamente")
 
+    @Slot(bool)
+    def changeStopRequestValue(self, stop: bool):
+        self.__csvRegeneratorThread.setStopRequest(stop)
+        self.__processBean.setStopRegThread(stop)
 
     def analizeFolderItems(self):
 
@@ -264,6 +269,8 @@ class ProcessController(QObject):
         if self.__csvRegeneratorThread.isRunning():
             return
 
+        if self.__processBean.isStopRegThread():
+            return
 
         if isCsvFounded and isErrorFounded:
 
@@ -286,25 +293,40 @@ class ProcessController(QObject):
 
             self.__csvRegeneratorThread.setRowMargin(self.__settingsBean.getLocalRowMargin())
 
-            self.__csvRegeneratorThread.downloadStepSignal.connect(
-                lambda value: self.__processBean.setCsvRegenerationDownloadStepStatus(value))
+            self.__csvRegeneratorThread.cleanLocalFolderStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadCleanLocalFolderStatus(value))
 
-            self.__csvRegeneratorThread.creationCsvSignal.connect(
-                lambda value: self.__processBean.setCsvRegenerationCreationStepStatus(value))
+            self.__csvRegeneratorThread.cleanCameraFolderStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadCleanCameraFolderStatus(value))
 
-            self.__csvRegeneratorThread.sendingLaserSignal.connect(
-                lambda value: self.__processBean.setCsvRegenerationSendingLaserStatus(value))
+            self.__csvRegeneratorThread.renameLaserItemsStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadRenameLaserItemsStatus(value))
 
-            self.__csvRegeneratorThread.sendingCameraSignal.connect(
-                lambda value: self.__processBean.setCsvRegenerationSendingCameraStatus(value))
+            self.__csvRegeneratorThread.downloadItemsFromLaserStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadDownloadItemsStatus(value))
+
+            self.__csvRegeneratorThread.cleanLaserFolderStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadCleanLaserFolderStatus(value))
+
+            self.__csvRegeneratorThread.csvBuildProcessStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadCsvCreationProcessStatus(value))
+
+            self.__csvRegeneratorThread.sendCsvToLaserStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadSendCsvToLaserStatus(value))
+
+            self.__csvRegeneratorThread.sendCsvToCameraStepSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadSendCsvToCameraStatus(value))
 
             self.__csvRegeneratorThread.exitCodeSignal.connect(
-                lambda value: self.__processBean.setCsvRegenerationExitCode(value))
+                lambda value: self.__processBean.setCsvRegThreadExitCode(value))
 
             self.__csvRegeneratorThread.started.connect(
-                lambda: self.__processBean.setCsvRegenerationThreadRunning(True))
+                lambda: self.__processBean.setCsvRegThreadRunning(True))
 
             self.__csvRegeneratorThread.finished.connect(
-                lambda: self.__processBean.setCsvRegenerationThreadRunning(False))
+                lambda: self.__processBean.setCsvRegThreadRunning(False))
+
+            self.__csvRegeneratorThread.cvsNewFileEmptySignal.connect(
+                lambda isEmpty: self.__processBean.setCsvRegThreadCsvNewEmpty(isEmpty))
 
             self.__csvRegeneratorThread.start()

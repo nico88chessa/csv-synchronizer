@@ -287,7 +287,7 @@ ApplicationWindow {
                                 id: lvLaserFolder
                                 x: 0
                                 y: 0
-                                Layout.minimumHeight: 200
+                                Layout.minimumHeight: 180
                                 clip: true
                                 Layout.fillHeight: true
                                 Layout.columnSpan: 3
@@ -467,7 +467,7 @@ ApplicationWindow {
 
                             ListView {
                                 id: lvCameraFolder
-                                Layout.minimumHeight: 200
+                                Layout.minimumHeight: 180
                                 Layout.fillHeight: true
                                 clip: true
                                 Layout.columnSpan: 3
@@ -562,7 +562,7 @@ ApplicationWindow {
 
                         GridLayout {
                             id: gRegeneration
-                            columns: 6
+                            columns: 7
                             rows: 2
                             visible: true
                             anchors.fill: parent
@@ -582,10 +582,10 @@ ApplicationWindow {
 
                             Item {
                                 id: itemErrorFounded
-                                width: 150
-                                height: 70
-                                Layout.fillWidth: true
-                                Layout.columnSpan: 6
+                                width: 130
+                                height: 65
+                                Layout.fillWidth: false
+                                Layout.columnSpan: 1
                                 RoundButton {
                                     id: rbErrorFounded
                                     width: 40
@@ -608,11 +608,11 @@ ApplicationWindow {
                             }
 
                             Item {
-                                id: itemStart
-                                width: 150
-                                height: 70
+                                id: itemCsvCreationRunning
+                                width: 130
+                                height: 65
                                 RoundButton {
-                                    id: rbItemStart
+                                    id: rbCsvCreationRunning
                                     width: 40
                                     height: 40
                                     text: ""
@@ -620,12 +620,12 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: processBean.pCsvRegenerationThreadRunning ? "green" : "lightGray"
+                                        color: processBean.pCsvRegThreadRunning ? "green" : "lightGray"
                                     }
                                 }
                                 Text {
-                                    id: tItemStart
-                                    text: qsTr("START CSV CREATION")
+                                    id: tCsvCreationRunning
+                                    text: qsTr("CSV CREATION RUN")
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 0
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -633,11 +633,20 @@ ApplicationWindow {
                             }
 
                             Item {
-                                id: itemDownload
-                                width: 150
-                                height: 70
+                                id: itemSpacer
+                                width: 130
+                                height: 1
+                                Layout.fillHeight: false
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 3
+                            }
+
+                            Item {
+                                id: itemCsvNewEmpty
+                                width: 130
+                                height: 65
                                 RoundButton {
-                                    id: rbItemDownload
+                                    id: rbCsvNewEmpty
                                     width: 40
                                     height: 40
                                     text: ""
@@ -645,11 +654,126 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: gRegeneration.getColor(processBean.pCsvRegenerationDownloadStepStatus)
+                                        color: processBean.pCsvRegThreadCsvNewEmpty ? "blue" : "lightGray"
                                     }
                                 }
                                 Text {
-                                    id: tItemDownload
+                                    id: tCsvNewEmpty
+                                    text: qsTr("NEW CSV MANUALLY")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            CheckBox {
+                                id: cbStop
+                                text: qsTr("Stop")
+                                onCheckedChanged: processCtrl.changeStopRequestValue(cbStop.checked)
+                            }
+
+                            Item {
+                                id: itemCleanLocalFolderStatus
+                                width: 130
+                                height: 65
+                                RoundButton {
+                                    id: rbCleanLocalFolderStatus
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadCleanLocalFolderStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tCleanLocalFolderStatus
+                                    text: qsTr("CLEAN LOCAL FOLDER")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemCleanCameraFolderStatus
+                                width: 130
+                                height: 65
+                                RoundButton {
+                                    id: rbCleanCameraFolderStatus
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadCleanCameraFolderStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tCleanCameraFolderStatus
+                                    text: qsTr("CLEAN CAMERA FOLDER")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemSpacer2
+                                width: 130
+                                height: 1
+                                Layout.fillHeight: false
+                                Layout.fillWidth: true
+                                Layout.columnSpan: 5
+                            }
+
+                            Item {
+                                id: itemRenameLaserItemsStatus
+                                width: 130
+                                height: 65
+                                RoundButton {
+                                    id: rbRenameLaserItemsStatus
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadRenameLaserItemsStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tRenameLaserItemsStatus
+                                    text: qsTr("RENAME LASER ITEMS")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemDownloadItemsStatus
+                                width: 130
+                                height: 65
+                                RoundButton {
+                                    id: rbDownloadItemsStatus
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadDownloadItemsStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tDownloadItemsStatus
                                     text: qsTr("DOWNLOAD")
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 0
@@ -658,11 +782,11 @@ ApplicationWindow {
                             }
 
                             Item {
-                                id: itemCreationFile
-                                width: 150
-                                height: 70
+                                id: itemCleanLaserFolderStatus
+                                width: 130
+                                height: 65
                                 RoundButton {
-                                    id: rbItemCreationFile
+                                    id: rbCleanLaserFolderStatus
                                     width: 40
                                     height: 40
                                     text: ""
@@ -670,11 +794,36 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: gRegeneration.getColor(processBean.pCsvRegenerationCreationStepStatus)
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadCleanLaserFolderStatus)
                                     }
                                 }
                                 Text {
-                                    id: ttemCreationFile
+                                    id: tCleanLaserFolderStatus
+                                    text: qsTr("CLEAN LASER FOLDER")
+                                    anchors.bottom: parent.bottom
+                                    anchors.bottomMargin: 0
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+
+                            Item {
+                                id: itemCsvCreationProcessStatus
+                                width: 130
+                                height: 65
+                                RoundButton {
+                                    id: rbCsvCreationProcessStatus
+                                    width: 40
+                                    height: 40
+                                    text: ""
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    background: Rectangle {
+                                        radius: parent.radius
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadCsvCreationProcessStatus)
+                                    }
+                                }
+                                Text {
+                                    id: tCsvCreationProcessStatus
                                     text: qsTr("CREATION CSV")
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 0
@@ -683,11 +832,12 @@ ApplicationWindow {
                             }
 
                             Item {
-                                id: sendingToLaser
-                                width: 150
-                                height: 70
+                                id: itemSendCsvToLaserStatus
+                                width: 130
+                                height: 65
+                                Layout.columnSpan: 1
                                 RoundButton {
-                                    id: rbSendingToLaser
+                                    id: rbSendCsvToLaserStatus
                                     width: 40
                                     height: 40
                                     text: ""
@@ -695,12 +845,12 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: gRegeneration.getColor(processBean.pCsvRegenerationSendingLaserStatus)
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadSendCsvToLaserStatus)
                                     }
                                 }
                                 Text {
-                                    id: tSendingToLaser
-                                    text: qsTr("SENDING TO LASER")
+                                    id: tSendCsvToLaserStatus
+                                    text: qsTr("SEND CSV LASER")
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 0
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -708,11 +858,11 @@ ApplicationWindow {
                             }
 
                             Item {
-                                id: sendingToCamera
-                                width: 150
-                                height: 70
+                                id: itemSendCsvToCameraStatus
+                                width: 130
+                                height: 65
                                 RoundButton {
-                                    id: rbSendingToCamera
+                                    id: rbSendCsvToCameraStatus
                                     width: 40
                                     height: 40
                                     text: ""
@@ -720,42 +870,18 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: gRegeneration.getColor(processBean.pCsvRegenerationSendingCameraStatus)
+                                        color: gRegeneration.getColor(processBean.pCsvRegThreadSendCsvToCameraStatus)
                                     }
                                 }
                                 Text {
-                                    id: tSendingToCamera
-                                    text: qsTr("SENDING TO CAMERA")
+                                    id: tSendCsvToCameraStatus
+                                    text: qsTr("SEND CSV CAMERA")
                                     anchors.bottom: parent.bottom
                                     anchors.bottomMargin: 0
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
                             }
 
-                            Item {
-                                id: itemEnd
-                                width: 150
-                                height: 70
-                                RoundButton {
-                                    id: rbItemEnd
-                                    width: 40
-                                    height: 40
-                                    text: ""
-                                    anchors.horizontalCenter: parent.horizontalCenter
-
-                                    background: Rectangle {
-                                        radius: parent.radius
-                                        color: processBean.pCsvRegenerationThreadRunning ? "lightGray" : processBean.pCsvRegenerationExitCode === 0 ? "green" : "red"
-                                    }
-                                }
-                                Text {
-                                    id: tItemEnd
-                                    text: qsTr("ENDED")
-                                    anchors.bottom: parent.bottom
-                                    anchors.bottomMargin: 0
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
 
                         }
                     }
@@ -1152,10 +1278,6 @@ ApplicationWindow {
                         Layout.fillHeight: true
                     }
 
-
-
-
-
                 }
             }
 
@@ -1167,49 +1289,3 @@ ApplicationWindow {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*##^## Designer {
-    D{i:54;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}D{i:58;anchors_height:100;anchors_width:100}
-D{i:59;anchors_height:100;anchors_width:100}D{i:60;anchors_height:100;anchors_width:100;anchors_x:"-12";anchors_y:40}
-D{i:65;anchors_height:100;anchors_width:100}D{i:66;anchors_height:100;anchors_width:100}
-D{i:67;anchors_height:100;anchors_width:200}D{i:68;anchors_width:200}D{i:74;anchors_height:100;anchors_width:200}
-D{i:75;anchors_height:100;anchors_width:100}D{i:76;anchors_height:100;anchors_width:200}
-D{i:77;anchors_height:100;anchors_width:100}D{i:78;anchors_height:100;anchors_width:200}
-D{i:79;anchors_height:100;anchors_width:200}D{i:80;anchors_height:100;anchors_width:100}
-D{i:81;anchors_height:100;anchors_width:100}D{i:82;anchors_height:100;anchors_width:200}
-D{i:83;anchors_height:100;anchors_width:200}D{i:84;anchors_height:100;anchors_width:200}
-D{i:85;anchors_height:100;anchors_width:200}D{i:86;anchors_height:100;anchors_width:200}
-D{i:87;anchors_width:200}
-}
- ##^##*/
