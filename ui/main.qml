@@ -128,11 +128,12 @@ ApplicationWindow {
                         height: 100
                         Layout.fillWidth: true
                         rows: 2
-                        columns: 2
+                        columns: 3
 
                         TextField {
                             id: tfFolderPath
                             text: settingsBean.pLocalLoadingPath
+                            Layout.columnSpan: 2
                             Layout.fillWidth: true
                             onEditingFinished: processCtrl.setLocalLoadingPath(tfFolderPath.text)
                         }
@@ -174,6 +175,14 @@ ApplicationWindow {
                             rightPadding: 15
                             leftPadding: 15
                             onClicked: processCtrl.sendCsvFileToDevices()
+                        }
+
+                        Button {
+                            id: bRemoveFromDevices
+                            width: 120
+                            text: qsTr("Remove CSV devices")
+                            Layout.minimumWidth: 140
+                            onClicked: processCtrl.removeCsvFileFromDevices()
                         }
 
 
@@ -620,7 +629,7 @@ ApplicationWindow {
 
                                     background: Rectangle {
                                         radius: parent.radius
-                                        color: processBean.pCsvRegThreadRunning ? "green" : "lightGray"
+                                        color: processBean.pCsvRegThreadRunning ? ( processBean.pCsvRegThreadPause ? "orange" : "green" ) : "lightGray"
                                     }
                                 }
                                 Text {
@@ -666,10 +675,25 @@ ApplicationWindow {
                                 }
                             }
 
-                            CheckBox {
-                                id: cbStop
-                                text: qsTr("Stop")
-                                onCheckedChanged: processCtrl.changeStopRequestValue(cbStop.checked)
+                            ColumnLayout {
+                                id: columnLayout
+                                width: 100
+                                height: 100
+                                spacing: 0
+
+                                CheckBox {
+                                    id: cbStop
+                                    text: qsTr("Stop")
+                                    padding: 1
+                                    onCheckedChanged: processCtrl.changeStopRequestValue(cbStop.checked)
+                                }
+
+                                CheckBox {
+                                    id: cbPause
+                                    text: qsTr("Pause")
+                                    padding: 1
+                                    onCheckedChanged: processCtrl.changePauseRequestValue(cbPause.checked)
+                                }
                             }
 
                             Item {
@@ -881,6 +905,7 @@ ApplicationWindow {
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
                             }
+
 
 
                         }

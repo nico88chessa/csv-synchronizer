@@ -16,9 +16,11 @@ class ProcessBean(QObject):
     laserConnectionUpChanged = Signal()
     cameraConnectionUpChanged = Signal()
     errorFileFoundedChanged = Signal()
+    pauseRegThreadChanged = Signal()
     stopRegThreadChanged = Signal()
 
     csvRegThreadRunningChanged = Signal()
+    csvRegThreadPauseChanged = Signal()
     csvRegThreadExitCodeChanged = Signal()
     csvRegThreadCleanLocalFolderStatusChanged = Signal()
     csvRegThreadCleanCameraFolderStatusChanged = Signal()
@@ -39,9 +41,11 @@ class ProcessBean(QObject):
         self.__isLaserConnectionUp = False
         self.__isCameraConnectionUp = False
         self.__errorFileFounded = False
+        self.__pauseRegThread = False
         self.__stopRegThread = False
 
         self.__csvRegThreadRunning: bool = False
+        self.__csvRegThreadPause: bool = False
         self.__csvRegThreadExitCode: int = 0
         self.__csvRegThreadCleanLocalFolderStatus: int = CSVRegeneratorStepStatus.IDLE
         self.__csvRegThreadCleanCameraFolderStatus: int = CSVRegeneratorStepStatus.IDLE
@@ -125,6 +129,14 @@ class ProcessBean(QObject):
             self.__errorFileFounded = founded
             self.errorFileFoundedChanged.emit()
 
+    def isPauseRegThread(self):
+        return self.__pauseRegThread
+
+    def setPauseRegThread(self, pause: bool):
+        if self.__pauseRegThread != pause:
+            self.__pauseRegThread = pause
+            self.pauseRegThreadChanged.emit()
+
     def isStopRegThread(self):
         return self.__stopRegThread
 
@@ -140,6 +152,14 @@ class ProcessBean(QObject):
         if self.__csvRegThreadRunning != status:
             self.__csvRegThreadRunning = status
             self.csvRegThreadRunningChanged.emit()
+
+    def getCsvRegThreadPause(self):
+        return self.__csvRegThreadPause
+
+    def setCsvRegThreadPause(self, pause: bool):
+        if self.__csvRegThreadPause != pause:
+            self.__csvRegThreadPause = pause
+            self.csvRegThreadPauseChanged.emit()
 
     def getCsvRegThreadExitCode(self):
         return self.__csvRegThreadExitCode
@@ -233,10 +253,13 @@ class ProcessBean(QObject):
                                      notify=cameraWatcherRunningChanged)
     pCameraConnectionUp = Property(bool, isCameraConnectionUp, setCameraConnectionUp, notify=cameraConnectionUpChanged)
     pErrorFileFounded = Property(bool, isErrorFileFounded, setErrorFileFounded, notify=errorFileFoundedChanged)
+    pPauseRegThread = Property(bool, isPauseRegThread, setPauseRegThread, notify=pauseRegThreadChanged)
     pStopRegThread = Property(bool, isStopRegThread, setStopRegThread, notify=stopRegThreadChanged)
 
     pCsvRegThreadRunning = Property(bool, getCsvRegThreadRunning, setCsvRegThreadRunning,
                                     notify=csvRegThreadRunningChanged)
+    pCsvRegThreadPause = Property(bool, getCsvRegThreadPause, setCsvRegThreadPause,
+                                    notify=csvRegThreadPauseChanged)
     pCsvRegThreadExitCode = Property(int, getCsvRegThreadExitCode, setCsvRegThreadExitCode,
                                      notify=csvRegThreadExitCodeChanged)
     pCsvRegThreadCleanLocalFolderStatus = Property(int,

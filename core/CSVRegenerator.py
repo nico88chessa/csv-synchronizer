@@ -4,7 +4,7 @@ import os
 import shutil
 from enum import IntEnum
 
-from PySide2.QtCore import QThread, QMutexLocker, QMutex, Signal
+from PySide2.QtCore import QThread, QMutexLocker, QMutex, Signal, QWaitCondition
 from ftplib import FTP
 
 from core.Logger import Logger
@@ -57,6 +57,7 @@ class CSVRegenerator(QThread):
     sendCsvToCameraStepSignal = Signal(int)
     exitCodeSignal = Signal(int)
     cvsNewFileEmptySignal = Signal(bool)
+    threadPausedSignal = Signal(bool)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -77,6 +78,8 @@ class CSVRegenerator(QThread):
         self.__csvFilename: str = ""
         self.__errorFilename: str = ""
         self.__stopRequest: bool = False
+        self.__pauseRequest: bool = False
+        self.__waitCondition = QWaitCondition()
 
     def setLaserFileList(self, fileList: list):
         locker = QMutexLocker(self.__mutex)
@@ -142,6 +145,16 @@ class CSVRegenerator(QThread):
         locker = QMutexLocker(self.__mutex)
         self.__errorFilename = filename
 
+    def getPauseRequest(self):
+        locker = QMutexLocker(self.__mutex)
+        return self.__pauseRequest
+
+    def setPauseRequest(self, pause: bool):
+        locker = QMutexLocker(self.__mutex)
+        self.__pauseRequest = pause
+        if not self.__pauseRequest:
+            self.__waitCondition.notify_all()
+
     def getStopRequest(self):
         locker = QMutexLocker(self.__mutex)
         return self.__stopRequest
@@ -165,7 +178,6 @@ class CSVRegenerator(QThread):
             isConnected = False
 
         return isConnected
-
 
     def run(self):
 
@@ -230,9 +242,22 @@ class CSVRegenerator(QThread):
 
         while stepToProcess != CSVRegeneratorStep.PROCESS_END:
 
-            stopRequest = self.getStopRequest()
+            # controllo se posso continuare
+            locker = QMutexLocker(self.__mutex)
+            while self.__pauseRequest:
+                self.threadPausedSignal.emit(True)
+                self.__waitCondition.wait(self.__mutex)
+
+            self.threadPausedSignal.emit(False)
+            stopRequest = self.__stopRequest
+
+            locker.unlock()
+
             if stopRequest:
                 break
+            # stopRequest = self.getStopRequest()
+            # if stopRequest:
+            #     break
 
             if stepToProcess == CSVRegeneratorStep.CLEAN_LOCAL_FOLDER:
 

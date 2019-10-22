@@ -1,3 +1,4 @@
+import errno
 import ftplib
 import os
 import shutil
@@ -240,13 +241,53 @@ class ProcessController(QObject):
         self.__processBean.setCsvRegThreadCsvNewEmpty(False)
         self.showDialogSignal.emit("Invio completato correttamente")
 
+    @Slot(None)
+    def removeCsvFileFromDevices(self):
+
+        Logger().info("Rimozione file cartella laser")
+
+        ftpController = FTP()
+        ftpController.host = self.__settingsBean.getLaserIp()
+        ftpController.port = self.__settingsBean.getLaserPort()
+        laserFTPRemotePath = self.__settingsBean.getLaserRemotePath()
+        cameraPath = self.__settingsBean.getCameraRemotePath()
+        csvFilename = self.__settingsBean.getLocalCsvFilename()
+        csvCameraPath = cameraPath + "\\" + csvFilename
+
+        try:
+            ftpController.connect()
+            ftpController.login()
+            ftpController.cwd(laserFTPRemotePath)
+            Logger().info("Rimozione file: " + csvFilename)
+            ftpController.delete(csvFilename)
+
+        except ftplib.all_errors as ftpErr:
+            Logger().error("Errore rimozione file: " + str(ftpErr))
+            self.showDialogSignal.emit("Errore cancellazione file csv dal laser")
+            ftpController.close()
+
+        try:
+            if os.path.exists(csvCameraPath):
+                Logger().debug("Rimozione file .csv dalla camera")
+                os.remove(csvCameraPath)
+        except OSError as err:
+            if err != errno.ENOENT:
+                Logger().error("Errore rimozione file dalla camera")
+                self.showDialogSignal.emit("Errore cancellazione file csv dalla camera")
+
+        Logger().info("Rimozione file cartella laser OK")
+
     @Slot(bool)
     def changeStopRequestValue(self, stop: bool):
         self.__csvRegeneratorThread.setStopRequest(stop)
         self.__processBean.setStopRegThread(stop)
 
-    def analizeFolderItems(self):
+    @Slot(bool)
+    def changePauseRequestValue(self, pause: bool):
+        self.__csvRegeneratorThread.setPauseRequest(pause)
+        self.__processBean.setPauseRegThread(pause)
 
+    def analizeFolderItems(self):
 
         # Logger().debug("Analisi lista file laser")
 
@@ -325,6 +366,9 @@ class ProcessController(QObject):
 
             self.__csvRegeneratorThread.finished.connect(
                 lambda: self.__processBean.setCsvRegThreadRunning(False))
+
+            self.__csvRegeneratorThread.threadPausedSignal.connect(
+                lambda value: self.__processBean.setCsvRegThreadPause(value))
 
             self.__csvRegeneratorThread.cvsNewFileEmptySignal.connect(
                 lambda isEmpty: self.__processBean.setCsvRegThreadCsvNewEmpty(isEmpty))
