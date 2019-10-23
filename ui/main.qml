@@ -16,6 +16,7 @@ ApplicationWindow {
     id: mainWindow
     width: 1024
     height: 768
+//    flags: Qt.CustomizeWindowHint | Qt.Window
 
     Dialog {
         id: operationDialog

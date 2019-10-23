@@ -1,6 +1,7 @@
 import os
 import sys
 
+from PySide2.QtCore import QFile
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
@@ -9,6 +10,7 @@ from bean.SettingsBean import SettingsBean
 from controller.SettingsController import SettingsController
 from controller.ProcessController import ProcessController
 from core.Logger import Logger
+import resources
 
 if __name__ == "__main__":
 
@@ -20,8 +22,10 @@ if __name__ == "__main__":
 
     Logger().info("Start applicazione CSV-Synchronizer")
 
+    # qmlFile = QFile(":/ui/main.qml")
+    # qmlFile.open(QFile.ReadOnly | QFile.Text)
     # Load the QML file
-    qmlFile = os.path.join(os.path.dirname(__file__), "./ui/main.qml")
+    # qmlFile = os.path.join(os.path.dirname(__file__), "./ui/main.qml")
 
     qmlRegisterType(SettingsController, "SettingsController", 1, 0, "QMLSettingsController")
     qmlRegisterType(ProcessController, "ProcessController", 1, 0, "QMLProcessController")
@@ -29,7 +33,7 @@ if __name__ == "__main__":
     qmlRegisterType(SettingsBean, "SettingsBean", 1, 0, "QMLSettingsBean")
 
     engine = QQmlApplicationEngine()
-    engine.load(qmlFile)
+    engine.load(":/ui/main.qml")
 
     if not engine.rootObjects():
         sys.exit(-1)

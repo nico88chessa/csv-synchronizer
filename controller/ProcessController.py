@@ -4,7 +4,7 @@ import os
 import shutil
 from ftplib import FTP
 
-from PySide2.QtCore import QObject, Slot, Property, Signal, QDir, QUrl, QThread, QMetaObject
+from PySide2.QtCore import QObject, Slot, Property, Signal, QDir, QUrl, QThread, QMetaObject, QTimer
 
 from bean.SettingsBean import SettingsBean
 from bean.ProcessBean import ProcessBean
@@ -70,7 +70,8 @@ class ProcessController(QObject):
 
     @Slot()
     def initBean(self):
-        pass
+        QTimer.singleShot(2000, self.startCameraWatcher)
+        QTimer.singleShot(2500, self.startLaserWatcher)
 
     @Slot(None)
     def saveParameters(self):
