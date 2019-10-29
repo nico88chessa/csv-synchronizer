@@ -14,8 +14,10 @@ class SettingsBean(QObject):
     localRowMarginChanged = Signal()
     localCsvFilenameChanged = Signal()
     localLaserErrorFilenameChanged = Signal()
+    localLaserLogFilenameChanged = Signal()
     localLoadingPathChanged = Signal()
     localDownloadingPathChanged = Signal()
+    localWaitTimeBeforeProcessChanged = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -31,8 +33,10 @@ class SettingsBean(QObject):
         self.__localRowMargin: int = 0
         self.__localCsvFilename: str = ""
         self.__localLaserErrorFilename: str = ""
+        self.__localLaserLogFilename: str = ""
         self.__localLoadingPath: str = ""
         self.__localDownloadingPath: str = ""
+        self.__localWaitTimeBeforeProcess: int = 1
 
     def getCameraRemotePath(self) -> str:
         return self.__cameraRemotePath
@@ -106,6 +110,14 @@ class SettingsBean(QObject):
             self.__localLaserErrorFilename = errorFilename
             self.localLaserErrorFilenameChanged.emit()
 
+    def getLocalLaserLogFilename(self):
+        return self.__localLaserLogFilename
+
+    def setLocalLaserLogFilename(self, logFilename: str):
+        if self.__localLaserLogFilename.lower() != logFilename.lower():
+            self.__localLaserLogFilename = logFilename
+            self.localLaserLogFilenameChanged.emit()
+
     def getLocalLoadingPath(self):
         return self.__localLoadingPath
 
@@ -122,6 +134,14 @@ class SettingsBean(QObject):
             self.__localDownloadingPath = downloadingPath
             self.localDownloadingPathChanged.emit()
 
+    def getLocalWaitTimeBeforeProcess(self):
+        return self.__localWaitTimeBeforeProcess
+
+    def setLocalWaitTimeBeforeProcess(self, waitTimeS: int):
+        if self.__localWaitTimeBeforeProcess != waitTimeS:
+            self.__localWaitTimeBeforeProcess = waitTimeS
+            self.localWaitTimeBeforeProcessChanged.emit()
+
     pLaserIp = Property(str, getLaserIp, setLaserIp, notify=laserIpChanged)
     pLaserPort = Property(int, getLaserPort, setLaserPort, notify=laserPortChanged)
     pLaserPollingTimeMs = Property(int, getLaserPollingTimeMs, setLaserPollingTimeMs, notify=laserPollingTimeMsChanged)
@@ -135,6 +155,10 @@ class SettingsBean(QObject):
     pLocalCsvFilename = Property(str, getLocalCsvFilename, setLocalCsvFilename, notify=localCsvFilenameChanged)
     pLocalLaserErrorFilename = Property(str, getLocalLaserErrorFilename, setLocalLaserErrorFilename,
                                         notify=localLaserErrorFilenameChanged)
+    pLocalLaserLogFilename = Property(str, getLocalLaserLogFilename, setLocalLaserLogFilename,
+                                        notify=localLaserLogFilenameChanged)
     pLocalLoadingPath = Property(str, getLocalLoadingPath, setLocalLoadingPath, notify=localLoadingPathChanged)
     pLocalDownloadingPath = Property(str, getLocalDownloadingPath, setLocalDownloadingPath,
                                      notify=localDownloadingPathChanged)
+    pLocalWaitTimeBeforeProcess = Property(int, getLocalWaitTimeBeforeProcess, setLocalWaitTimeBeforeProcess,
+                                      notify=localWaitTimeBeforeProcessChanged)

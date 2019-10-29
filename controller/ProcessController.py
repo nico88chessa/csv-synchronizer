@@ -325,6 +325,7 @@ class ProcessController(QObject):
                                                                     self.__settingsBean.getLaserPort(),
                                                                     self.__settingsBean.getLaserRemotePath())
 
+            self.__csvRegeneratorThread.setLocalWaitTimeBeforeStart(self.__settingsBean.getLocalWaitTimeBeforeProcess())
             self.__csvRegeneratorThread.setLocalLoadingPath(self.__settingsBean.getLocalLoadingPath())
             self.__csvRegeneratorThread.setLocalDownloadingPath(self.__settingsBean.getLocalDownloadingPath())
 
@@ -332,6 +333,7 @@ class ProcessController(QObject):
 
             self.__csvRegeneratorThread.setCsvFilename(self.__settingsBean.getLocalCsvFilename())
             self.__csvRegeneratorThread.setErrorFilename(self.__settingsBean.getLocalLaserErrorFilename())
+            self.__csvRegeneratorThread.setLogFilename(self.__settingsBean.getLocalLaserLogFilename())
 
             self.__csvRegeneratorThread.setRowMargin(self.__settingsBean.getLocalRowMargin())
 

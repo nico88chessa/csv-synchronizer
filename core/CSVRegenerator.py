@@ -1,7 +1,9 @@
+import datetime
 import errno
 import ftplib
 import os
 import shutil
+import time
 from enum import IntEnum
 
 from PySide2.QtCore import QThread, QMutexLocker, QMutex, Signal, QWaitCondition
@@ -72,11 +74,13 @@ class CSVRegenerator(QThread):
 
         self.__cameraPath: str = ""
 
+        self.__localWaitTimeBeforeStart: int = 1
         self.__localLoadingPath: str = ""
         self.__localDownloadingPath: str = ""
 
         self.__csvFilename: str = ""
         self.__errorFilename: str = ""
+        self.__logFilename: str = ""
         self.__stopRequest: bool = False
         self.__pauseRequest: bool = False
         self.__waitCondition = QWaitCondition()
@@ -113,6 +117,14 @@ class CSVRegenerator(QThread):
         locker = QMutexLocker(self.__mutex)
         return self.__cameraPath
 
+    def getLocalWaitTimeBeforeStart(self):
+        locker = QMutexLocker(self.__mutex)
+        return self.__localWaitTimeBeforeStart
+
+    def setLocalWaitTimeBeforeStart(self, waitTime: int):
+        locker = QMutexLocker(self.__mutex)
+        self.__localWaitTimeBeforeStart = waitTime
+
     def setLocalLoadingPath(self, path: str):
         locker = QMutexLocker(self.__mutex)
         self.__localLoadingPath = path
@@ -144,6 +156,14 @@ class CSVRegenerator(QThread):
     def setErrorFilename(self, filename: str):
         locker = QMutexLocker(self.__mutex)
         self.__errorFilename = filename
+
+    def getLogFilename(self):
+        locker = QMutexLocker(self.__mutex)
+        return self.__logFilename
+
+    def setLogFilename(self, filename: str):
+        locker = QMutexLocker(self.__mutex)
+        self.__logFilename = filename
 
     def getPauseRequest(self):
         locker = QMutexLocker(self.__mutex)
@@ -204,11 +224,13 @@ class CSVRegenerator(QThread):
 
         cameraPath = self.__cameraPath
 
+        waitTimeBeforeStart = self.__localWaitTimeBeforeStart
         localDownloadingPath = self.__localDownloadingPath
 
         csvFilename = self.__csvFilename
         csvExpireFilename = self.__csvFilename+".expire"
         errorFilename = self.__errorFilename
+        logFilename = self.__logFilename
         csvNewFilename = self.__csvFilename + ".new"
 
         locker.unlock()
@@ -220,12 +242,18 @@ class CSVRegenerator(QThread):
         Logger().debug("Local Downloading Path: " + localDownloadingPath)
         Logger().debug("Csv Filename: " + csvFilename)
         Logger().debug("Error Filename: " + errorFilename)
+        Logger().debug("Log Filename: " + logFilename)
         Logger().debug("Csv New Filename: " + csvNewFilename)
+
+        Logger().info("Aspetto " + str(waitTimeBeforeStart) + " [s] prima di iniziare")
+        self.sleep(waitTimeBeforeStart)
+        Logger().info("Inizio il processo")
 
         # path csv e file di errore
         csvFileLocalPath = localDownloadingPath + "\\" + csvFilename
         csvNewFileLocalPath = localDownloadingPath + "\\" + csvNewFilename
         errorFileLocalPath = localDownloadingPath + "\\" + errorFilename
+        localLogPath = localDownloadingPath  + "\\log"
         csvCameraPath = cameraPath + "\\" + csvFilename
 
         # variabili locali
@@ -341,6 +369,9 @@ class CSVRegenerator(QThread):
                 Logger().info("Download file dal laser")
                 self.downloadItemsFromLaserStepSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
+                if not os._exists(localLogPath):
+                    os.mkdir(localLogPath)
+
                 if not isFtpConnected:
                     isFtpConnected = self.connectFtp(ftpController)
                     if not isFtpConnected:
@@ -363,6 +394,7 @@ class CSVRegenerator(QThread):
                     Logger().debug("Comando: " + cmd)
                     ftpController.retrbinary(cmd, open(errorFileLocalPath, 'wb').write)
 
+
                 except ftplib.all_errors as ftpErr:
                     Logger().error("Errore download file: " + str(ftpErr))
                     self.downloadItemsFromLaserStepSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
@@ -370,6 +402,22 @@ class CSVRegenerator(QThread):
                     isFtpConnected = False
                     self.sleep(1)
                     continue
+
+                try:
+                    # recupero il file log
+                    ts = time.time()
+                    logFilenameTS = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d-%H%M%S')
+                    logFilenameTS = localLogPath + "\\" + logFilenameTS
+                    Logger().info("Download file: " + logFilename)
+                    cmd = "RETR " + logFilename
+                    Logger().debug("Comando: " + cmd)
+                    ftpController.retrbinary(cmd, open(logFilenameTS, 'wb').write)
+
+                except ftplib.all_errors as ftpErr:
+                    Logger().error("Errore download file: " + str(ftpErr))
+                    ftpController.close()
+                    isFtpConnected = False
+
 
                 stepToProcess += 1
                 self.downloadItemsFromLaserStepSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)

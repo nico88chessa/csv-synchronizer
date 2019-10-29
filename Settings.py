@@ -35,6 +35,8 @@ class Settings(metaclass=Singleton):
                 "rowMargin": 10,
                 "csvFilename": "lista.csv",
                 "laserErrorFilename": "error.txt",
+                "laserLogFilename": "logMark.txt",
+                "waitTimeBeforeProcess": 1,
                 "loadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
                 "downloadingPath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
             }
@@ -62,6 +64,8 @@ class Settings(metaclass=Singleton):
         self.__localRowMargin = int(config["SW"]["rowMargin"])
         self.__localCsvFilename = config["SW"]["csvFilename"]
         self.__localLaserErrorFilename = config["SW"]["laserErrorFilename"]
+        self.__localLaserLogFilename = config["SW"]["laserLogFilename"]
+        self.__localWaitTimeBeforeProcess = int(config["SW"]["waitTimeBeforeProcess"])
         self.__localLoadingPath = config["SW"]["loadingPath"]
         self.__localDownloadingPath = config["SW"]["downloadingPath"]
 
@@ -124,6 +128,18 @@ class Settings(metaclass=Singleton):
     def setLocalLaserErrorFilename(self, errorFilename: str):
         self.__localLaserErrorFilename = errorFilename
 
+    def getLocalLaserLogFilename(self):
+        return self.__localLaserLogFilename
+
+    def setLocalLaserLogFilename(self, logFilename: str):
+        self.__localLaserLogFilename = logFilename
+
+    def getLocalWaitTimeBeforeProcess(self) -> int:
+        return self.__localWaitTimeBeforeProcess
+
+    def setLocalWaitTimeBeforeProcess(self, waitTime: int):
+        self.__localWaitTimeBeforeProcess = waitTime
+
     def getLocalLoadingPath(self):
         return self.__localLoadingPath
 
@@ -174,6 +190,8 @@ class Settings(metaclass=Singleton):
             "rowMargin": self.getLocalRowMargin(),
             "csvFilename": self.getLocalCsvFilename(),
             "laserErrorFilename": self.getLocalLaserErrorFilename(),
+            "laserLogFilename": self.getLocalLaserLogFilename(),
+            "waitTimeBeforeProcess": self.getLocalWaitTimeBeforeProcess(),
             "loadingPath": self.getLocalLoadingPath(),
             "downloadingPath": self.getLocalDownloadingPath()
         }
@@ -181,7 +199,7 @@ class Settings(metaclass=Singleton):
         config["Logging"] = {
             "path": self.getLoggingPath(),
             "filename": self.getLoggingFilename(),
-            "levels": self.getLoggingCurrentLevel(),
+            "levels": "CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET",
             "currentLevel": self.getLoggingCurrentLevel()
         }
 

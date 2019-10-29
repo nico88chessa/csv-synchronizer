@@ -16,7 +16,7 @@ ApplicationWindow {
     id: mainWindow
     width: 1024
     height: 768
-//    flags: Qt.CustomizeWindowHint | Qt.Window
+    //    flags: Qt.CustomizeWindowHint | Qt.Window
 
     Dialog {
         id: operationDialog
@@ -89,7 +89,7 @@ ApplicationWindow {
             id: tabBar
             width: parent.width
             Layout.fillWidth: true
-            currentIndex: 0
+            currentIndex: 1
             TabButton {
                 text: qsTr("Process")
             }
@@ -1152,7 +1152,7 @@ ApplicationWindow {
                     }
 
                     ColumnLayout {
-                        id: localSettingsLayout
+                        id: localSettingsLayoutL
                         width: 100
                         height: 100
                         Layout.fillHeight: true
@@ -1183,6 +1183,23 @@ ApplicationWindow {
                             }
 
                             Text {
+                                id: tWaitTimeBeforeProcess
+                                text: qsTr("Wait time before process [s]")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfWaitTimeBeforeProcess
+                                text: settingsBean.pLocalWaitTimeBeforeProcess
+                                validator: IntValidator {
+                                    bottom: 1;
+                                    top: 20;
+                                }
+                                onEditingFinished: settingsBean.pLocalWaitTimeBeforeProcess = tfWaitTimeBeforeProcess.text
+                                Layout.fillWidth: true
+                            }
+
+                            Text {
                                 id: tCsvFilename
                                 text: qsTr("Nome file CSV")
                                 Layout.minimumWidth: 120
@@ -1208,6 +1225,43 @@ ApplicationWindow {
                                 Layout.fillWidth: true
                                 onEditingFinished: settingsBean.pLocalLaserErrorFilename = tfLaserErrorFilename.text
                             }
+
+                            Text {
+                                id: tLaserLogFilename
+                                text: qsTr("Nome file log")
+                                font.pixelSize: 12
+                            }
+
+                            TextField {
+                                id: tfLaserLogFilename
+                                text: settingsBean.pLocalLaserLogFilename
+                                Layout.fillWidth: true
+                                onEditingFinished: settingsBean.pLocalLaserLogFilename = tfLaserLogFilename.text
+                            }
+
+                            Item {
+                                id: element5
+                                width: 200
+                                height: 200
+                                Layout.fillHeight: true
+                            }
+
+                        }
+                    }
+
+                    ColumnLayout {
+                        id: localSettingsLayoutR
+                        width: 100
+                        height: 100
+                        Layout.fillWidth: true
+                        Layout.columnSpan: 1
+
+                        GridLayout {
+                            id: gridLayout5
+                            width: 100
+                            height: 100
+                            columns: 2
+                            Layout.columnSpan: 1
 
                             Text {
                                 id: tLoadingPath
@@ -1285,16 +1339,14 @@ ApplicationWindow {
                                 onClicked: settingsCtrl.saveParameters()
                             }
 
-
+                            Item {
+                                id: element2
+                                width: 200
+                                height: 200
+                                Layout.fillHeight: true
+                            }
 
                         }
-                    }
-
-                    ColumnLayout {
-                        id: tempLayout
-                        width: 100
-                        height: 100
-                        Layout.fillHeight: true
                     }
 
                     Item {
@@ -1305,11 +1357,10 @@ ApplicationWindow {
                     }
 
                 }
+
             }
 
-
         }
-
 
     }
 
