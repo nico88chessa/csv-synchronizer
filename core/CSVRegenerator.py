@@ -369,7 +369,7 @@ class CSVRegenerator(QThread):
                 Logger().info("Download file dal laser")
                 self.downloadItemsFromLaserStepSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
-                if not os._exists(localLogPath):
+                if not os.path.exists(localLogPath):
                     os.mkdir(localLogPath)
 
                 if not isFtpConnected:
@@ -407,7 +407,7 @@ class CSVRegenerator(QThread):
                     # recupero il file log
                     ts = time.time()
                     logFilenameTS = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d-%H%M%S')
-                    logFilenameTS = localLogPath + "\\" + logFilenameTS
+                    logFilenameTS = localLogPath + "\\" + logFilenameTS + ".log"
                     Logger().info("Download file: " + logFilename)
                     cmd = "RETR " + logFilename
                     Logger().debug("Comando: " + cmd)
@@ -463,10 +463,10 @@ class CSVRegenerator(QThread):
                 fp = None
                 try:
                     Logger().info("Recupero informazioni dal file: "+errorFileLocalPath)
-                    fp = open(errorFileLocalPath)
-                    lineStr = fp.readline()
+                    fp = open(errorFileLocalPath, encoding="utf-8-sig", newline="\n")
+                    lineStr = fp.readline().rstrip("\n")
                     lastPrintedString = fp.readline()
-                    Logger().debug("Line: " + lineStr)
+                    Logger().debug("Line: " + str(lineStr))
                     Logger().debug("LastPrintedString: " + lastPrintedString)
                     lineToSeek = int(lineStr)
                     lineToSeek += rowMargin

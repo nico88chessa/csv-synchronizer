@@ -16,4 +16,4 @@ generazione .py da file .qrc
 generazione eseguibile
 1. andare nella cartella venv\Scripts
 2. eseguire il comando:
-<tt>.\pyinstaller.exe ..\..\main.py --distpath ..\..\dist</tt>
+<tt>.\pyinstaller.exe ..\..\main.py -w --distpath ..\..\dist</tt>

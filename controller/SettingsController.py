@@ -1,4 +1,5 @@
 from PySide2.QtCore import QObject, Slot, Property, Signal, QThread
+from PySide2.QtWidgets import QApplication
 
 from bean.SettingsBean import SettingsBean
 from Settings import Settings
@@ -43,6 +44,8 @@ class SettingsController(QObject):
         self.__settingsBean.setLocalWaitTimeBeforeProcess(s.getLocalWaitTimeBeforeProcess())
         self.__settingsBean.setLocalLoadingPath(s.getLocalLoadingPath())
         self.__settingsBean.setLocalDownloadingPath(s.getLocalDownloadingPath())
+
+        self.__settingsBean.setVersion(QApplication.instance().applicationVersion())
 
         Logger().info("Laser Ip: " + self.__settingsBean.getLaserIp())
         Logger().info("Laser Port: " + str(self.__settingsBean.getLaserPort()))

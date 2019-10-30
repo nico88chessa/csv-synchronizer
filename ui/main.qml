@@ -100,6 +100,18 @@ ApplicationWindow {
 
         }
 
+        Text {
+            id: tVersione
+            text: qsTr("Versione - ") + settingsBean.pVersion
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignRight
+            Layout.fillWidth: true
+            font.pixelSize: 12
+            Layout.rightMargin: 10
+//            anchors.right: glMain.right
+//            anchors.rightMargin: 10
+        }
+
         StackLayout {
 
             width: parent.width
@@ -1361,6 +1373,7 @@ ApplicationWindow {
             }
 
         }
+
 
     }
 

@@ -17,10 +17,14 @@ if __name__ == "__main__":
     # Set up the application window
     app = QGuiApplication(sys.argv)
 
+    version = "1.0.0"
+
     app.setOrganizationName("DV")
     app.setApplicationName("CSV-Synchronizer")
+    app.setApplicationVersion(version)
 
     Logger().info("Start applicazione CSV-Synchronizer")
+    Logger().info("Versione: " + version)
 
     # qmlFile = QFile(":/ui/main.qml")
     # qmlFile.open(QFile.ReadOnly | QFile.Text)

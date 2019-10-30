@@ -2,7 +2,7 @@
 
 # Resource object code
 #
-# Created: mar ott 29 16:27:40 2019
+# Created: mer ott 30 11:45:30 2019
 #      by: The Resource Compiler for PySide2 (Qt v5.13.1)
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,7 +10,7 @@
 from PySide2 import QtCore
 
 qt_resource_data = b"\
-\x00\x00\xe5\x08\
+\x00\x00\xe6\x9f\
 \xef\
 \xbb\xbfimport QtQuick\
  2.12\x0d\x0aimport Qt\
@@ -151,322 +151,962 @@ gs\x22)\x0d\x0a          \
 pleted: tabBar.c\
 urrentIndex = 0\x0d\
 \x0a\x0d\x0a        }\x0d\x0a\x0d\x0a\
-        StackLay\
-out {\x0d\x0a\x0d\x0a       \
-     width: pare\
-nt.width\x0d\x0a      \
-      Layout.fil\
-lHeight: true\x0d\x0a \
-           curre\
-ntIndex: tabBar.\
-currentIndex\x0d\x0a  \
-          id: st\
-ackLayout\x0d\x0a     \
-       Layout.fi\
-llWidth: true\x0d\x0a\x0d\
-\x0a            Ite\
-m {\x0d\x0a\x0d\x0a         \
-       id: proce\
-ssItem\x0d\x0a\x0d\x0a      \
-          GridLa\
-yout {\x0d\x0a        \
+        Text {\x0d\x0a\
             id: \
-gMain\x0d\x0a         \
-           ancho\
-rs.rightMargin: \
-10\x0d\x0a            \
-        anchors.\
-leftMargin: 10\x0d\x0a\
-                \
-    anchors.bott\
-omMargin: 10\x0d\x0a  \
-                \
-  anchors.topMar\
-gin: 10\x0d\x0a       \
-             anc\
-hors.fill: paren\
-t\x0d\x0a             \
-       clip: tru\
-e\x0d\x0a             \
-       rows: 3\x0d\x0a\
-                \
-    columns: 1\x0d\x0a\
-\x0d\x0a              \
-      GridLayout\
- {\x0d\x0a            \
-            id: \
-gBody\x0d\x0a         \
-               w\
-idth: 100\x0d\x0a     \
-                \
-   height: 100\x0d\x0a\
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-        rows: 2\x0d\
-\x0a               \
-         columns\
-: 3\x0d\x0a\x0d\x0a         \
-               T\
-extField {\x0d\x0a    \
-                \
-        id: tfFo\
-lderPath\x0d\x0a      \
-                \
-      text: sett\
-ingsBean.pLocalL\
-oadingPath\x0d\x0a    \
-                \
-        Layout.c\
-olumnSpan: 2\x0d\x0a  \
-                \
+tVersione\x0d\x0a     \
+       text: qsT\
+r(\x22Versione - \x22)\
+ + settingsBean.\
+pVersion\x0d\x0a      \
+      verticalAl\
+ignment: Text.Al\
+ignVCenter\x0d\x0a    \
+        horizont\
+alAlignment: Tex\
+t.AlignRight\x0d\x0a  \
           Layout\
 .fillWidth: true\
-\x0d\x0a              \
-              on\
-EditingFinished:\
- processCtrl.set\
-LocalLoadingPath\
-(tfFolderPath.te\
-xt)\x0d\x0a           \
-             }\x0d\x0a\
-\x0d\x0a              \
-          Button\
- {\x0d\x0a\x0d\x0a          \
-                \
-  FileDialog {\x0d\x0a\
-                \
-                \
-id: localLoading\
-PathFileDialog\x0d\x0a\
-                \
-                \
-title: qsTr(\x22Cho\
-ose a folder\x22)\x0d\x0a\
-                \
-                \
-selectFolder: tr\
+\x0d\x0a            fo\
+nt.pixelSize: 12\
+\x0d\x0a            La\
+yout.rightMargin\
+: 10\x0d\x0a//        \
+    anchors.righ\
+t: glMain.right\x0d\
+\x0a//            a\
+nchors.rightMarg\
+in: 10\x0d\x0a        \
+}\x0d\x0a\x0d\x0a        Sta\
+ckLayout {\x0d\x0a\x0d\x0a  \
+          width:\
+ parent.width\x0d\x0a \
+           Layou\
+t.fillHeight: tr\
 ue\x0d\x0a            \
+currentIndex: ta\
+bBar.currentInde\
+x\x0d\x0a            i\
+d: stackLayout\x0d\x0a\
+            Layo\
+ut.fillWidth: tr\
+ue\x0d\x0a\x0d\x0a          \
+  Item {\x0d\x0a\x0d\x0a    \
+            id: \
+processItem\x0d\x0a\x0d\x0a \
+               G\
+ridLayout {\x0d\x0a   \
                 \
-    onAccepted: \
-processCtrl.setL\
-ocalLoadingPath(\
-localLoadingPath\
-FileDialog.fileU\
-rl)\x0d\x0a           \
+ id: gMain\x0d\x0a    \
                 \
- }\x0d\x0a\x0d\x0a          \
-                \
-  id: bChangeFol\
-der\x0d\x0a           \
-                \
- width: 120\x0d\x0a   \
-                \
-         height:\
- 40\x0d\x0a           \
-                \
- text: qsTr(\x22Cha\
-nge local folder\
-\x22)\x0d\x0a            \
-                \
-Layout.minimumWi\
-dth: 140\x0d\x0a      \
-                \
-      rightPaddi\
-ng: 15\x0d\x0a        \
-                \
-    leftPadding:\
- 15\x0d\x0a           \
-                \
- onClicked: {\x0d\x0a \
-                \
-               l\
-ocalLoadingPathF\
-ileDialog.folder\
- = processCtrl.g\
-etUrlFromNativeP\
-ath(settingsBean\
-.pLocalLoadingPa\
-th)\x0d\x0a           \
-                \
-     localLoadin\
-gPathFileDialog.\
-open()\x0d\x0a        \
-                \
-    }\x0d\x0a         \
-               }\
-\x0d\x0a\x0d\x0a            \
-            Text\
-Field {\x0d\x0a       \
-                \
-     id: tfCsvFi\
-lenameRO\x0d\x0a      \
-                \
-      text: sett\
-ingsBean.pLocalC\
-svFilename\x0d\x0a    \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-            read\
-Only: true\x0d\x0a    \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
- Button {\x0d\x0a     \
-                \
-       id: bSend\
-ToDevices\x0d\x0a     \
-                \
-       width: 12\
+anchors.rightMar\
+gin: 10\x0d\x0a       \
+             anc\
+hors.leftMargin:\
+ 10\x0d\x0a           \
+         anchors\
+.bottomMargin: 1\
 0\x0d\x0a             \
-               t\
-ext: qsTr(\x22Send \
-CSV to devices\x22)\
-\x0d\x0a              \
-              La\
-yout.minimumWidt\
-h: 140\x0d\x0a        \
+       anchors.t\
+opMargin: 10\x0d\x0a  \
                 \
-    rightPadding\
-: 15\x0d\x0a          \
+  anchors.fill: \
+parent\x0d\x0a        \
+            clip\
+: true\x0d\x0a        \
+            rows\
+: 3\x0d\x0a           \
+         columns\
+: 1\x0d\x0a\x0d\x0a         \
+           GridL\
+ayout {\x0d\x0a       \
                 \
-  leftPadding: 1\
-5\x0d\x0a             \
-               o\
-nClicked: proces\
-sCtrl.sendCsvFil\
-eToDevices()\x0d\x0a  \
+ id: gBody\x0d\x0a    \
+                \
+    width: 100\x0d\x0a\
+                \
+        height: \
+100\x0d\x0a           \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+             row\
+s: 2\x0d\x0a          \
+              co\
+lumns: 3\x0d\x0a\x0d\x0a    \
+                \
+    TextField {\x0d\
+\x0a               \
+             id:\
+ tfFolderPath\x0d\x0a \
+                \
+           text:\
+ settingsBean.pL\
+ocalLoadingPath\x0d\
+\x0a               \
+             Lay\
+out.columnSpan: \
+2\x0d\x0a             \
+               L\
+ayout.fillWidth:\
+ true\x0d\x0a         \
+                \
+   onEditingFini\
+shed: processCtr\
+l.setLocalLoadin\
+gPath(tfFolderPa\
+th.text)\x0d\x0a      \
+                \
+  }\x0d\x0a\x0d\x0a         \
+               B\
+utton {\x0d\x0a\x0d\x0a     \
+                \
+       FileDialo\
+g {\x0d\x0a           \
+                \
+     id: localLo\
+adingPathFileDia\
+log\x0d\x0a           \
+                \
+     title: qsTr\
+(\x22Choose a folde\
+r\x22)\x0d\x0a           \
+                \
+     selectFolde\
+r: true\x0d\x0a       \
+                \
+         onAccep\
+ted: processCtrl\
+.setLocalLoading\
+Path(localLoadin\
+gPathFileDialog.\
+fileUrl)\x0d\x0a      \
                 \
       }\x0d\x0a\x0d\x0a     \
                 \
-   Button {\x0d\x0a   \
+       id: bChan\
+geFolder\x0d\x0a      \
                 \
-         id: bRe\
-moveFromDevices\x0d\
+      width: 120\
+\x0d\x0a              \
+              he\
+ight: 40\x0d\x0a      \
+                \
+      text: qsTr\
+(\x22Change local f\
+older\x22)\x0d\x0a       \
+                \
+     Layout.mini\
+mumWidth: 140\x0d\x0a \
+                \
+           right\
+Padding: 15\x0d\x0a   \
+                \
+         leftPad\
+ding: 15\x0d\x0a      \
+                \
+      onClicked:\
+ {\x0d\x0a            \
+                \
+    localLoading\
+PathFileDialog.f\
+older = processC\
+trl.getUrlFromNa\
+tivePath(setting\
+sBean.pLocalLoad\
+ingPath)\x0d\x0a      \
+                \
+          localL\
+oadingPathFileDi\
+alog.open()\x0d\x0a   \
+                \
+         }\x0d\x0a    \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+ TextField {\x0d\x0a  \
+                \
+          id: tf\
+CsvFilenameRO\x0d\x0a \
+                \
+           text:\
+ settingsBean.pL\
+ocalCsvFilename\x0d\
 \x0a               \
-             wid\
-th: 120\x0d\x0a       \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
                 \
-     text: qsTr(\
-\x22Remove CSV devi\
+ readOnly: true\x0d\
+\x0a               \
+         }\x0d\x0a\x0d\x0a  \
+                \
+      Button {\x0d\x0a\
+                \
+            id: \
+bSendToDevices\x0d\x0a\
+                \
+            widt\
+h: 120\x0d\x0a        \
+                \
+    text: qsTr(\x22\
+Send CSV to devi\
 ces\x22)\x0d\x0a         \
                 \
    Layout.minimu\
 mWidth: 140\x0d\x0a   \
                 \
-         onClick\
-ed: processCtrl.\
-removeCsvFileFro\
-mDevices()\x0d\x0a    \
+         rightPa\
+dding: 15\x0d\x0a     \
                 \
-    }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a   \
+       leftPaddi\
+ng: 15\x0d\x0a        \
                 \
- }\x0d\x0a\x0d\x0a          \
-          RowLay\
-out {\x0d\x0a         \
-               i\
-d: rowLayout\x0d\x0a  \
+    onClicked: p\
+rocessCtrl.sendC\
+svFileToDevices(\
+)\x0d\x0a             \
+           }\x0d\x0a\x0d\x0a\
                 \
-      width: 100\
+        Button {\
 \x0d\x0a              \
-          height\
-: 450\x0d\x0a         \
-               s\
-cale: 1\x0d\x0a       \
+              id\
+: bRemoveFromDev\
+ices\x0d\x0a          \
                 \
- Layout.fillHeig\
-ht: false\x0d\x0a     \
+  width: 120\x0d\x0a  \
                 \
-   visible: true\
+          text: \
+qsTr(\x22Remove CSV\
+ devices\x22)\x0d\x0a    \
+                \
+        Layout.m\
+inimumWidth: 140\
 \x0d\x0a              \
-          Layout\
-.fillWidth: true\
-\x0d\x0a\x0d\x0a            \
-            Grid\
-Layout {\x0d\x0a      \
+              on\
+Clicked: process\
+Ctrl.removeCsvFi\
+leFromDevices()\x0d\
+\x0a               \
+         }\x0d\x0a\x0d\x0a\x0d\x0a\
+\x0d\x0a              \
+      }\x0d\x0a\x0d\x0a     \
+               R\
+owLayout {\x0d\x0a    \
                 \
-      id: gLaser\
-View\x0d\x0a          \
+    id: rowLayou\
+t\x0d\x0a             \
+           width\
+: 100\x0d\x0a         \
+               h\
+eight: 450\x0d\x0a    \
                 \
-  columnSpacing:\
- 10\x0d\x0a           \
+    scale: 1\x0d\x0a  \
                 \
- rowSpacing: 10\x0d\
+      Layout.fil\
+lHeight: false\x0d\x0a\
+                \
+        visible:\
+ true\x0d\x0a         \
+               L\
+ayout.fillWidth:\
+ true\x0d\x0a\x0d\x0a       \
+                \
+ GridLayout {\x0d\x0a \
+                \
+           id: g\
+LaserView\x0d\x0a     \
+                \
+       columnSpa\
+cing: 10\x0d\x0a      \
+                \
+      rowSpacing\
+: 10\x0d\x0a          \
+                \
+  Layout.columnS\
+pan: 1\x0d\x0a        \
+                \
+    clip: false\x0d\
 \x0a               \
              Lay\
-out.columnSpan: \
-1\x0d\x0a             \
+out.rowSpan: 1\x0d\x0a\
+                \
+            rows\
+: 1\x0d\x0a           \
+                \
+ Layout.fillWidt\
+h: true\x0d\x0a       \
+                \
+     Layout.fill\
+Height: true\x0d\x0a  \
+                \
+          column\
+s: 3\x0d\x0a\x0d\x0a        \
+                \
+    Text {\x0d\x0a    \
+                \
+            id: \
+tLaser\x0d\x0a        \
+                \
+        text: qs\
+Tr(\x22Laser Folder\
+\x22)\x0d\x0a            \
+                \
+    Layout.colum\
+nSpan: 3\x0d\x0a      \
+                \
+          Layout\
+.preferredWidth:\
+ 100\x0d\x0a          \
+                \
+      Layout.fil\
+lWidth: true\x0d\x0a  \
+                \
+              fo\
+nt.pixelSize: 12\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+ext {\x0d\x0a         \
+                \
+       id: tLase\
+rWatcher\x0d\x0a      \
+                \
+          text: \
+qsTr(\x22Watcher\x22)\x0d\
+\x0a               \
+                \
+ Layout.fillWidt\
+h: true\x0d\x0a       \
+                \
+         Layout.\
+columnSpan: 2\x0d\x0a \
+                \
+               f\
+ont.pixelSize: 1\
+2\x0d\x0a             \
+               }\
+\x0d\x0a\x0d\x0a            \
+                \
+RoundButton {\x0d\x0a \
+                \
+               i\
+d: rbLaserWatche\
+r\x0d\x0a             \
+                \
+   width: 30\x0d\x0a  \
+                \
+              he\
+ight: 30\x0d\x0a      \
+                \
+          text: \
+\x22\x22\x0d\x0a            \
+                \
+    Layout.align\
+ment: Qt.AlignRi\
+ght | Qt.AlignVC\
+enter\x0d\x0a         \
+                \
+       Layout.pr\
+eferredHeight: 3\
+0\x0d\x0a             \
+                \
+   Layout.prefer\
+redWidth: 30\x0d\x0a  \
+                \
+              ba\
+ckground: Rectan\
+gle {\x0d\x0a         \
+                \
+           id: r\
+bLaserWatcherRec\
+t\x0d\x0a             \
+                \
+       radius: r\
+bLaserWatcher.ra\
+dius\x0d\x0a          \
+                \
+          color:\
+ \x22red\x22\x0d\x0a        \
+                \
+        }\x0d\x0a\x0d\x0a   \
+                \
+             Con\
+nections {\x0d\x0a    \
+                \
+                \
+target: processB\
+ean\x0d\x0a           \
+                \
+         onLaser\
+WatcherRunningCh\
+anged: rbLaserWa\
+tcher.updateButt\
+on(processBean.p\
+LaserWatcherRunn\
+ing)\x0d\x0a          \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+           funct\
+ion updateButton\
+(isRunning) {\x0d\x0a \
+                \
+                \
+   if (isRunning\
+)\x0d\x0a             \
+                \
+           rbLas\
+erWatcherRect.co\
+lor = \x22green\x22\x0d\x0a \
+                \
+                \
+   else\x0d\x0a       \
+                \
+                \
+ rbLaserWatcherR\
+ect.color = \x22red\
+\x22\x0d\x0a             \
+                \
+   }\x0d\x0a\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     Text {\x0d\x0a   \
+                \
+             id:\
+ tLaserConnectio\
+n\x0d\x0a             \
+                \
+   text: qsTr(\x22C\
+onnection\x22)\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+                \
+     Layout.colu\
+mnSpan: 2\x0d\x0a     \
+                \
+           font.\
+pixelSize: 12\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Roun\
+dButton {\x0d\x0a     \
+                \
+           id: r\
+bLaserConnection\
+\x0d\x0a              \
+                \
+  width: 30\x0d\x0a   \
+                \
+             hei\
+ght: 30\x0d\x0a       \
+                \
+         text: \x22\
+\x22\x0d\x0a             \
+                \
+   Layout.prefer\
+redHeight: 30\x0d\x0a \
+                \
+               L\
+ayout.preferredW\
+idth: 30\x0d\x0a      \
+                \
+          Layout\
+.alignment: Qt.A\
+lignRight | Qt.A\
+lignVCenter\x0d\x0a\x0d\x0a \
+                \
+               b\
+ackground: Recta\
+ngle {\x0d\x0a        \
+                \
+            id: \
+rbLaserConnectio\
+nRect\x0d\x0a         \
+                \
+           radiu\
+s: rbLaserConnec\
+tion.radius\x0d\x0a   \
+                \
+                \
+ color: \x22red\x22\x0d\x0a \
+                \
+               }\
+\x0d\x0a\x0d\x0a            \
+                \
+    Connections \
+{\x0d\x0a             \
+                \
+       target: p\
+rocessBean\x0d\x0a    \
+                \
+                \
+onLaserConnectio\
+nUpChanged: rbLa\
+serConnection.up\
+dateButton(proce\
+ssBean.pLaserCon\
+nectionUp)\x0d\x0a    \
+                \
+            }\x0d\x0a\x0d\
+\x0a               \
+                \
+ function update\
+Button(isConnect\
+ed) {\x0d\x0a         \
+                \
+           if (i\
+sConnected)\x0d\x0a   \
+                \
+                \
+     rbLaserConn\
+ectionRect.color\
+ = \x22green\x22\x0d\x0a    \
+                \
+                \
+else\x0d\x0a          \
+                \
+              rb\
+LaserConnectionR\
+ect.color = \x22red\
+\x22\x0d\x0a             \
+                \
+   }\x0d\x0a\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     ListView {\x0d\
+\x0a               \
+                \
+ id: lvLaserFold\
+er\x0d\x0a            \
+                \
+    x: 0\x0d\x0a      \
+                \
+          y: 0\x0d\x0a\
+                \
+                \
+Layout.minimumHe\
+ight: 180\x0d\x0a     \
+                \
+           clip:\
+ true\x0d\x0a         \
+                \
+       Layout.fi\
+llHeight: true\x0d\x0a\
+                \
+                \
+Layout.columnSpa\
+n: 3\x0d\x0a          \
+                \
+      Layout.fil\
+lWidth: true\x0d\x0a  \
+                \
+              sp\
+acing: 4\x0d\x0a      \
+                \
+          model:\
+ processBean.pLa\
+serFolderItems\x0d\x0a\
+                \
+                \
+opacity: process\
+Bean.pLaserConne\
+ctionUp ? 1.0 : \
+0.4\x0d\x0a           \
+                \
+     enabled: pr\
+ocessBean.pLaser\
+ConnectionUp\x0d\x0a\x0d\x0a\
+                \
+                \
+delegate: Item {\
+\x0d\x0a              \
+                \
+      id: lvLase\
+rFolderItem\x0d\x0a   \
+                \
+                \
+ x: 5\x0d\x0a         \
+                \
+           width\
+: parent.width\x0d\x0a\
+                \
+                \
+    height: 40\x0d\x0a\
+\x0d\x0a              \
+                \
+      Row {\x0d\x0a   \
+                \
+                \
+     id: lvLaser\
+FolderItemRow\x0d\x0a\x0d\
+\x0a               \
+                \
+         Text {\x0d\
+\x0a               \
+                \
+             pad\
+ding: 10\x0d\x0a      \
+                \
+                \
+      id: lvLase\
+rFolderItemText\x0d\
+\x0a               \
+                \
+             par\
+ent: lvLaserFold\
+erItem\x0d\x0a        \
+                \
+                \
+    text: modelD\
+ata\x0d\x0a           \
+                \
+                \
+ font.bold: true\
+\x0d\x0a              \
+                \
+              an\
+chors.verticalCe\
+nter: parent.ver\
+ticalCenter\x0d\x0a\x0d\x0a \
+                \
+                \
+           Recta\
+ngle {\x0d\x0a        \
+                \
+                \
+        parent: \
+lvLaserFolderIte\
+m\x0d\x0a             \
+                \
+                \
+   width: parent\
+.width\x0d\x0a        \
+                \
+                \
+        height: \
+parent.height\x0d\x0a \
+                \
+                \
+               a\
+nchors.top: pare\
+nt.top\x0d\x0a        \
+                \
+                \
+        color: \x22\
+#112233FF\x22\x0d\x0a    \
+                \
+                \
+        }\x0d\x0a     \
+                \
+                \
+   }\x0d\x0a          \
+                \
+          }\x0d\x0a   \
+                \
+             }\x0d\x0a\
+\x0d\x0a              \
+                \
+  ScrollBar.vert\
+ical: ScrollBar \
+{\x0d\x0a             \
+                \
+       parent: l\
+vLaserFolder\x0d\x0a  \
+                \
+                \
+  anchors.top: l\
+vLaserFolder.top\
+\x0d\x0a              \
+                \
+      anchors.bo\
+ttom: lvLaserFol\
+der.bottom\x0d\x0a    \
+                \
+                \
+interactive: tru\
+e\x0d\x0a             \
+                \
+       policy: \x22\
+AlwaysOn\x22\x0d\x0a     \
+                \
                c\
-lip: false\x0d\x0a    \
+lip: true\x0d\x0a     \
                 \
-        Layout.r\
-owSpan: 1\x0d\x0a     \
+           }\x0d\x0a\x0d\x0a\
                 \
-       rows: 1\x0d\x0a\
+            }\x0d\x0a\x0d\
+\x0a               \
+             Ite\
+m {\x0d\x0a           \
                 \
-            Layo\
-ut.fillWidth: tr\
+     id: element\
+\x0d\x0a              \
+                \
+  width: 0\x0d\x0a    \
+                \
+            heig\
+ht: 0\x0d\x0a         \
+                \
+       Layout.fi\
+llHeight: false\x0d\
+\x0a               \
+                \
+ Layout.fillWidt\
+h: true\x0d\x0a       \
+                \
+         visible\
+: true\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     Button {\x0d\x0a \
+                \
+               i\
+d: bStartLaserWa\
+tcher\x0d\x0a         \
+                \
+       text: qsT\
+r(\x22Start\x22)\x0d\x0a    \
+                \
+            enab\
+led: !processBea\
+n.pLaserWatcherR\
+unning\x0d\x0a        \
+                \
+        onClicke\
+d: processCtrl.s\
+tartLaserWatcher\
+()\x0d\x0a            \
+                \
+}\x0d\x0a\x0d\x0a           \
+                \
+ Button {\x0d\x0a     \
+                \
+           id: b\
+StopLaserWatcher\
+\x0d\x0a              \
+                \
+  text: qsTr(\x22St\
+op\x22)\x0d\x0a          \
+                \
+      enabled: p\
+rocessBean.pLase\
+rWatcherRunning\x0d\
+\x0a               \
+                \
+ onClicked: proc\
+essCtrl.stopLase\
+rWatcher()\x0d\x0a    \
+                \
+        }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\
+\x0a\x0d\x0a\x0d\x0a           \
+             }\x0d\x0a\
+\x0d\x0a              \
+          ToolSe\
+parator {\x0d\x0a     \
+                \
+       id: toolS\
+eparator\x0d\x0a      \
+                \
+      topPadding\
+: 2\x0d\x0a           \
+                \
+ Layout.fillHeig\
+ht: true\x0d\x0a      \
+                \
+      Layout.row\
+Span: 1\x0d\x0a       \
+                \
+     Layout.colu\
+mnSpan: 1\x0d\x0a     \
+                \
+       padding: \
+10\x0d\x0a            \
+            }\x0d\x0a\x0d\
+\x0a               \
+         GridLay\
+out {\x0d\x0a         \
+                \
+   id: gCameraVi\
+ew\x0d\x0a            \
+                \
+columnSpacing: 1\
+0\x0d\x0a             \
+               r\
+owSpacing: 10\x0d\x0a \
+                \
+           Layou\
+t.fillHeight: tr\
 ue\x0d\x0a            \
                 \
-Layout.fillHeigh\
-t: true\x0d\x0a       \
+rows: 1\x0d\x0a       \
                 \
      columns: 3\x0d\
 \x0a\x0d\x0a             \
                T\
 ext {\x0d\x0a         \
                 \
-       id: tLase\
-r\x0d\x0a             \
+       id: tCame\
+ra\x0d\x0a            \
                 \
-   text: qsTr(\x22L\
-aser Folder\x22)\x0d\x0a \
+    text: qsTr(\x22\
+Camera Folder\x22)\x0d\
+\x0a               \
+                \
+ Layout.columnSp\
+an: 3\x0d\x0a         \
+                \
+       Layout.pr\
+eferredWidth: 10\
+0\x0d\x0a             \
+                \
+   Layout.fillWi\
+dth: true\x0d\x0a     \
+                \
+           font.\
+pixelSize: 12\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Text\
+ {\x0d\x0a            \
+                \
+    id: tCameraW\
+atcher\x0d\x0a        \
+                \
+        text: qs\
+Tr(\x22Watcher\x22)\x0d\x0a \
                 \
                L\
 ayout.columnSpan\
-: 3\x0d\x0a           \
+: 2\x0d\x0a           \
                 \
-     Layout.pref\
-erredWidth: 100\x0d\
+     Layout.fill\
+Width: true\x0d\x0a   \
+                \
+             fon\
+t.pixelSize: 12\x0d\
 \x0a               \
+             }\x0d\x0a\
+\x0d\x0a              \
+              Ro\
+undButton {\x0d\x0a   \
                 \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         font.pi\
-xelSize: 12\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          Text {\
+             id:\
+ rbCameraWatcher\
 \x0d\x0a              \
                 \
-  id: tLaserWatc\
-her\x0d\x0a           \
+  width: 30\x0d\x0a   \
                 \
-     text: qsTr(\
-\x22Watcher\x22)\x0d\x0a    \
+             hei\
+ght: 30\x0d\x0a       \
                 \
-            Layo\
-ut.fillWidth: tr\
-ue\x0d\x0a            \
+         text: \x22\
+\x22\x0d\x0a             \
                 \
-    Layout.colum\
-nSpan: 2\x0d\x0a      \
+   Layout.alignm\
+ent: Qt.AlignRig\
+ht | Qt.AlignVCe\
+nter\x0d\x0a          \
                 \
-          font.p\
-ixelSize: 12\x0d\x0a  \
+      Layout.pre\
+ferredHeight: 30\
+\x0d\x0a              \
                 \
-          }\x0d\x0a\x0d\x0a \
+  Layout.preferr\
+edWidth: 30\x0d\x0a\x0d\x0a \
                 \
-           Round\
-Button {\x0d\x0a      \
+               b\
+ackground: Recta\
+ngle {\x0d\x0a        \
                 \
-          id: rb\
-LaserWatcher\x0d\x0a  \
+            id: \
+rbCameraWatcherR\
+ect\x0d\x0a           \
+                \
+         radius:\
+ rbLaserConnecti\
+on.radius\x0d\x0a     \
+                \
+               c\
+olor: \x22red\x22\x0d\x0a   \
+                \
+             }\x0d\x0a\
+\x0d\x0a              \
+                \
+  Connections {\x0d\
+\x0a               \
+                \
+     target: pro\
+cessBean\x0d\x0a      \
+                \
+              on\
+CameraWatcherRun\
+ningChanged: rbC\
+ameraWatcher.upd\
+ateButton(proces\
+sBean.pCameraWat\
+cherRunning)\x0d\x0a  \
+                \
+              }\x0d\
+\x0a\x0d\x0a             \
+                \
+   function upda\
+teButton(isRunni\
+ng) {\x0d\x0a         \
+                \
+           if (i\
+sRunning)\x0d\x0a     \
+                \
+                \
+   rbCameraWatch\
+erRect.color = \x22\
+green\x22\x0d\x0a        \
+                \
+            else\
+\x0d\x0a              \
+                \
+          rbCame\
+raWatcherRect.co\
+lor = \x22red\x22\x0d\x0a   \
+                \
+             }\x0d\x0a\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+ext {\x0d\x0a         \
+                \
+       id: tCame\
+raConnection\x0d\x0a  \
+                \
+              te\
+xt: qsTr(\x22Connec\
+tion\x22)\x0d\x0a        \
+                \
+        Layout.c\
+olumnSpan: 2\x0d\x0a  \
+                \
+              La\
+yout.fillWidth: \
+true\x0d\x0a          \
+                \
+      font.pixel\
+Size: 12\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       RoundButt\
+on {\x0d\x0a          \
+                \
+      id: rbCame\
+raConnection\x0d\x0a  \
                 \
               wi\
 dth: 30\x0d\x0a       \
@@ -487,222 +1127,112 @@ edHeight: 30\x0d\x0a  \
                 \
               La\
 yout.preferredWi\
-dth: 30\x0d\x0a       \
+dth: 30\x0d\x0a\x0d\x0a     \
                 \
-         backgro\
-und: Rectangle {\
-\x0d\x0a              \
+           backg\
+round: Rectangle\
+ {\x0d\x0a            \
                 \
-      id: rbLase\
-rWatcherRect\x0d\x0a  \
+        id: rbCa\
+meraConnectionRe\
+ct\x0d\x0a            \
                 \
+        radius: \
+rbLaserConnectio\
+n.radius\x0d\x0a      \
                 \
-  radius: rbLase\
-rWatcher.radius\x0d\
+              co\
+lor: \x22red\x22\x0d\x0a    \
+                \
+            }\x0d\x0a\x0d\
 \x0a               \
                 \
-     color: \x22red\
-\x22\x0d\x0a             \
-                \
-   }\x0d\x0a\x0d\x0a        \
-                \
-        Connecti\
-ons {\x0d\x0a         \
-                \
-           targe\
-t: processBean\x0d\x0a\
+ Connections {\x0d\x0a\
                 \
                 \
-    onLaserWatch\
-erRunningChanged\
-: rbLaserWatcher\
-.updateButton(pr\
-ocessBean.pLaser\
-WatcherRunning)\x0d\
+    target: proc\
+essBean\x0d\x0a       \
+                \
+             onC\
+ameraConnectionU\
+pChanged: rbCame\
+raConnection.upd\
+ateButton(proces\
+sBean.pCameraCon\
+nectionUp)\x0d\x0a    \
+                \
+            }\x0d\x0a\x0d\
 \x0a               \
                 \
- }\x0d\x0a\x0d\x0a          \
+ function update\
+Button(isConnect\
+ed) {\x0d\x0a         \
                 \
-      function u\
-pdateButton(isRu\
-nning) {\x0d\x0a      \
-                \
-              if\
- (isRunning)\x0d\x0a  \
+           if (i\
+sConnected)\x0d\x0a   \
                 \
                 \
-      rbLaserWat\
-cherRect.color =\
- \x22green\x22\x0d\x0a      \
-                \
-              el\
-se\x0d\x0a            \
-                \
-            rbLa\
-serWatcherRect.c\
-olor = \x22red\x22\x0d\x0a  \
-                \
-              }\x0d\
-\x0a\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-Text {\x0d\x0a        \
-                \
-        id: tLas\
-erConnection\x0d\x0a  \
-                \
-              te\
-xt: qsTr(\x22Connec\
-tion\x22)\x0d\x0a        \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
+     rbCameraCon\
+nectionRect.colo\
+r = \x22green\x22\x0d\x0a   \
                 \
                 \
-Layout.columnSpa\
-n: 2\x0d\x0a          \
+ else\x0d\x0a         \
                 \
-      font.pixel\
-Size: 12\x0d\x0a      \
+               r\
+bCameraConnectio\
+nRect.color = \x22r\
+ed\x22\x0d\x0a           \
+                \
+     }\x0d\x0a\x0d\x0a      \
                 \
       }\x0d\x0a\x0d\x0a     \
                 \
-       RoundButt\
-on {\x0d\x0a          \
-                \
-      id: rbLase\
-rConnection\x0d\x0a   \
-                \
-             wid\
-th: 30\x0d\x0a        \
-                \
-        height: \
-30\x0d\x0a            \
-                \
-    text: \x22\x22\x0d\x0a  \
-                \
-              La\
-yout.preferredHe\
-ight: 30\x0d\x0a      \
-                \
-          Layout\
-.preferredWidth:\
- 30\x0d\x0a           \
-                \
-     Layout.alig\
-nment: Qt.AlignR\
-ight | Qt.AlignV\
-Center\x0d\x0a\x0d\x0a      \
-                \
-          backgr\
-ound: Rectangle \
+       ListView \
 {\x0d\x0a             \
                 \
-       id: rbLas\
-erConnectionRect\
-\x0d\x0a              \
+   id: lvCameraF\
+older\x0d\x0a         \
                 \
-      radius: rb\
-LaserConnection.\
-radius\x0d\x0a        \
-                \
-            colo\
-r: \x22red\x22\x0d\x0a      \
-                \
-          }\x0d\x0a\x0d\x0a \
-                \
-               C\
-onnections {\x0d\x0a  \
-                \
-                \
-  target: proces\
-sBean\x0d\x0a         \
-                \
-           onLas\
-erConnectionUpCh\
-anged: rbLaserCo\
-nnection.updateB\
-utton(processBea\
-n.pLaserConnecti\
-onUp)\x0d\x0a         \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-            func\
-tion updateButto\
-n(isConnected) {\
-\x0d\x0a              \
-                \
-      if (isConn\
-ected)\x0d\x0a        \
-                \
-                \
-rbLaserConnectio\
-nRect.color = \x22g\
-reen\x22\x0d\x0a         \
-                \
-           else\x0d\
-\x0a               \
-                \
-         rbLaser\
-ConnectionRect.c\
-olor = \x22red\x22\x0d\x0a  \
-                \
-              }\x0d\
-\x0a\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-ListView {\x0d\x0a    \
-                \
-            id: \
-lvLaserFolder\x0d\x0a \
-                \
-               x\
-: 0\x0d\x0a           \
-                \
-     y: 0\x0d\x0a     \
-                \
-           Layou\
-t.minimumHeight:\
- 180\x0d\x0a          \
-                \
-      clip: true\
+       Layout.mi\
+nimumHeight: 180\
 \x0d\x0a              \
                 \
   Layout.fillHei\
 ght: true\x0d\x0a     \
                 \
-           Layou\
-t.columnSpan: 3\x0d\
+           clip:\
+ true\x0d\x0a         \
+                \
+       Layout.co\
+lumnSpan: 3\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+                \
+     spacing: 4\x0d\
 \x0a               \
                 \
- Layout.fillWidt\
-h: true\x0d\x0a       \
+ model: processB\
+ean.pCameraFolde\
+rItems\x0d\x0a        \
                 \
-         spacing\
-: 4\x0d\x0a           \
+        opacity:\
+ processBean.pCa\
+meraConnectionUp\
+ ? 1.0 : 0.4\x0d\x0a  \
                 \
-     model: proc\
-essBean.pLaserFo\
-lderItems\x0d\x0a     \
+              en\
+abled: processBe\
+an.pCameraConnec\
+tionUp\x0d\x0a\x0d\x0a      \
                 \
-           opaci\
-ty: processBean.\
-pLaserConnection\
-Up ? 1.0 : 0.4\x0d\x0a\
-                \
-                \
-enabled: process\
-Bean.pLaserConne\
-ctionUp\x0d\x0a\x0d\x0a     \
-                \
-           deleg\
-ate: Item {\x0d\x0a   \
+          delega\
+te: Item {\x0d\x0a    \
                 \
                 \
- id: lvLaserFold\
+id: lvCameraFold\
 erItem\x0d\x0a        \
                 \
             x: 5\
@@ -718,89 +1248,89 @@ eight: 40\x0d\x0a\x0d\x0a   \
  Row {\x0d\x0a        \
                 \
                 \
-id: lvLaserFolde\
-rItemRow\x0d\x0a\x0d\x0a    \
+id: lvCameraFold\
+erItemRow\x0d\x0a\x0d\x0a   \
                 \
                 \
-    Text {\x0d\x0a    \
+     Text {\x0d\x0a   \
                 \
                 \
-        padding:\
- 10\x0d\x0a           \
+         padding\
+: 10\x0d\x0a          \
                 \
                 \
- id: lvLaserFold\
-erItemText\x0d\x0a    \
+  id: lvCameraFo\
+lderItemText\x0d\x0a  \
                 \
                 \
-        parent: \
-lvLaserFolderIte\
-m\x0d\x0a             \
-                \
-               t\
-ext: modelData\x0d\x0a\
+          parent\
+: lvCameraFolder\
+Item\x0d\x0a          \
                 \
                 \
-            font\
-.bold: true\x0d\x0a   \
+  text: modelDat\
+a\x0d\x0a             \
+                \
+               f\
+ont.bold: true\x0d\x0a\
                 \
                 \
-         anchors\
-.verticalCenter:\
- parent.vertical\
-Center\x0d\x0a\x0d\x0a      \
+            anch\
+ors.verticalCent\
+er: parent.verti\
+calCenter\x0d\x0a\x0d\x0a   \
                 \
                 \
-      Rectangle \
-{\x0d\x0a             \
+         Rectang\
+le {\x0d\x0a          \
                 \
                 \
-   parent: lvLas\
-erFolderItem\x0d\x0a  \
+      parent: lv\
+CameraFolderItem\
+\x0d\x0a              \
                 \
                 \
-              wi\
-dth: parent.widt\
-h\x0d\x0a             \
+  width: parent.\
+width\x0d\x0a         \
                 \
                 \
-   height: paren\
-t.height\x0d\x0a      \
+       height: p\
+arent.height\x0d\x0a  \
                 \
                 \
-          anchor\
-s.top: parent.to\
-p\x0d\x0a             \
+              an\
+chors.top: paren\
+t.top\x0d\x0a         \
                 \
                 \
-   color: \x22#1122\
-33FF\x22\x0d\x0a         \
+       color: \x22#\
+112233FF\x22\x0d\x0a     \
                 \
                 \
-   }\x0d\x0a          \
+       }\x0d\x0a      \
+                \
+                \
+  }\x0d\x0a           \
+                \
+             spa\
+cing: 10\x0d\x0a      \
                 \
               }\x0d\
 \x0a               \
                 \
-     }\x0d\x0a        \
+ }\x0d\x0a\x0d\x0a          \
                 \
-        }\x0d\x0a\x0d\x0a   \
+      ScrollBar.\
+vertical: Scroll\
+Bar {\x0d\x0a         \
                 \
-             Scr\
-ollBar.vertical:\
- ScrollBar {\x0d\x0a  \
-                \
-                \
-  parent: lvLase\
-rFolder\x0d\x0a       \
-                \
-             anc\
-hors.top: lvLase\
-rFolder.top\x0d\x0a   \
+           ancho\
+rs.top: lvCamera\
+Folder.top\x0d\x0a    \
                 \
                 \
- anchors.bottom:\
- lvLaserFolder.b\
+anchors.bottom: \
+lvCameraFolder.b\
 ottom\x0d\x0a         \
                 \
            inter\
@@ -820,793 +1350,206 @@ true\x0d\x0a          \
         Item {\x0d\x0a\
                 \
                 \
-id: element\x0d\x0a   \
+id: element1\x0d\x0a  \
                 \
-             wid\
-th: 0\x0d\x0a         \
+              wi\
+dth: 0\x0d\x0a        \
                 \
-       height: 0\
+        height: \
+0\x0d\x0a             \
+                \
+   Layout.fillHe\
+ight: false\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+                \
+     Layout.colu\
+mnSpan: 1\x0d\x0a     \
+                \
+       }\x0d\x0a\x0d\x0a    \
+                \
+        Button {\
 \x0d\x0a              \
                 \
-  Layout.fillHei\
-ght: false\x0d\x0a    \
+  id: bStarCamer\
+aWatcher\x0d\x0a      \
                 \
-            Layo\
-ut.fillWidth: tr\
-ue\x0d\x0a            \
+          text: \
+qsTr(\x22Start\x22)\x0d\x0a \
                 \
-    visible: tru\
-e\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-Button {\x0d\x0a      \
-                \
-          id: bS\
-tartLaserWatcher\
-\x0d\x0a              \
-                \
-  text: qsTr(\x22St\
-art\x22)\x0d\x0a         \
-                \
-       enabled: \
-!processBean.pLa\
-serWatcherRunnin\
-g\x0d\x0a             \
-                \
-   onClicked: pr\
-ocessCtrl.startL\
-aserWatcher()\x0d\x0a \
-                \
-           }\x0d\x0a\x0d\x0a\
-                \
-            Butt\
-on {\x0d\x0a          \
-                \
-      id: bStopL\
-aserWatcher\x0d\x0a   \
-                \
-             tex\
-t: qsTr(\x22Stop\x22)\x0d\
-\x0a               \
-                \
- enabled: proces\
-sBean.pLaserWatc\
+               e\
+nabled: !process\
+Bean.pCameraWatc\
 herRunning\x0d\x0a    \
                 \
             onCl\
 icked: processCt\
-rl.stopLaserWatc\
-her()\x0d\x0a         \
+rl.startCameraWa\
+tcher()\x0d\x0a       \
                 \
-   }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\
+     }\x0d\x0a\x0d\x0a      \
                 \
-        }\x0d\x0a\x0d\x0a   \
+      Button {\x0d\x0a\
                 \
-     ToolSeparat\
-or {\x0d\x0a          \
                 \
-  id: toolSepara\
-tor\x0d\x0a           \
+id: bStopCameraW\
+atcher\x0d\x0a        \
                 \
- topPadding: 2\x0d\x0a\
+        text: qs\
+Tr(\x22Stop\x22)\x0d\x0a    \
+                \
+            enab\
+led: processBean\
+.pCameraWatcherR\
+unning\x0d\x0a        \
+                \
+        onClicke\
+d: processCtrl.s\
+topCameraWatcher\
+()\x0d\x0a            \
+                \
+}\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a   \
+                \
+     }\x0d\x0a\x0d\x0a      \
+              }\x0d\
+\x0a\x0d\x0a             \
+       Frame {\x0d\x0a\
+                \
+        id: fReg\
+eneration\x0d\x0a     \
+                \
+   width: 200\x0d\x0a \
+                \
+       height: 2\
+00\x0d\x0a            \
+            opac\
+ity: 1\x0d\x0a        \
+                \
+padding: 0\x0d\x0a    \
+                \
+    leftPadding:\
+ 0\x0d\x0a            \
+            righ\
+tPadding: 0\x0d\x0a   \
+                \
+     bottomPaddi\
+ng: 0\x0d\x0a         \
+               t\
+opPadding: 0\x0d\x0a  \
+                \
+      Layout.fil\
+lHeight: true\x0d\x0a \
+                \
+       Layout.fi\
+llWidth: true\x0d\x0a\x0d\
+\x0a               \
+         GridLay\
+out {\x0d\x0a         \
+                \
+   id: gRegenera\
+tion\x0d\x0a          \
+                \
+  columns: 7\x0d\x0a  \
+                \
+          rows: \
+2\x0d\x0a             \
+               v\
+isible: true\x0d\x0a  \
+                \
+          anchor\
+s.fill: parent\x0d\x0a\
                 \
             Layo\
 ut.fillHeight: t\
 rue\x0d\x0a           \
                 \
- Layout.rowSpan:\
- 1\x0d\x0a            \
+ Layout.fillWidt\
+h: true\x0d\x0a\x0d\x0a     \
                 \
-Layout.columnSpa\
-n: 1\x0d\x0a          \
+       function \
+getColor(status)\
+ {\x0d\x0a            \
                 \
-  padding: 10\x0d\x0a \
+    if (status =\
+== 0)\x0d\x0a         \
                 \
-       }\x0d\x0a\x0d\x0a    \
+           retur\
+n \x22lightGray\x22\x0d\x0a \
                 \
-    GridLayout {\
-\x0d\x0a              \
-              id\
-: gCameraView\x0d\x0a \
+               e\
+lse if (status =\
+== 1)\x0d\x0a         \
                 \
-           colum\
-nSpacing: 10\x0d\x0a  \
+           retur\
+n \x22orange\x22\x0d\x0a    \
                 \
-          rowSpa\
-cing: 10\x0d\x0a      \
+            else\
+ if (status === \
+2)\x0d\x0a            \
                 \
-      Layout.fil\
-lHeight: true\x0d\x0a \
+        return \x22\
+green\x22\x0d\x0a        \
                 \
-           rows:\
- 1\x0d\x0a            \
+        else\x0d\x0a  \
                 \
-columns: 3\x0d\x0a\x0d\x0a  \
                 \
-          Text {\
-\x0d\x0a              \
+  return \x22red\x22\x0d\x0a\
                 \
-  id: tCamera\x0d\x0a \
+            }\x0d\x0a\x0d\
+\x0a               \
+             Ite\
+m {\x0d\x0a           \
                 \
-               t\
-ext: qsTr(\x22Camer\
-a Folder\x22)\x0d\x0a    \
+     id: itemErr\
+orFounded\x0d\x0a     \
+                \
+           width\
+: 130\x0d\x0a         \
+                \
+       height: 6\
+5\x0d\x0a             \
+                \
+   Layout.fillWi\
+dth: false\x0d\x0a    \
                 \
             Layo\
-ut.columnSpan: 3\
+ut.columnSpan: 1\
 \x0d\x0a              \
-                \
-  Layout.preferr\
-edWidth: 100\x0d\x0a  \
-                \
-              La\
-yout.fillWidth: \
-true\x0d\x0a          \
-                \
-      font.pixel\
-Size: 12\x0d\x0a      \
-                \
-      }\x0d\x0a\x0d\x0a     \
-                \
-       Text {\x0d\x0a \
-                \
-               i\
-d: tCameraWatche\
-r\x0d\x0a             \
-                \
-   text: qsTr(\x22W\
-atcher\x22)\x0d\x0a      \
-                \
-          Layout\
-.columnSpan: 2\x0d\x0a\
-                \
-                \
-Layout.fillWidth\
-: true\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         RoundBu\
-tton {\x0d\x0a        \
-                \
-        id: rbCa\
-meraWatcher\x0d\x0a   \
-                \
-             wid\
-th: 30\x0d\x0a        \
-                \
-        height: \
-30\x0d\x0a            \
-                \
-    text: \x22\x22\x0d\x0a  \
-                \
-              La\
-yout.alignment: \
-Qt.AlignRight | \
-Qt.AlignVCenter\x0d\
-\x0a               \
-                \
- Layout.preferre\
-dHeight: 30\x0d\x0a   \
-                \
-             Lay\
-out.preferredWid\
-th: 30\x0d\x0a\x0d\x0a      \
-                \
-          backgr\
-ound: Rectangle \
-{\x0d\x0a             \
-                \
-       id: rbCam\
-eraWatcherRect\x0d\x0a\
-                \
-                \
-    radius: rbLa\
-serConnection.ra\
-dius\x0d\x0a          \
-                \
-          color:\
- \x22red\x22\x0d\x0a        \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-             Con\
-nections {\x0d\x0a    \
-                \
-                \
-target: processB\
-ean\x0d\x0a           \
-                \
-         onCamer\
-aWatcherRunningC\
-hanged: rbCamera\
-Watcher.updateBu\
-tton(processBean\
-.pCameraWatcherR\
-unning)\x0d\x0a       \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-              fu\
-nction updateBut\
-ton(isRunning) {\
-\x0d\x0a              \
-                \
-      if (isRunn\
-ing)\x0d\x0a          \
-                \
-              rb\
-CameraWatcherRec\
-t.color = \x22green\
-\x22\x0d\x0a             \
-                \
-       else\x0d\x0a   \
-                \
-                \
-     rbCameraWat\
-cherRect.color =\
- \x22red\x22\x0d\x0a        \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          Text {\
-\x0d\x0a              \
-                \
-  id: tCameraCon\
-nection\x0d\x0a       \
-                \
-         text: q\
-sTr(\x22Connection\x22\
-)\x0d\x0a             \
-                \
-   Layout.column\
-Span: 2\x0d\x0a       \
-                \
-         Layout.\
-fillWidth: true\x0d\
-\x0a               \
-                \
- font.pixelSize:\
- 12\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
                 \
   RoundButton {\x0d\
 \x0a               \
                 \
- id: rbCameraCon\
-nection\x0d\x0a       \
-                \
-         width: \
-30\x0d\x0a            \
-                \
-    height: 30\x0d\x0a\
-                \
-                \
-text: \x22\x22\x0d\x0a      \
-                \
-          Layout\
-.alignment: Qt.A\
-lignRight | Qt.A\
-lignVCenter\x0d\x0a   \
-                \
-             Lay\
-out.preferredHei\
-ght: 30\x0d\x0a       \
-                \
-         Layout.\
-preferredWidth: \
-30\x0d\x0a\x0d\x0a          \
-                \
-      background\
-: Rectangle {\x0d\x0a \
-                \
-                \
-   id: rbCameraC\
-onnectionRect\x0d\x0a \
-                \
-                \
-   radius: rbLas\
-erConnection.rad\
-ius\x0d\x0a           \
-                \
-         color: \
-\x22red\x22\x0d\x0a         \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-            Conn\
-ections {\x0d\x0a     \
-                \
-               t\
-arget: processBe\
-an\x0d\x0a            \
-                \
-        onCamera\
-ConnectionUpChan\
-ged: rbCameraCon\
-nection.updateBu\
-tton(processBean\
-.pCameraConnecti\
-onUp)\x0d\x0a         \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-            func\
-tion updateButto\
-n(isConnected) {\
-\x0d\x0a              \
-                \
-      if (isConn\
-ected)\x0d\x0a        \
-                \
-                \
-rbCameraConnecti\
-onRect.color = \x22\
-green\x22\x0d\x0a        \
-                \
-            else\
-\x0d\x0a              \
-                \
-          rbCame\
-raConnectionRect\
-.color = \x22red\x22\x0d\x0a\
-                \
-                \
-}\x0d\x0a\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  ListView {\x0d\x0a  \
-                \
-              id\
-: lvCameraFolder\
-\x0d\x0a              \
-                \
-  Layout.minimum\
-Height: 180\x0d\x0a   \
-                \
-             Lay\
-out.fillHeight: \
-true\x0d\x0a          \
-                \
-      clip: true\
-\x0d\x0a              \
-                \
-  Layout.columnS\
-pan: 3\x0d\x0a        \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-                \
-spacing: 4\x0d\x0a    \
-                \
-            mode\
-l: processBean.p\
-CameraFolderItem\
-s\x0d\x0a             \
-                \
-   opacity: proc\
-essBean.pCameraC\
-onnectionUp ? 1.\
-0 : 0.4\x0d\x0a       \
-                \
-         enabled\
-: processBean.pC\
-ameraConnectionU\
-p\x0d\x0a\x0d\x0a           \
-                \
-     delegate: I\
-tem {\x0d\x0a         \
-                \
-           id: l\
-vCameraFolderIte\
-m\x0d\x0a             \
-                \
-       x: 5\x0d\x0a   \
-                \
-                \
- width: parent.w\
-idth\x0d\x0a          \
-                \
-          height\
-: 40\x0d\x0a\x0d\x0a        \
-                \
-            Row \
-{\x0d\x0a             \
-                \
-           id: l\
-vCameraFolderIte\
-mRow\x0d\x0a\x0d\x0a        \
-                \
-                \
-Text {\x0d\x0a        \
-                \
-                \
-    padding: 10\x0d\
-\x0a               \
-                \
-             id:\
- lvCameraFolderI\
-temText\x0d\x0a       \
-                \
-                \
-     parent: lvC\
-ameraFolderItem\x0d\
-\x0a               \
-                \
-             tex\
-t: modelData\x0d\x0a  \
-                \
-                \
-          font.b\
-old: true\x0d\x0a     \
-                \
-                \
-       anchors.v\
-erticalCenter: p\
-arent.verticalCe\
-nter\x0d\x0a\x0d\x0a        \
-                \
-                \
-    Rectangle {\x0d\
-\x0a               \
-                \
-                \
- parent: lvCamer\
-aFolderItem\x0d\x0a   \
-                \
+     id: rbError\
+Founded\x0d\x0a       \
                 \
              wid\
-th: parent.width\
-\x0d\x0a              \
+th: 40\x0d\x0a        \
                 \
+            heig\
+ht: 40\x0d\x0a        \
                 \
-  height: parent\
-.height\x0d\x0a       \
+            text\
+: \x22\x22\x0d\x0a          \
                 \
+          anchor\
+s.horizontalCent\
+er: parent.horiz\
+ontalCenter\x0d\x0a\x0d\x0a \
                 \
-         anchors\
-.top: parent.top\
-\x0d\x0a              \
                 \
+   background: R\
+ectangle {\x0d\x0a    \
                 \
-  color: \x22#11223\
-3FF\x22\x0d\x0a          \
                 \
+    radius: pare\
+nt.radius\x0d\x0a     \
                 \
-  }\x0d\x0a           \
                 \
-             }\x0d\x0a\
-                \
-                \
-        spacing:\
- 10\x0d\x0a           \
-                \
-         }\x0d\x0a    \
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-                \
- ScrollBar.verti\
-cal: ScrollBar {\
-\x0d\x0a              \
-                \
-      anchors.to\
-p: lvCameraFolde\
-r.top\x0d\x0a         \
-                \
-           ancho\
-rs.bottom: lvCam\
-eraFolder.bottom\
-\x0d\x0a              \
-                \
-      interactiv\
-e: true\x0d\x0a       \
-                \
-             pol\
-icy: \x22AlwaysOn\x22\x0d\
-\x0a               \
-                \
-     clip: true\x0d\
-\x0a               \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  }\x0d\x0a\x0d\x0a         \
-                \
-   Item {\x0d\x0a     \
-                \
-           id: e\
-lement1\x0d\x0a       \
-                \
-         width: \
-0\x0d\x0a             \
-                \
-   height: 0\x0d\x0a  \
-                \
-              La\
-yout.fillHeight:\
- false\x0d\x0a        \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-                \
-Layout.columnSpa\
-n: 1\x0d\x0a          \
-                \
-  }\x0d\x0a\x0d\x0a         \
-                \
-   Button {\x0d\x0a   \
-                \
-             id:\
- bStarCameraWatc\
-her\x0d\x0a           \
-                \
-     text: qsTr(\
-\x22Start\x22)\x0d\x0a      \
-                \
-          enable\
-d: !processBean.\
-pCameraWatcherRu\
-nning\x0d\x0a         \
-                \
-       onClicked\
-: processCtrl.st\
-artCameraWatcher\
-()\x0d\x0a            \
-                \
-}\x0d\x0a\x0d\x0a           \
-                \
- Button {\x0d\x0a     \
-                \
-           id: b\
-StopCameraWatche\
-r\x0d\x0a             \
-                \
-   text: qsTr(\x22S\
-top\x22)\x0d\x0a         \
-                \
-       enabled: \
-processBean.pCam\
-eraWatcherRunnin\
-g\x0d\x0a             \
-                \
-   onClicked: pr\
-ocessCtrl.stopCa\
-meraWatcher()\x0d\x0a \
-                \
-           }\x0d\x0a\x0d\x0a\
-\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a        \
-                \
-}\x0d\x0a\x0d\x0a           \
-         }\x0d\x0a\x0d\x0a  \
-                \
-  Frame {\x0d\x0a     \
-                \
-   id: fRegenera\
-tion\x0d\x0a          \
-              wi\
-dth: 200\x0d\x0a      \
-                \
-  height: 200\x0d\x0a \
-                \
-       opacity: \
-1\x0d\x0a             \
-           paddi\
-ng: 0\x0d\x0a         \
-               l\
-eftPadding: 0\x0d\x0a \
-                \
-       rightPadd\
-ing: 0\x0d\x0a        \
-                \
-bottomPadding: 0\
-\x0d\x0a              \
-          topPad\
-ding: 0\x0d\x0a       \
-                \
- Layout.fillHeig\
-ht: true\x0d\x0a      \
-                \
-  Layout.fillWid\
-th: true\x0d\x0a\x0d\x0a    \
-                \
-    GridLayout {\
-\x0d\x0a              \
-              id\
-: gRegeneration\x0d\
-\x0a               \
-             col\
-umns: 7\x0d\x0a       \
-                \
-     rows: 2\x0d\x0a  \
-                \
-          visibl\
-e: true\x0d\x0a       \
-                \
-     anchors.fil\
-l: parent\x0d\x0a     \
-                \
-       Layout.fi\
-llHeight: true\x0d\x0a\
-                \
-            Layo\
-ut.fillWidth: tr\
-ue\x0d\x0a\x0d\x0a          \
-                \
-  function getCo\
-lor(status) {\x0d\x0a \
-                \
-               i\
-f (status === 0)\
-\x0d\x0a              \
-                \
-      return \x22li\
-ghtGray\x22\x0d\x0a      \
-                \
-          else i\
-f (status === 1)\
-\x0d\x0a              \
-                \
-      return \x22or\
-ange\x22\x0d\x0a         \
-                \
-       else if (\
-status === 2)\x0d\x0a \
-                \
-                \
-   return \x22green\
-\x22\x0d\x0a             \
-                \
-   else\x0d\x0a       \
-                \
-             ret\
-urn \x22red\x22\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        Item {\x0d\x0a\
-                \
-                \
-id: itemErrorFou\
-nded\x0d\x0a          \
-                \
-      width: 130\
-\x0d\x0a              \
-                \
-  height: 65\x0d\x0a  \
-                \
-              La\
-yout.fillWidth: \
-false\x0d\x0a         \
-                \
-       Layout.co\
-lumnSpan: 1\x0d\x0a   \
-                \
-             Rou\
-ndButton {\x0d\x0a    \
-                \
-                \
-id: rbErrorFound\
-ed\x0d\x0a            \
-                \
-        width: 4\
-0\x0d\x0a             \
-                \
-       height: 4\
-0\x0d\x0a             \
-                \
-       text: \x22\x22\x0d\
-\x0a               \
-                \
-     anchors.hor\
-izontalCenter: p\
-arent.horizontal\
-Center\x0d\x0a\x0d\x0a      \
-                \
-              ba\
-ckground: Rectan\
-gle {\x0d\x0a         \
-                \
-               r\
-adius: parent.ra\
-dius\x0d\x0a          \
-                \
-              co\
-lor: processBean\
-.pErrorFileFound\
-ed ? \x22red\x22 : \x22li\
-ghtGray\x22\x0d\x0a      \
-                \
-              }\x0d\
-\x0a               \
-                \
- }\x0d\x0a            \
-                \
-    Text {\x0d\x0a    \
-                \
-                \
-id: tErrorFounde\
-d\x0d\x0a             \
-                \
-       text: qsT\
-r(\x22ERROR FOUNDED\
-\x22)\x0d\x0a            \
-                \
-        anchors.\
-bottom: parent.b\
-ottom\x0d\x0a         \
-                \
-           ancho\
-rs.bottomMargin:\
- 0\x0d\x0a            \
-                \
-        anchors.\
-horizontalCenter\
-: parent.horizon\
-talCenter\x0d\x0a     \
-                \
-           }\x0d\x0a  \
-                \
-          }\x0d\x0a\x0d\x0a \
-                \
-           Item \
-{\x0d\x0a             \
-                \
-   id: itemCsvCr\
-eationRunning\x0d\x0a \
-                \
-               w\
-idth: 130\x0d\x0a     \
-                \
-           heigh\
-t: 65\x0d\x0a         \
-                \
-       RoundButt\
-on {\x0d\x0a          \
-                \
-          id: rb\
-CsvCreationRunni\
-ng\x0d\x0a            \
-                \
-        width: 4\
-0\x0d\x0a             \
-                \
-       height: 4\
-0\x0d\x0a             \
-                \
-       text: \x22\x22\x0d\
-\x0a               \
-                \
-     anchors.hor\
-izontalCenter: p\
-arent.horizontal\
-Center\x0d\x0a\x0d\x0a      \
-                \
-              ba\
-ckground: Rectan\
-gle {\x0d\x0a         \
-                \
-               r\
-adius: parent.ra\
-dius\x0d\x0a          \
-                \
-              co\
-lor: processBean\
-.pCsvRegThreadRu\
-nning ? ( proces\
-sBean.pCsvRegThr\
-eadPause ? \x22oran\
-ge\x22 : \x22green\x22 ) \
+   color: proces\
+sBean.pErrorFile\
+Founded ? \x22red\x22 \
 : \x22lightGray\x22\x0d\x0a \
                 \
                 \
@@ -1617,177 +1560,238 @@ ge\x22 : \x22green\x22 ) \
          Text {\x0d\
 \x0a               \
                 \
-     id: tCsvCre\
-ationRunning\x0d\x0a  \
+     id: tErrorF\
+ounded\x0d\x0a        \
+                \
+            text\
+: qsTr(\x22ERROR FO\
+UNDED\x22)\x0d\x0a       \
+                \
+             anc\
+hors.bottom: par\
+ent.bottom\x0d\x0a    \
                 \
                 \
-  text: qsTr(\x22CS\
-V CREATION RUN\x22)\
+anchors.bottomMa\
+rgin: 0\x0d\x0a       \
+                \
+             anc\
+hors.horizontalC\
+enter: parent.ho\
+rizontalCenter\x0d\x0a\
+                \
+                \
+}\x0d\x0a             \
+               }\
+\x0d\x0a\x0d\x0a            \
+                \
+Item {\x0d\x0a        \
+                \
+        id: item\
+CsvCreationRunni\
+ng\x0d\x0a            \
+                \
+    width: 130\x0d\x0a\
+                \
+                \
+height: 65\x0d\x0a    \
+                \
+            Roun\
+dButton {\x0d\x0a     \
+                \
+               i\
+d: rbCsvCreation\
+Running\x0d\x0a       \
+                \
+             wid\
+th: 40\x0d\x0a        \
+                \
+            heig\
+ht: 40\x0d\x0a        \
+                \
+            text\
+: \x22\x22\x0d\x0a          \
+                \
+          anchor\
+s.horizontalCent\
+er: parent.horiz\
+ontalCenter\x0d\x0a\x0d\x0a \
+                \
+                \
+   background: R\
+ectangle {\x0d\x0a    \
+                \
+                \
+    radius: pare\
+nt.radius\x0d\x0a     \
+                \
+                \
+   color: proces\
+sBean.pCsvRegThr\
+eadRunning ? ( p\
+rocessBean.pCsvR\
+egThreadPause ? \
+\x22orange\x22 : \x22gree\
+n\x22 ) : \x22lightGra\
+y\x22\x0d\x0a            \
+                \
+        }\x0d\x0a     \
+                \
+           }\x0d\x0a  \
+                \
+              Te\
+xt {\x0d\x0a          \
+                \
+          id: tC\
+svCreationRunnin\
+g\x0d\x0a             \
+                \
+       text: qsT\
+r(\x22CSV CREATION \
+RUN\x22)\x0d\x0a         \
+                \
+           ancho\
+rs.bottom: paren\
+t.bottom\x0d\x0a      \
+                \
+              an\
+chors.bottomMarg\
+in: 0\x0d\x0a         \
+                \
+           ancho\
+rs.horizontalCen\
+ter: parent.hori\
+zontalCenter\x0d\x0a  \
+                \
+              }\x0d\
+\x0a               \
+             }\x0d\x0a\
+\x0d\x0a              \
+              It\
+em {\x0d\x0a          \
+                \
+      id: itemSp\
+acer\x0d\x0a          \
+                \
+      width: 130\
 \x0d\x0a              \
                 \
-      anchors.bo\
-ttom: parent.bot\
-tom\x0d\x0a           \
+  height: 1\x0d\x0a   \
                 \
-         anchors\
-.bottomMargin: 0\
-\x0d\x0a              \
+             Lay\
+out.fillHeight: \
+false\x0d\x0a         \
                 \
-      anchors.ho\
-rizontalCenter: \
-parent.horizonta\
-lCenter\x0d\x0a       \
+       Layout.fi\
+llWidth: true\x0d\x0a \
                 \
-         }\x0d\x0a    \
+               L\
+ayout.columnSpan\
+: 3\x0d\x0a           \
                 \
-        }\x0d\x0a\x0d\x0a   \
+ }\x0d\x0a\x0d\x0a          \
                 \
-         Item {\x0d\
-\x0a               \
+  Item {\x0d\x0a      \
                 \
- id: itemSpacer\x0d\
-\x0a               \
+          id: it\
+emCsvNewEmpty\x0d\x0a \
                 \
- width: 130\x0d\x0a   \
-                \
-             hei\
-ght: 1\x0d\x0a        \
-                \
-        Layout.f\
-illHeight: false\
-\x0d\x0a              \
-                \
-  Layout.fillWid\
-th: true\x0d\x0a      \
-                \
-          Layout\
-.columnSpan: 3\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Ite\
-m {\x0d\x0a           \
-                \
-     id: itemCsv\
-NewEmpty\x0d\x0a      \
-                \
-          width:\
- 130\x0d\x0a          \
-                \
-      height: 65\
-\x0d\x0a              \
-                \
-  RoundButton {\x0d\
-\x0a               \
-                \
-     id: rbCsvNe\
-wEmpty\x0d\x0a        \
-                \
-            widt\
-h: 40\x0d\x0a         \
+               w\
+idth: 130\x0d\x0a     \
                 \
            heigh\
-t: 40\x0d\x0a         \
+t: 65\x0d\x0a         \
                 \
-           text:\
- \x22\x22\x0d\x0a           \
+       RoundButt\
+on {\x0d\x0a          \
                 \
-         anchors\
-.horizontalCente\
-r: parent.horizo\
-ntalCenter\x0d\x0a\x0d\x0a  \
+          id: rb\
+CsvNewEmpty\x0d\x0a   \
                 \
                 \
-  background: Re\
-ctangle {\x0d\x0a     \
+ width: 40\x0d\x0a    \
                 \
                 \
-   radius: paren\
-t.radius\x0d\x0a      \
+height: 40\x0d\x0a    \
                 \
                 \
-  color: process\
-Bean.pCsvRegThre\
-adCsvNewEmpty ? \
-\x22blue\x22 : \x22lightG\
-ray\x22\x0d\x0a          \
+text: \x22\x22\x0d\x0a      \
                 \
-          }\x0d\x0a   \
+              an\
+chors.horizontal\
+Center: parent.h\
+orizontalCenter\x0d\
+\x0a\x0d\x0a             \
                 \
-             }\x0d\x0a\
-                \
-                \
-Text {\x0d\x0a        \
-                \
-            id: \
-tCsvNewEmpty\x0d\x0a  \
+       backgroun\
+d: Rectangle {\x0d\x0a\
                 \
                 \
-  text: qsTr(\x22NE\
-W CSV MANUALLY\x22)\
+        radius: \
+parent.radius\x0d\x0a \
+                \
+                \
+       color: pr\
+ocessBean.pCsvRe\
+gThreadCsvNewEmp\
+ty ? \x22blue\x22 : \x22l\
+ightGray\x22\x0d\x0a     \
+                \
+               }\
 \x0d\x0a              \
                 \
-      anchors.bo\
-ttom: parent.bot\
-tom\x0d\x0a           \
+  }\x0d\x0a           \
                 \
-         anchors\
-.bottomMargin: 0\
-\x0d\x0a              \
-                \
-      anchors.ho\
-rizontalCenter: \
-parent.horizonta\
-lCenter\x0d\x0a       \
-                \
-         }\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         ColumnL\
-ayout {\x0d\x0a       \
-                \
-         id: col\
-umnLayout\x0d\x0a     \
-                \
-           width\
-: 100\x0d\x0a         \
-                \
-       height: 1\
-00\x0d\x0a            \
-                \
-    spacing: 0\x0d\x0a\
-\x0d\x0a              \
-                \
-  CheckBox {\x0d\x0a  \
+     Text {\x0d\x0a   \
                 \
                 \
-  id: cbStop\x0d\x0a  \
+ id: tCsvNewEmpt\
+y\x0d\x0a             \
                 \
+       text: qsT\
+r(\x22NEW CSV MANUA\
+LLY\x22)\x0d\x0a         \
                 \
-  text: qsTr(\x22St\
-op\x22)\x0d\x0a          \
+           ancho\
+rs.bottom: paren\
+t.bottom\x0d\x0a      \
                 \
-          paddin\
-g: 1\x0d\x0a          \
+              an\
+chors.bottomMarg\
+in: 0\x0d\x0a         \
                 \
-          onChec\
-kedChanged: proc\
-essCtrl.changeSt\
-opRequestValue(c\
-bStop.checked)\x0d\x0a\
+           ancho\
+rs.horizontalCen\
+ter: parent.hori\
+zontalCenter\x0d\x0a  \
                 \
-                \
-}\x0d\x0a\x0d\x0a           \
-                \
-     CheckBox {\x0d\
+              }\x0d\
 \x0a               \
-                \
-     id: cbPause\
+             }\x0d\x0a\
 \x0d\x0a              \
+              Co\
+lumnLayout {\x0d\x0a  \
                 \
-      text: qsTr\
-(\x22Pause\x22)\x0d\x0a     \
+              id\
+: columnLayout\x0d\x0a\
+                \
+                \
+width: 100\x0d\x0a    \
+                \
+            heig\
+ht: 100\x0d\x0a       \
+                \
+         spacing\
+: 0\x0d\x0a\x0d\x0a         \
+                \
+       CheckBox \
+{\x0d\x0a             \
+                \
+       id: cbSto\
+p\x0d\x0a             \
+                \
+       text: qsT\
+r(\x22Stop\x22)\x0d\x0a     \
                 \
                p\
 adding: 1\x0d\x0a     \
@@ -1795,299 +1799,239 @@ adding: 1\x0d\x0a     \
                o\
 nCheckedChanged:\
  processCtrl.cha\
-ngePauseRequestV\
-alue(cbPause.che\
-cked)\x0d\x0a         \
+ngeStopRequestVa\
+lue(cbStop.check\
+ed)\x0d\x0a           \
                 \
-       }\x0d\x0a      \
+     }\x0d\x0a\x0d\x0a      \
                 \
-      }\x0d\x0a\x0d\x0a     \
+          CheckB\
+ox {\x0d\x0a          \
                 \
-       Item {\x0d\x0a \
-                \
-               i\
-d: itemCleanLoca\
-lFolderStatus\x0d\x0a \
-                \
-               w\
-idth: 130\x0d\x0a     \
-                \
-           heigh\
-t: 65\x0d\x0a         \
-                \
-       RoundButt\
-on {\x0d\x0a          \
-                \
-          id: rb\
-CleanLocalFolder\
-Status\x0d\x0a        \
-                \
-            widt\
-h: 40\x0d\x0a         \
-                \
-           heigh\
-t: 40\x0d\x0a         \
+          id: cb\
+Pause\x0d\x0a         \
                 \
            text:\
- \x22\x22\x0d\x0a           \
-                \
-         anchors\
-.horizontalCente\
-r: parent.horizo\
-ntalCenter\x0d\x0a\x0d\x0a  \
+ qsTr(\x22Pause\x22)\x0d\x0a\
                 \
                 \
-  background: Re\
-ctangle {\x0d\x0a     \
+    padding: 1\x0d\x0a\
                 \
                 \
-   radius: paren\
-t.radius\x0d\x0a      \
+    onCheckedCha\
+nged: processCtr\
+l.changePauseReq\
+uestValue(cbPaus\
+e.checked)\x0d\x0a    \
                 \
+            }\x0d\x0a \
                 \
-  color: gRegene\
-ration.getColor(\
-processBean.pCsv\
-RegThreadCleanLo\
-calFolderStatus)\
-\x0d\x0a              \
+           }\x0d\x0a\x0d\x0a\
                 \
-      }\x0d\x0a       \
-                \
-         }\x0d\x0a    \
-                \
-            Text\
+            Item\
  {\x0d\x0a            \
                 \
-        id: tCle\
-anLocalFolderSta\
-tus\x0d\x0a           \
-                \
-         text: q\
-sTr(\x22CLEAN LOCAL\
- FOLDER\x22)\x0d\x0a     \
-                \
-               a\
-nchors.bottom: p\
-arent.bottom\x0d\x0a  \
-                \
-                \
-  anchors.bottom\
-Margin: 0\x0d\x0a     \
-                \
-               a\
-nchors.horizonta\
-lCenter: parent.\
-horizontalCenter\
-\x0d\x0a              \
-                \
-  }\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  Item {\x0d\x0a      \
-                \
-          id: it\
-emCleanCameraFol\
-derStatus\x0d\x0a     \
-                \
-           width\
-: 130\x0d\x0a         \
-                \
-       height: 6\
-5\x0d\x0a             \
-                \
-   RoundButton {\
-\x0d\x0a              \
-                \
-      id: rbClea\
-nCameraFolderSta\
-tus\x0d\x0a           \
-                \
-         width: \
-40\x0d\x0a            \
-                \
-        height: \
-40\x0d\x0a            \
-                \
-        text: \x22\x22\
-\x0d\x0a              \
-                \
-      anchors.ho\
-rizontalCenter: \
-parent.horizonta\
-lCenter\x0d\x0a\x0d\x0a     \
-                \
-               b\
-ackground: Recta\
-ngle {\x0d\x0a        \
-                \
-                \
-radius: parent.r\
-adius\x0d\x0a         \
-                \
-               c\
-olor: gRegenerat\
-ion.getColor(pro\
-cessBean.pCsvReg\
-ThreadCleanCamer\
-aFolderStatus)\x0d\x0a\
-                \
-                \
-    }\x0d\x0a         \
-                \
-       }\x0d\x0a      \
-                \
-          Text {\
-\x0d\x0a              \
-                \
-      id: tClean\
-CameraFolderStat\
+    id: itemClea\
+nLocalFolderStat\
 us\x0d\x0a            \
                 \
-        text: qs\
-Tr(\x22CLEAN CAMERA\
- FOLDER\x22)\x0d\x0a     \
-                \
-               a\
-nchors.bottom: p\
-arent.bottom\x0d\x0a  \
+    width: 130\x0d\x0a\
                 \
                 \
-  anchors.bottom\
-Margin: 0\x0d\x0a     \
+height: 65\x0d\x0a    \
                 \
-               a\
-nchors.horizonta\
-lCenter: parent.\
-horizontalCenter\
-\x0d\x0a              \
+            Roun\
+dButton {\x0d\x0a     \
                 \
-  }\x0d\x0a           \
+               i\
+d: rbCleanLocalF\
+olderStatus\x0d\x0a   \
                 \
- }\x0d\x0a\x0d\x0a          \
                 \
-  Item {\x0d\x0a      \
+ width: 40\x0d\x0a    \
                 \
-          id: it\
-emSpacer2\x0d\x0a     \
                 \
-           width\
-: 130\x0d\x0a         \
+height: 40\x0d\x0a    \
                 \
-       height: 1\
-\x0d\x0a              \
                 \
-  Layout.fillHei\
-ght: false\x0d\x0a    \
+text: \x22\x22\x0d\x0a      \
                 \
-            Layo\
-ut.fillWidth: tr\
-ue\x0d\x0a            \
+              an\
+chors.horizontal\
+Center: parent.h\
+orizontalCenter\x0d\
+\x0a\x0d\x0a             \
                 \
-    Layout.colum\
-nSpan: 5\x0d\x0a      \
+       backgroun\
+d: Rectangle {\x0d\x0a\
+                \
+                \
+        radius: \
+parent.radius\x0d\x0a \
+                \
+                \
+       color: gR\
+egeneration.getC\
+olor(processBean\
+.pCsvRegThreadCl\
+eanLocalFolderSt\
+atus)\x0d\x0a         \
+                \
+           }\x0d\x0a  \
+                \
+              }\x0d\
+\x0a               \
+                \
+ Text {\x0d\x0a       \
+                \
+             id:\
+ tCleanLocalFold\
+erStatus\x0d\x0a      \
+                \
+              te\
+xt: qsTr(\x22CLEAN \
+LOCAL FOLDER\x22)\x0d\x0a\
+                \
+                \
+    anchors.bott\
+om: parent.botto\
+m\x0d\x0a             \
+                \
+       anchors.b\
+ottomMargin: 0\x0d\x0a\
+                \
+                \
+    anchors.hori\
+zontalCenter: pa\
+rent.horizontalC\
+enter\x0d\x0a         \
+                \
+       }\x0d\x0a      \
                 \
       }\x0d\x0a\x0d\x0a     \
                 \
        Item {\x0d\x0a \
                 \
                i\
-d: itemRenameLas\
-erItemsStatus\x0d\x0a \
-                \
-               w\
-idth: 130\x0d\x0a     \
-                \
-           heigh\
-t: 65\x0d\x0a         \
-                \
-       RoundButt\
-on {\x0d\x0a          \
-                \
-          id: rb\
-RenameLaserItems\
-Status\x0d\x0a        \
-                \
-            widt\
-h: 40\x0d\x0a         \
-                \
-           heigh\
-t: 40\x0d\x0a         \
-                \
-           text:\
- \x22\x22\x0d\x0a           \
-                \
-         anchors\
-.horizontalCente\
-r: parent.horizo\
-ntalCenter\x0d\x0a\x0d\x0a  \
+d: itemCleanCame\
+raFolderStatus\x0d\x0a\
                 \
                 \
-  background: Re\
-ctangle {\x0d\x0a     \
+width: 130\x0d\x0a    \
+                \
+            heig\
+ht: 65\x0d\x0a        \
+                \
+        RoundBut\
+ton {\x0d\x0a         \
+                \
+           id: r\
+bCleanCameraFold\
+erStatus\x0d\x0a      \
+                \
+              wi\
+dth: 40\x0d\x0a       \
+                \
+             hei\
+ght: 40\x0d\x0a       \
+                \
+             tex\
+t: \x22\x22\x0d\x0a         \
+                \
+           ancho\
+rs.horizontalCen\
+ter: parent.hori\
+zontalCenter\x0d\x0a\x0d\x0a\
                 \
                 \
-   radius: paren\
-t.radius\x0d\x0a      \
+    background: \
+Rectangle {\x0d\x0a   \
                 \
                 \
-  color: gRegene\
-ration.getColor(\
-processBean.pCsv\
-RegThreadRenameL\
-aserItemsStatus)\
-\x0d\x0a              \
+     radius: par\
+ent.radius\x0d\x0a    \
                 \
-      }\x0d\x0a       \
+                \
+    color: gRege\
+neration.getColo\
+r(processBean.pC\
+svRegThreadClean\
+CameraFolderStat\
+us)\x0d\x0a           \
                 \
          }\x0d\x0a    \
                 \
-            Text\
+            }\x0d\x0a \
+                \
+               T\
+ext {\x0d\x0a         \
+                \
+           id: t\
+CleanCameraFolde\
+rStatus\x0d\x0a       \
+                \
+             tex\
+t: qsTr(\x22CLEAN C\
+AMERA FOLDER\x22)\x0d\x0a\
+                \
+                \
+    anchors.bott\
+om: parent.botto\
+m\x0d\x0a             \
+                \
+       anchors.b\
+ottomMargin: 0\x0d\x0a\
+                \
+                \
+    anchors.hori\
+zontalCenter: pa\
+rent.horizontalC\
+enter\x0d\x0a         \
+                \
+       }\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       Item {\x0d\x0a \
+                \
+               i\
+d: itemSpacer2\x0d\x0a\
+                \
+                \
+width: 130\x0d\x0a    \
+                \
+            heig\
+ht: 1\x0d\x0a         \
+                \
+       Layout.fi\
+llHeight: false\x0d\
+\x0a               \
+                \
+ Layout.fillWidt\
+h: true\x0d\x0a       \
+                \
+         Layout.\
+columnSpan: 5\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Item\
  {\x0d\x0a            \
                 \
-        id: tRen\
-ameLaserItemsSta\
-tus\x0d\x0a           \
+    id: itemRena\
+meLaserItemsStat\
+us\x0d\x0a            \
                 \
-         text: q\
-sTr(\x22RENAME LASE\
-R ITEMS\x22)\x0d\x0a     \
-                \
-               a\
-nchors.bottom: p\
-arent.bottom\x0d\x0a  \
+    width: 130\x0d\x0a\
                 \
                 \
-  anchors.bottom\
-Margin: 0\x0d\x0a     \
+height: 65\x0d\x0a    \
                 \
-               a\
-nchors.horizonta\
-lCenter: parent.\
-horizontalCenter\
-\x0d\x0a              \
+            Roun\
+dButton {\x0d\x0a     \
                 \
-  }\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  Item {\x0d\x0a      \
-                \
-          id: it\
-emDownloadItemsS\
-tatus\x0d\x0a         \
-                \
-       width: 13\
-0\x0d\x0a             \
-                \
-   height: 65\x0d\x0a \
-                \
-               R\
-oundButton {\x0d\x0a  \
-                \
-                \
-  id: rbDownload\
+               i\
+d: rbRenameLaser\
 ItemsStatus\x0d\x0a   \
                 \
                 \
@@ -2116,23 +2060,24 @@ parent.radius\x0d\x0a \
        color: gR\
 egeneration.getC\
 olor(processBean\
-.pCsvRegThreadDo\
-wnloadItemsStatu\
-s)\x0d\x0a            \
-                \
-        }\x0d\x0a     \
+.pCsvRegThreadRe\
+nameLaserItemsSt\
+atus)\x0d\x0a         \
                 \
            }\x0d\x0a  \
                 \
-              Te\
-xt {\x0d\x0a          \
+              }\x0d\
+\x0a               \
                 \
-          id: tD\
-ownloadItemsStat\
-us\x0d\x0a            \
+ Text {\x0d\x0a       \
                 \
-        text: qs\
-Tr(\x22DOWNLOAD\x22)\x0d\x0a\
+             id:\
+ tRenameLaserIte\
+msStatus\x0d\x0a      \
+                \
+              te\
+xt: qsTr(\x22RENAME\
+ LASER ITEMS\x22)\x0d\x0a\
                 \
                 \
     anchors.bott\
@@ -2155,90 +2100,8 @@ enter\x0d\x0a         \
        Item {\x0d\x0a \
                 \
                i\
-d: itemCleanLase\
-rFolderStatus\x0d\x0a \
-                \
-               w\
-idth: 130\x0d\x0a     \
-                \
-           heigh\
-t: 65\x0d\x0a         \
-                \
-       RoundButt\
-on {\x0d\x0a          \
-                \
-          id: rb\
-CleanLaserFolder\
-Status\x0d\x0a        \
-                \
-            widt\
-h: 40\x0d\x0a         \
-                \
-           heigh\
-t: 40\x0d\x0a         \
-                \
-           text:\
- \x22\x22\x0d\x0a           \
-                \
-         anchors\
-.horizontalCente\
-r: parent.horizo\
-ntalCenter\x0d\x0a\x0d\x0a  \
-                \
-                \
-  background: Re\
-ctangle {\x0d\x0a     \
-                \
-                \
-   radius: paren\
-t.radius\x0d\x0a      \
-                \
-                \
-  color: gRegene\
-ration.getColor(\
-processBean.pCsv\
-RegThreadCleanLa\
-serFolderStatus)\
-\x0d\x0a              \
-                \
-      }\x0d\x0a       \
-                \
-         }\x0d\x0a    \
-                \
-            Text\
- {\x0d\x0a            \
-                \
-        id: tCle\
-anLaserFolderSta\
-tus\x0d\x0a           \
-                \
-         text: q\
-sTr(\x22CLEAN LASER\
- FOLDER\x22)\x0d\x0a     \
-                \
-               a\
-nchors.bottom: p\
-arent.bottom\x0d\x0a  \
-                \
-                \
-  anchors.bottom\
-Margin: 0\x0d\x0a     \
-                \
-               a\
-nchors.horizonta\
-lCenter: parent.\
-horizontalCenter\
-\x0d\x0a              \
-                \
-  }\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  Item {\x0d\x0a      \
-                \
-          id: it\
-emCsvCreationPro\
-cessStatus\x0d\x0a    \
+d: itemDownloadI\
+temsStatus\x0d\x0a    \
                 \
             widt\
 h: 130\x0d\x0a        \
@@ -2249,93 +2112,8 @@ h: 130\x0d\x0a        \
     RoundButton \
 {\x0d\x0a             \
                 \
-       id: rbCsv\
-CreationProcessS\
-tatus\x0d\x0a         \
-                \
-           width\
-: 40\x0d\x0a          \
-                \
-          height\
-: 40\x0d\x0a          \
-                \
-          text: \
-\x22\x22\x0d\x0a            \
-                \
-        anchors.\
-horizontalCenter\
-: parent.horizon\
-talCenter\x0d\x0a\x0d\x0a   \
-                \
-                \
- background: Rec\
-tangle {\x0d\x0a      \
-                \
-                \
-  radius: parent\
-.radius\x0d\x0a       \
-                \
-                \
- color: gRegener\
-ation.getColor(p\
-rocessBean.pCsvR\
-egThreadCsvCreat\
-ionProcessStatus\
-)\x0d\x0a             \
-                \
-       }\x0d\x0a      \
-                \
-          }\x0d\x0a   \
-                \
-             Tex\
-t {\x0d\x0a           \
-                \
-         id: tCs\
-vCreationProcess\
-Status\x0d\x0a        \
-                \
-            text\
-: qsTr(\x22CREATION\
- CSV\x22)\x0d\x0a        \
-                \
-            anch\
-ors.bottom: pare\
-nt.bottom\x0d\x0a     \
-                \
-               a\
-nchors.bottomMar\
-gin: 0\x0d\x0a        \
-                \
-            anch\
-ors.horizontalCe\
-nter: parent.hor\
-izontalCenter\x0d\x0a \
-                \
-               }\
-\x0d\x0a              \
-              }\x0d\
-\x0a\x0d\x0a             \
-               I\
-tem {\x0d\x0a         \
-                \
-       id: itemS\
-endCsvToLaserSta\
-tus\x0d\x0a           \
-                \
-     width: 130\x0d\
-\x0a               \
-                \
- height: 65\x0d\x0a   \
-                \
-             Lay\
-out.columnSpan: \
-1\x0d\x0a             \
-                \
-   RoundButton {\
-\x0d\x0a              \
-                \
-      id: rbSend\
-CsvToLaserStatus\
+       id: rbDow\
+nloadItemsStatus\
 \x0d\x0a              \
                 \
       width: 40\x0d\
@@ -2364,23 +2142,186 @@ us\x0d\x0a            \
 r: gRegeneration\
 .getColor(proces\
 sBean.pCsvRegThr\
-eadSendCsvToLase\
-rStatus)\x0d\x0a      \
+eadDownloadItems\
+Status)\x0d\x0a       \
+                \
+             }\x0d\x0a\
+                \
+                \
+}\x0d\x0a             \
+                \
+   Text {\x0d\x0a     \
+                \
+               i\
+d: tDownloadItem\
+sStatus\x0d\x0a       \
+                \
+             tex\
+t: qsTr(\x22DOWNLOA\
+D\x22)\x0d\x0a           \
+                \
+         anchors\
+.bottom: parent.\
+bottom\x0d\x0a        \
+                \
+            anch\
+ors.bottomMargin\
+: 0\x0d\x0a           \
+                \
+         anchors\
+.horizontalCente\
+r: parent.horizo\
+ntalCenter\x0d\x0a    \
+                \
+            }\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Item\
+ {\x0d\x0a            \
+                \
+    id: itemClea\
+nLaserFolderStat\
+us\x0d\x0a            \
+                \
+    width: 130\x0d\x0a\
+                \
+                \
+height: 65\x0d\x0a    \
+                \
+            Roun\
+dButton {\x0d\x0a     \
+                \
+               i\
+d: rbCleanLaserF\
+olderStatus\x0d\x0a   \
+                \
+                \
+ width: 40\x0d\x0a    \
+                \
+                \
+height: 40\x0d\x0a    \
+                \
+                \
+text: \x22\x22\x0d\x0a      \
+                \
+              an\
+chors.horizontal\
+Center: parent.h\
+orizontalCenter\x0d\
+\x0a\x0d\x0a             \
+                \
+       backgroun\
+d: Rectangle {\x0d\x0a\
+                \
+                \
+        radius: \
+parent.radius\x0d\x0a \
+                \
+                \
+       color: gR\
+egeneration.getC\
+olor(processBean\
+.pCsvRegThreadCl\
+eanLaserFolderSt\
+atus)\x0d\x0a         \
+                \
+           }\x0d\x0a  \
                 \
               }\x0d\
 \x0a               \
                 \
- }\x0d\x0a            \
+ Text {\x0d\x0a       \
                 \
-    Text {\x0d\x0a    \
+             id:\
+ tCleanLaserFold\
+erStatus\x0d\x0a      \
+                \
+              te\
+xt: qsTr(\x22CLEAN \
+LASER FOLDER\x22)\x0d\x0a\
                 \
                 \
-id: tSendCsvToLa\
-serStatus\x0d\x0a     \
+    anchors.bott\
+om: parent.botto\
+m\x0d\x0a             \
+                \
+       anchors.b\
+ottomMargin: 0\x0d\x0a\
+                \
+                \
+    anchors.hori\
+zontalCenter: pa\
+rent.horizontalC\
+enter\x0d\x0a         \
+                \
+       }\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       Item {\x0d\x0a \
+                \
+               i\
+d: itemCsvCreati\
+onProcessStatus\x0d\
+\x0a               \
+                \
+ width: 130\x0d\x0a   \
+                \
+             hei\
+ght: 65\x0d\x0a       \
+                \
+         RoundBu\
+tton {\x0d\x0a        \
+                \
+            id: \
+rbCsvCreationPro\
+cessStatus\x0d\x0a    \
+                \
+                \
+width: 40\x0d\x0a     \
+                \
+               h\
+eight: 40\x0d\x0a     \
                 \
                t\
-ext: qsTr(\x22SEND \
-CSV LASER\x22)\x0d\x0a   \
+ext: \x22\x22\x0d\x0a       \
+                \
+             anc\
+hors.horizontalC\
+enter: parent.ho\
+rizontalCenter\x0d\x0a\
+\x0d\x0a              \
+                \
+      background\
+: Rectangle {\x0d\x0a \
+                \
+                \
+       radius: p\
+arent.radius\x0d\x0a  \
+                \
+                \
+      color: gRe\
+generation.getCo\
+lor(processBean.\
+pCsvRegThreadCsv\
+CreationProcessS\
+tatus)\x0d\x0a        \
+                \
+            }\x0d\x0a \
+                \
+               }\
+\x0d\x0a              \
+                \
+  Text {\x0d\x0a      \
+                \
+              id\
+: tCsvCreationPr\
+ocessStatus\x0d\x0a   \
+                \
+                \
+ text: qsTr(\x22CRE\
+ATION CSV\x22)\x0d\x0a   \
                 \
                 \
  anchors.bottom:\
@@ -2403,191 +2344,638 @@ er\x0d\x0a            \
     Item {\x0d\x0a    \
                 \
             id: \
-itemSendCsvToCam\
-eraStatus\x0d\x0a     \
+itemSendCsvToLas\
+erStatus\x0d\x0a      \
+                \
+          width:\
+ 130\x0d\x0a          \
+                \
+      height: 65\
+\x0d\x0a              \
+                \
+  Layout.columnS\
+pan: 1\x0d\x0a        \
+                \
+        RoundBut\
+ton {\x0d\x0a         \
+                \
+           id: r\
+bSendCsvToLaserS\
+tatus\x0d\x0a         \
                 \
            width\
-: 130\x0d\x0a         \
+: 40\x0d\x0a          \
                 \
-       height: 6\
-5\x0d\x0a             \
+          height\
+: 40\x0d\x0a          \
                 \
-   RoundButton {\
-\x0d\x0a              \
+          text: \
+\x22\x22\x0d\x0a            \
                 \
-      id: rbSend\
-CsvToCameraStatu\
-s\x0d\x0a             \
-                \
-       width: 40\
-\x0d\x0a              \
-                \
-      height: 40\
-\x0d\x0a              \
-                \
-      text: \x22\x22\x0d\x0a\
+        anchors.\
+horizontalCenter\
+: parent.horizon\
+talCenter\x0d\x0a\x0d\x0a   \
                 \
                 \
-    anchors.hori\
-zontalCenter: pa\
-rent.horizontalC\
-enter\x0d\x0a\x0d\x0a       \
-                \
-             bac\
-kground: Rectang\
-le {\x0d\x0a          \
-                \
-              ra\
-dius: parent.rad\
-ius\x0d\x0a           \
-                \
-             col\
-or: gRegeneratio\
-n.getColor(proce\
-ssBean.pCsvRegTh\
-readSendCsvToCam\
-eraStatus)\x0d\x0a    \
+ background: Rec\
+tangle {\x0d\x0a      \
                 \
                 \
-}\x0d\x0a             \
+  radius: parent\
+.radius\x0d\x0a       \
+                \
+                \
+ color: gRegener\
+ation.getColor(p\
+rocessBean.pCsvR\
+egThreadSendCsvT\
+oLaserStatus)\x0d\x0a \
+                \
                 \
    }\x0d\x0a          \
                 \
-      Text {\x0d\x0a  \
+      }\x0d\x0a       \
                 \
-                \
-  id: tSendCsvTo\
-CameraStatus\x0d\x0a  \
-                \
-                \
-  text: qsTr(\x22SE\
-ND CSV CAMERA\x22)\x0d\
+         Text {\x0d\
 \x0a               \
                 \
-     anchors.bot\
-tom: parent.bott\
-om\x0d\x0a            \
+     id: tSendCs\
+vToLaserStatus\x0d\x0a\
                 \
-        anchors.\
-bottomMargin: 0\x0d\
-\x0a               \
                 \
-     anchors.hor\
-izontalCenter: p\
-arent.horizontal\
-Center\x0d\x0a        \
+    text: qsTr(\x22\
+SEND CSV LASER\x22)\
+\x0d\x0a              \
                 \
-        }\x0d\x0a     \
+      anchors.bo\
+ttom: parent.bot\
+tom\x0d\x0a           \
                 \
-       }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\
+         anchors\
+.bottomMargin: 0\
+\x0d\x0a              \
                 \
-        }\x0d\x0a     \
-               }\
-\x0d\x0a\x0d\x0a            \
-        GridLayo\
-ut {\x0d\x0a          \
-              id\
-: gFooter\x0d\x0a     \
+      anchors.ho\
+rizontalCenter: \
+parent.horizonta\
+lCenter\x0d\x0a       \
                 \
-   width: 100\x0d\x0a \
-                \
-       height: 1\
-00\x0d\x0a\x0d\x0a          \
-              It\
-em {\x0d\x0a          \
-                \
-  Layout.fillHei\
-ght: false\x0d\x0a    \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
+         }\x0d\x0a    \
                 \
         }\x0d\x0a\x0d\x0a   \
                 \
- }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a    \
-            }\x0d\x0a \
-           }\x0d\x0a\x0d\x0a\
-            Item\
- {\x0d\x0a            \
-    id: settings\
-\x0d\x0a              \
-  Layout.fillHei\
-ght: true\x0d\x0a     \
-           Layou\
-t.fillWidth: tru\
-e\x0d\x0a\x0d\x0a           \
-     GridLayout \
-{\x0d\x0a             \
-       id: gridL\
-ayout\x0d\x0a         \
-           layou\
-tDirection: Qt.L\
-eftToRight\x0d\x0a    \
+         Item {\x0d\
+\x0a               \
                 \
-anchors.right: p\
-arent.right\x0d\x0a   \
+ id: itemSendCsv\
+ToCameraStatus\x0d\x0a\
                 \
- anchors.bottom:\
- parent.bottom\x0d\x0a\
                 \
-    anchors.left\
-: parent.left\x0d\x0a \
+width: 130\x0d\x0a    \
                 \
-   anchors.top: \
-parent.top\x0d\x0a    \
+            heig\
+ht: 65\x0d\x0a        \
                 \
-anchors.rightMar\
-gin: 10\x0d\x0a       \
-             anc\
-hors.leftMargin:\
- 10\x0d\x0a           \
+        RoundBut\
+ton {\x0d\x0a         \
+                \
+           id: r\
+bSendCsvToCamera\
+Status\x0d\x0a        \
+                \
+            widt\
+h: 40\x0d\x0a         \
+                \
+           heigh\
+t: 40\x0d\x0a         \
+                \
+           text:\
+ \x22\x22\x0d\x0a           \
+                \
          anchors\
-.bottomMargin: 1\
+.horizontalCente\
+r: parent.horizo\
+ntalCenter\x0d\x0a\x0d\x0a  \
+                \
+                \
+  background: Re\
+ctangle {\x0d\x0a     \
+                \
+                \
+   radius: paren\
+t.radius\x0d\x0a      \
+                \
+                \
+  color: gRegene\
+ration.getColor(\
+processBean.pCsv\
+RegThreadSendCsv\
+ToCameraStatus)\x0d\
+\x0a               \
+                \
+     }\x0d\x0a        \
+                \
+        }\x0d\x0a     \
+                \
+           Text \
+{\x0d\x0a             \
+                \
+       id: tSend\
+CsvToCameraStatu\
+s\x0d\x0a             \
+                \
+       text: qsT\
+r(\x22SEND CSV CAME\
+RA\x22)\x0d\x0a          \
+                \
+          anchor\
+s.bottom: parent\
+.bottom\x0d\x0a       \
+                \
+             anc\
+hors.bottomMargi\
+n: 0\x0d\x0a          \
+                \
+          anchor\
+s.horizontalCent\
+er: parent.horiz\
+ontalCenter\x0d\x0a   \
+                \
+             }\x0d\x0a\
+                \
+            }\x0d\x0a\x0d\
+\x0a\x0d\x0a\x0d\x0a           \
+             }\x0d\x0a\
+                \
+    }\x0d\x0a\x0d\x0a       \
+             Gri\
+dLayout {\x0d\x0a     \
+                \
+   id: gFooter\x0d\x0a\
+                \
+        width: 1\
+00\x0d\x0a            \
+            heig\
+ht: 100\x0d\x0a\x0d\x0a     \
+                \
+   Item {\x0d\x0a     \
+                \
+       Layout.fi\
+llHeight: false\x0d\
+\x0a               \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+             }\x0d\x0a\
+\x0d\x0a              \
+      }\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\
+\x0a               \
+ }\x0d\x0a            \
+}\x0d\x0a\x0d\x0a           \
+ Item {\x0d\x0a       \
+         id: set\
+tings\x0d\x0a         \
+       Layout.fi\
+llHeight: true\x0d\x0a\
+                \
+Layout.fillWidth\
+: true\x0d\x0a\x0d\x0a      \
+          GridLa\
+yout {\x0d\x0a        \
+            id: \
+gridLayout\x0d\x0a    \
+                \
+layoutDirection:\
+ Qt.LeftToRight\x0d\
+\x0a               \
+     anchors.rig\
+ht: parent.right\
+\x0d\x0a              \
+      anchors.bo\
+ttom: parent.bot\
+tom\x0d\x0a           \
+         anchors\
+.left: parent.le\
+ft\x0d\x0a            \
+        anchors.\
+top: parent.top\x0d\
+\x0a               \
+     anchors.rig\
+htMargin: 10\x0d\x0a  \
+                \
+  anchors.leftMa\
+rgin: 10\x0d\x0a      \
+              an\
+chors.bottomMarg\
+in: 10\x0d\x0a        \
+            anch\
+ors.topMargin: 1\
 0\x0d\x0a             \
-       anchors.t\
-opMargin: 10\x0d\x0a  \
+       columnSpa\
+cing: 50\x0d\x0a      \
+              ro\
+wSpacing: 50\x0d\x0a  \
                 \
-  columnSpacing:\
- 50\x0d\x0a           \
-         rowSpac\
-ing: 50\x0d\x0a       \
-             col\
-umns: 2\x0d\x0a\x0d\x0a     \
-               C\
-olumnLayout {\x0d\x0a \
+  columns: 2\x0d\x0a\x0d\x0a\
                 \
-       id: camer\
-aSettingsLayout\x0d\
+    ColumnLayout\
+ {\x0d\x0a            \
+            id: \
+cameraSettingsLa\
+yout\x0d\x0a          \
+              La\
+yout.fillWidth: \
+true\x0d\x0a          \
+              Gr\
+idLayout {\x0d\x0a    \
+                \
+        id: grid\
+Layout2\x0d\x0a       \
+                \
+     Layout.fill\
+Height: true\x0d\x0a  \
+                \
+          Layout\
+.fillWidth: true\
+\x0d\x0a              \
+              co\
+lumns: 2\x0d\x0a      \
+                \
+      columnSpac\
+ing: 5\x0d\x0a\x0d\x0a      \
+                \
+      Text {\x0d\x0a  \
+                \
+              id\
+: tCameraPath\x0d\x0a \
+                \
+               t\
+ext: qsTr(\x22Camer\
+a path\x22)\x0d\x0a      \
+                \
+          Layout\
+.minimumWidth: 1\
+20\x0d\x0a            \
+                \
+    font.pixelSi\
+ze: 12\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     TextField {\
+\x0d\x0a              \
+                \
+  id: tfCameraPa\
+th\x0d\x0a            \
+                \
+    Layout.fillW\
+idth: true\x0d\x0a    \
+                \
+            text\
+: settingsBean.p\
+CameraRemotePath\
+\x0d\x0a              \
+                \
+  onEditingFinis\
+hed: processCtrl\
+.setCameraRemote\
+Path(tfCameraPat\
+h.text)\x0d\x0a       \
+                \
+     }\x0d\x0a\x0d\x0a      \
+                \
+      Button {\x0d\x0a\
+\x0d\x0a              \
+                \
+  FileDialog {\x0d\x0a\
+                \
+                \
+    id: cameraFi\
+leDialog\x0d\x0a      \
+                \
+              ti\
+tle: qsTr(\x22Choos\
+e a folder\x22)\x0d\x0a  \
+                \
+                \
+  selectFolder: \
+true\x0d\x0a          \
+                \
+          onAcce\
+pted: processCtr\
+l.setCameraRemot\
+ePath(cameraFile\
+Dialog.fileUrl)\x0d\
 \x0a               \
-         Layout.\
-fillWidth: true\x0d\
+                \
+ }\x0d\x0a\x0d\x0a          \
+                \
+      id: bCamer\
+aFolder\x0d\x0a       \
+                \
+         text: q\
+sTr(\x22Change came\
+ra folder\x22)\x0d\x0a   \
+                \
+             Lay\
+out.minimumWidth\
+: 140\x0d\x0a         \
+                \
+       rightPadd\
+ing: 15\x0d\x0a       \
+                \
+         leftPad\
+ding: 15\x0d\x0a      \
+                \
+          Layout\
+.alignment: Qt.A\
+lignRight | Qt.A\
+lignVCenter\x0d\x0a   \
+                \
+             Lay\
+out.columnSpan: \
+2\x0d\x0a             \
+                \
+   onClicked: {\x0d\
 \x0a               \
-         GridLay\
-out {\x0d\x0a         \
                 \
-   id: gridLayou\
-t2\x0d\x0a            \
+     cameraFileD\
+ialog.folder = p\
+rocessCtrl.getUr\
+lFromNativePath(\
+settingsBean.pCa\
+meraRemotePath)\x0d\
+\x0a               \
                 \
-Layout.fillHeigh\
-t: true\x0d\x0a       \
+     cameraFileD\
+ialog.open()\x0d\x0a  \
+                \
+              }\x0d\
+\x0a\x0d\x0a             \
+               }\
+\x0d\x0a\x0d\x0a            \
+                \
+Text {\x0d\x0a        \
+                \
+        id: tCam\
+eraPollingTimeMs\
+\x0d\x0a              \
+                \
+  text: qsTr(\x22Po\
+lling time [ms]\x22\
+)\x0d\x0a             \
+                \
+   Layout.minimu\
+mWidth: 120\x0d\x0a   \
+                \
+             fon\
+t.pixelSize: 12\x0d\
+\x0a               \
+             }\x0d\x0a\
+\x0d\x0a              \
+              Te\
+xtField {\x0d\x0a     \
+                \
+           id: t\
+fCameraPollingTi\
+meMs\x0d\x0a          \
+                \
+      text: sett\
+ingsBean.pCamera\
+PollingTimeMs\x0d\x0a \
+                \
+               L\
+ayout.columnSpan\
+: 1\x0d\x0a           \
                 \
      Layout.fill\
 Width: true\x0d\x0a   \
                 \
-         columns\
-: 2\x0d\x0a           \
+             val\
+idator: IntValid\
+ator {\x0d\x0a        \
                 \
- columnSpacing: \
-5\x0d\x0a\x0d\x0a           \
+            bott\
+om: 100;\x0d\x0a      \
                 \
- Text {\x0d\x0a       \
+              to\
+p: 100000;\x0d\x0a    \
                 \
-         id: tCa\
-meraPath\x0d\x0a      \
+            }\x0d\x0a \
+                \
+               o\
+nEditingFinished\
+: settingsBean.p\
+CameraPollingTim\
+eMs = tfCameraPo\
+llingTimeMs.text\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               I\
+tem {\x0d\x0a         \
+                \
+       id: eleme\
+nt4\x0d\x0a           \
+                \
+     Layout.colu\
+mnSpan: 2\x0d\x0a     \
+                \
+           Layou\
+t.fillWidth: fal\
+se\x0d\x0a            \
+                \
+    Layout.fillH\
+eight: true\x0d\x0a   \
+                \
+             Lay\
+out.preferredWid\
+th: 0\x0d\x0a         \
+                \
+       Layout.pr\
+eferredHeight: 1\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a\x0d\x0a\x0d\x0a\x0d\x0a       \
+                \
+ }\x0d\x0a\x0d\x0a          \
+              Gr\
+idLayout {\x0d\x0a    \
+                \
+        id: grid\
+Layout3\x0d\x0a       \
+                \
+     Layout.fill\
+Width: true\x0d\x0a\x0d\x0a \
+                \
+           Butto\
+n {\x0d\x0a           \
+                \
+     id: bCamera\
+Set\x0d\x0a           \
+                \
+     text: qsTr(\
+\x22Set camera conf\
+iguration\x22)\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+                \
+     rightPaddin\
+g: 15\x0d\x0a         \
+                \
+       leftPaddi\
+ng: 15\x0d\x0a        \
+                \
+        onClicke\
+d: settingsCtrl.\
+saveParameters()\
+\x0d\x0a              \
+              }\x0d\
+\x0a               \
+         }\x0d\x0a    \
+                \
+}\x0d\x0a\x0d\x0a           \
+         ColumnL\
+ayout {\x0d\x0a       \
+                \
+ id: laserSettin\
+gsLayout\x0d\x0a      \
+                \
+  Layout.fillWid\
+th: true\x0d\x0a\x0d\x0a    \
+                \
+    GridLayout {\
+\x0d\x0a              \
+              id\
+: glLaser\x0d\x0a     \
+                \
+       Layout.fi\
+llHeight: true\x0d\x0a\
+                \
+            Layo\
+ut.fillWidth: tr\
+ue\x0d\x0a            \
+                \
+columns: 2\x0d\x0a    \
+                \
+        columnSp\
+acing: 5\x0d\x0a\x0d\x0a    \
+                \
+        Text {\x0d\x0a\
+                \
+                \
+id: tLaserIp\x0d\x0a  \
+                \
+              te\
+xt: qsTr(\x22Laser \
+IP\x22)\x0d\x0a          \
+                \
+      Layout.min\
+imumWidth: 120\x0d\x0a\
+                \
+                \
+Layout.fillWidth\
+: false\x0d\x0a       \
+                \
+         font.pi\
+xelSize: 12\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+          TextFi\
+eld {\x0d\x0a         \
+                \
+       id: tfLas\
+erIp\x0d\x0a          \
+                \
+      text: sett\
+ingsBean.pLaserI\
+p\x0d\x0a             \
+                \
+   Layout.column\
+Span: 1\x0d\x0a       \
+                \
+         Layout.\
+fillWidth: true\x0d\
+\x0a               \
+                \
+ placeholderText\
+: \x22Laser IP addr\
+ess\x22\x0d\x0a          \
+                \
+      inputMask:\
+ \x22000.000.000.00\
+0\x22\x0d\x0a            \
+                \
+    onEditingFin\
+ished: settingsB\
+ean.pLaserIp = t\
+ext\x0d\x0a           \
+                \
+ }\x0d\x0a\x0d\x0a          \
+                \
+  Text {\x0d\x0a      \
+                \
+          id: tL\
+aserPort\x0d\x0a      \
                 \
           text: \
-qsTr(\x22Camera pat\
-h\x22)\x0d\x0a           \
+qsTr(\x22Laser port\
+\x22)\x0d\x0a            \
+                \
+    Layout.minim\
+umWidth: 120\x0d\x0a  \
+                \
+              fo\
+nt.pixelSize: 12\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+extField {\x0d\x0a    \
+                \
+            id: \
+tfLaserPort\x0d\x0a   \
+                \
+             tex\
+t: \x22%0\x22.arg(sett\
+ingsBean.pLaserP\
+ort)\x0d\x0a          \
+                \
+      Layout.col\
+umnSpan: 1\x0d\x0a    \
+                \
+            Layo\
+ut.fillWidth: tr\
+ue\x0d\x0a            \
+                \
+    placeholderT\
+ext: \x22Laser Port\
+\x22\x0d\x0a             \
+                \
+   inputMask: \x220\
+0000\x22\x0d\x0a         \
+                \
+       onEditing\
+Finished: settin\
+gsBean.pLaserPor\
+t = tfLaserPort.\
+text\x0d\x0a          \
+                \
+  }\x0d\x0a\x0d\x0a         \
+                \
+   Text {\x0d\x0a     \
+                \
+           id: t\
+LaserPollingTime\
+Ms\x0d\x0a            \
+                \
+    text: qsTr(\x22\
+Polling time [ms\
+]\x22)\x0d\x0a           \
                 \
      Layout.mini\
 mumWidth: 120\x0d\x0a \
@@ -2601,60 +2989,515 @@ ont.pixelSize: 1\
 TextField {\x0d\x0a   \
                 \
              id:\
- tfCameraPath\x0d\x0a \
-                \
-               L\
-ayout.fillWidth:\
- true\x0d\x0a         \
+ tfLaserPollingT\
+imeMs\x0d\x0a         \
                 \
        text: set\
-tingsBean.pCamer\
-aRemotePath\x0d\x0a   \
+tingsBean.pLaser\
+PollingTimeMs\x0d\x0a \
                 \
-             onE\
-ditingFinished: \
-processCtrl.setC\
-ameraRemotePath(\
-tfCameraPath.tex\
-t)\x0d\x0a            \
+               L\
+ayout.columnSpan\
+: 1\x0d\x0a           \
                 \
-}\x0d\x0a\x0d\x0a           \
+     Layout.fill\
+Width: true\x0d\x0a   \
                 \
- Button {\x0d\x0a\x0d\x0a   \
+             val\
+idator: IntValid\
+ator {\x0d\x0a        \
                 \
-             Fil\
-eDialog {\x0d\x0a     \
+            bott\
+om: 100;\x0d\x0a      \
                 \
-               i\
-d: cameraFileDia\
-log\x0d\x0a           \
+              to\
+p: 100000;\x0d\x0a    \
                 \
-         title: \
-qsTr(\x22Choose a f\
-older\x22)\x0d\x0a       \
+            }\x0d\x0a \
                 \
-             sel\
-ectFolder: true\x0d\
-\x0a               \
-                \
-     onAccepted:\
- processCtrl.set\
-CameraRemotePath\
-(cameraFileDialo\
-g.fileUrl)\x0d\x0a    \
+               o\
+nEditingFinished\
+: settingsBean.p\
+LaserPollingTime\
+Ms = tfLaserPoll\
+ingTimeMs.text\x0d\x0a\
                 \
             }\x0d\x0a\x0d\
 \x0a               \
+             Tex\
+t {\x0d\x0a           \
                 \
- id: bCameraFold\
-er\x0d\x0a            \
+     id: tLaserR\
+emotePath\x0d\x0a     \
+                \
+           text:\
+ qsTr(\x22Laser rem\
+ote path\x22)\x0d\x0a    \
+                \
+            font\
+.pixelSize: 12\x0d\x0a\
+                \
+            }\x0d\x0a\x0d\
+\x0a               \
+             Tex\
+tField {\x0d\x0a      \
+                \
+          id: tf\
+LaserRemotePath\x0d\
+\x0a               \
+                \
+ text: settingsB\
+ean.pLaserRemote\
+Path\x0d\x0a          \
+                \
+      Layout.fil\
+lWidth: true\x0d\x0a  \
+                \
+              on\
+EditingFinished:\
+ settingsBean.pL\
+aserRemotePath =\
+ tfLaserRemotePa\
+th.text\x0d\x0a       \
+                \
+     }\x0d\x0a\x0d\x0a      \
+                \
+      Item {\x0d\x0a  \
+                \
+              id\
+: element3\x0d\x0a    \
+                \
+            Layo\
+ut.columnSpan: 2\
+\x0d\x0a              \
+                \
+  Layout.preferr\
+edHeight: 1\x0d\x0a   \
+                \
+             Lay\
+out.preferredWid\
+th: 0\x0d\x0a         \
+                \
+       Layout.fi\
+llHeight: true\x0d\x0a\
+                \
+            }\x0d\x0a\x0d\
+\x0a               \
+         }\x0d\x0a\x0d\x0a  \
+                \
+      GridLayout\
+ {\x0d\x0a            \
+                \
+id: gridLayout1\x0d\
+\x0a               \
+             col\
+umns: 2\x0d\x0a       \
+                \
+     Layout.fill\
+Width: true\x0d\x0a\x0d\x0a \
+                \
+           Butto\
+n {\x0d\x0a           \
+                \
+     id: bLaserS\
+et\x0d\x0a            \
                 \
     text: qsTr(\x22\
-Change camera fo\
-lder\x22)\x0d\x0a        \
+Set laser config\
+uration\x22)\x0d\x0a     \
                 \
-        Layout.m\
-inimumWidth: 140\
+           Layou\
+t.fillWidth: tru\
+e\x0d\x0a             \
+                \
+   rightPadding:\
+ 15\x0d\x0a           \
+                \
+     leftPadding\
+: 15\x0d\x0a          \
+                \
+      onClicked:\
+ settingsCtrl.sa\
+veParameters()\x0d\x0a\
+                \
+            }\x0d\x0a\x0d\
+\x0a               \
+         }\x0d\x0a\x0d\x0a  \
+                \
+  }\x0d\x0a\x0d\x0a         \
+           Colum\
+nLayout {\x0d\x0a     \
+                \
+   id: localSett\
+ingsLayoutL\x0d\x0a   \
+                \
+     width: 100\x0d\
+\x0a               \
+         height:\
+ 100\x0d\x0a          \
+              La\
+yout.fillHeight:\
+ true\x0d\x0a         \
+               L\
+ayout.columnSpan\
+: 1\x0d\x0a\x0d\x0a         \
+               G\
+ridLayout {\x0d\x0a   \
+                \
+         id: gri\
+dLayout4\x0d\x0a      \
+                \
+      width: 100\
+\x0d\x0a              \
+              he\
+ight: 100\x0d\x0a     \
+                \
+       columns: \
+2\x0d\x0a\x0d\x0a           \
+                \
+ Text {\x0d\x0a       \
+                \
+         id: tRi\
+gheScarto\x0d\x0a     \
+                \
+           text:\
+ qsTr(\x22Righe sca\
+rto\x22)\x0d\x0a         \
+                \
+       Layout.mi\
+nimumWidth: 120\x0d\
+\x0a               \
+                \
+ font.pixelSize:\
+ 12\x0d\x0a           \
+                \
+ }\x0d\x0a\x0d\x0a          \
+                \
+  TextField {\x0d\x0a \
+                \
+               i\
+d: tfRigheScarto\
+\x0d\x0a              \
+                \
+  text: settings\
+Bean.pLocalRowMa\
+rgin\x0d\x0a          \
+                \
+      validator:\
+ IntValidator {\x0d\
+\x0a               \
+                \
+     bottom: 0;\x0d\
+\x0a               \
+                \
+     top: 20;\x0d\x0a \
+                \
+               }\
+\x0d\x0a              \
+                \
+  onEditingFinis\
+hed: settingsBea\
+n.pLocalRowMargi\
+n = tfRigheScart\
+o.text\x0d\x0a        \
+                \
+        Layout.f\
+illWidth: true\x0d\x0a\
+                \
+            }\x0d\x0a\x0d\
+\x0a               \
+             Tex\
+t {\x0d\x0a           \
+                \
+     id: tWaitTi\
+meBeforeProcess\x0d\
+\x0a               \
+                \
+ text: qsTr(\x22Wai\
+t time before pr\
+ocess [s]\x22)\x0d\x0a   \
+                \
+             fon\
+t.pixelSize: 12\x0d\
+\x0a               \
+             }\x0d\x0a\
+\x0d\x0a              \
+              Te\
+xtField {\x0d\x0a     \
+                \
+           id: t\
+fWaitTimeBeforeP\
+rocess\x0d\x0a        \
+                \
+        text: se\
+ttingsBean.pLoca\
+lWaitTimeBeforeP\
+rocess\x0d\x0a        \
+                \
+        validato\
+r: IntValidator \
+{\x0d\x0a             \
+                \
+       bottom: 1\
+;\x0d\x0a             \
+                \
+       top: 20;\x0d\
+\x0a               \
+                \
+ }\x0d\x0a            \
+                \
+    onEditingFin\
+ished: settingsB\
+ean.pLocalWaitTi\
+meBeforeProcess \
+= tfWaitTimeBefo\
+reProcess.text\x0d\x0a\
+                \
+                \
+Layout.fillWidth\
+: true\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     Text {\x0d\x0a   \
+                \
+             id:\
+ tCsvFilename\x0d\x0a \
+                \
+               t\
+ext: qsTr(\x22Nome \
+file CSV\x22)\x0d\x0a    \
+                \
+            Layo\
+ut.minimumWidth:\
+ 120\x0d\x0a          \
+                \
+      font.pixel\
+Size: 12\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       TextField\
+ {\x0d\x0a            \
+                \
+    id: tfCsvFil\
+ename\x0d\x0a         \
+                \
+       text: set\
+tingsBean.pLocal\
+CsvFilename\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
+                \
+     onEditingFi\
+nished: settings\
+Bean.pLocalCsvFi\
+lename = tfCsvFi\
+lename.text\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+          Text {\
+\x0d\x0a              \
+                \
+  id: tLaserErro\
+rFilename\x0d\x0a     \
+                \
+           text:\
+ qsTr(\x22Nome file\
+ errore laser\x22)\x0d\
+\x0a               \
+                \
+ font.pixelSize:\
+ 12\x0d\x0a           \
+                \
+ }\x0d\x0a\x0d\x0a          \
+                \
+  TextField {\x0d\x0a \
+                \
+               i\
+d: tfLaserErrorF\
+ilename\x0d\x0a       \
+                \
+         text: s\
+ettingsBean.pLoc\
+alLaserErrorFile\
+name\x0d\x0a          \
+                \
+      Layout.fil\
+lWidth: true\x0d\x0a  \
+                \
+              on\
+EditingFinished:\
+ settingsBean.pL\
+ocalLaserErrorFi\
+lename = tfLaser\
+ErrorFilename.te\
+xt\x0d\x0a            \
+                \
+}\x0d\x0a\x0d\x0a           \
+                \
+ Text {\x0d\x0a       \
+                \
+         id: tLa\
+serLogFilename\x0d\x0a\
+                \
+                \
+text: qsTr(\x22Nome\
+ file log\x22)\x0d\x0a   \
+                \
+             fon\
+t.pixelSize: 12\x0d\
+\x0a               \
+             }\x0d\x0a\
+\x0d\x0a              \
+              Te\
+xtField {\x0d\x0a     \
+                \
+           id: t\
+fLaserLogFilenam\
+e\x0d\x0a             \
+                \
+   text: setting\
+sBean.pLocalLase\
+rLogFilename\x0d\x0a  \
+                \
+              La\
+yout.fillWidth: \
+true\x0d\x0a          \
+                \
+      onEditingF\
+inished: setting\
+sBean.pLocalLase\
+rLogFilename = t\
+fLaserLogFilenam\
+e.text\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     Item {\x0d\x0a   \
+                \
+             id:\
+ element5\x0d\x0a     \
+                \
+           width\
+: 200\x0d\x0a         \
+                \
+       height: 2\
+00\x0d\x0a            \
+                \
+    Layout.fillH\
+eight: true\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+      }\x0d\x0a       \
+             }\x0d\x0a\
+\x0d\x0a              \
+      ColumnLayo\
+ut {\x0d\x0a          \
+              id\
+: localSettingsL\
+ayoutR\x0d\x0a        \
+                \
+width: 100\x0d\x0a    \
+                \
+    height: 100\x0d\
+\x0a               \
+         Layout.\
+fillWidth: true\x0d\
+\x0a               \
+         Layout.\
+columnSpan: 1\x0d\x0a\x0d\
+\x0a               \
+         GridLay\
+out {\x0d\x0a         \
+                \
+   id: gridLayou\
+t5\x0d\x0a            \
+                \
+width: 100\x0d\x0a    \
+                \
+        height: \
+100\x0d\x0a           \
+                \
+ columns: 2\x0d\x0a   \
+                \
+         Layout.\
+columnSpan: 1\x0d\x0a\x0d\
+\x0a               \
+             Tex\
+t {\x0d\x0a           \
+                \
+     id: tLoadin\
+gPath\x0d\x0a         \
+                \
+       text: qsT\
+r(\x22Loading path\x22\
+)\x0d\x0a             \
+                \
+   font.pixelSiz\
+e: 12\x0d\x0a         \
+                \
+   }\x0d\x0a\x0d\x0a        \
+                \
+    TextField {\x0d\
+\x0a               \
+                \
+ id: tfLoadingPa\
+th\x0d\x0a            \
+                \
+    text: settin\
+gsBean.pLocalLoa\
+dingPath\x0d\x0a      \
+                \
+          Layout\
+.fillWidth: true\
+\x0d\x0a              \
+                \
+  onEditingFinis\
+hed: processCtrl\
+.setLocalLoading\
+Path(tfLoadingPa\
+th.text)\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       Button {\x0d\
+\x0a\x0d\x0a             \
+                \
+   FileDialog {\x0d\
+\x0a               \
+                \
+     id: localLo\
+adingPathFileDia\
+log2\x0d\x0a          \
+                \
+          title:\
+ qsTr(\x22Choose a \
+folder\x22)\x0d\x0a      \
+                \
+              se\
+lectFolder: true\
+\x0d\x0a              \
+                \
+      onAccepted\
+: processCtrl.se\
+tLocalLoadingPat\
+h(localLoadingPa\
+thFileDialog2.fi\
+leUrl)\x0d\x0a        \
+                \
+        }\x0d\x0a\x0d\x0a   \
+                \
+             id:\
+ bLoadingPath\x0d\x0a \
+                \
+               t\
+ext: qsTr(\x22Chang\
+e loading path\x22)\
 \x0d\x0a              \
                 \
   rightPadding: \
@@ -2675,285 +3518,31 @@ olumnSpan: 2\x0d\x0a  \
 Clicked: {\x0d\x0a    \
                 \
                 \
-cameraFileDialog\
-.folder = proces\
-sCtrl.getUrlFrom\
-NativePath(setti\
-ngsBean.pCameraR\
-emotePath)\x0d\x0a    \
+localLoadingPath\
+FileDialog2.fold\
+er = processCtrl\
+.getUrlFromNativ\
+ePath(settingsBe\
+an.pLocalLoading\
+Path)\x0d\x0a         \
                 \
+           local\
+LoadingPathFileD\
+ialog2.open()\x0d\x0a \
                 \
-cameraFileDialog\
-.open()\x0d\x0a       \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          }\x0d\x0a\x0d\x0a \
-                \
-           Text \
-{\x0d\x0a             \
-                \
-   id: tCameraPo\
-llingTimeMs\x0d\x0a   \
-                \
-             tex\
-t: qsTr(\x22Polling\
- time [ms]\x22)\x0d\x0a  \
-                \
-              La\
-yout.minimumWidt\
-h: 120\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         TextFie\
-ld {\x0d\x0a          \
-                \
-      id: tfCame\
-raPollingTimeMs\x0d\
-\x0a               \
-                \
- text: settingsB\
-ean.pCameraPolli\
-ngTimeMs\x0d\x0a      \
-                \
-          Layout\
-.columnSpan: 1\x0d\x0a\
-                \
-                \
-Layout.fillWidth\
-: true\x0d\x0a        \
-                \
-        validato\
-r: IntValidator \
-{\x0d\x0a             \
-                \
-       bottom: 1\
-00;\x0d\x0a           \
-                \
-         top: 10\
-0000;\x0d\x0a         \
-                \
-       }\x0d\x0a      \
-                \
-          onEdit\
-ingFinished: set\
-tingsBean.pCamer\
-aPollingTimeMs =\
- tfCameraPolling\
-TimeMs.text\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          Item {\
+               }\
 \x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+ext {\x0d\x0a         \
                 \
-  id: element4\x0d\x0a\
+       id: tDown\
+loadPath\x0d\x0a      \
                 \
-                \
-Layout.columnSpa\
-n: 2\x0d\x0a          \
-                \
-      Layout.fil\
-lWidth: false\x0d\x0a \
-                \
-               L\
-ayout.fillHeight\
-: true\x0d\x0a        \
-                \
-        Layout.p\
-referredWidth: 0\
-\x0d\x0a              \
-                \
-  Layout.preferr\
-edHeight: 1\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a\x0d\x0a\
-\x0d\x0a\x0d\x0a            \
-            }\x0d\x0a\x0d\
-\x0a               \
-         GridLay\
-out {\x0d\x0a         \
-                \
-   id: gridLayou\
-t3\x0d\x0a            \
-                \
-Layout.fillWidth\
-: true\x0d\x0a\x0d\x0a      \
-                \
-      Button {\x0d\x0a\
-                \
-                \
-id: bCameraSet\x0d\x0a\
-                \
-                \
-text: qsTr(\x22Set \
-camera configura\
-tion\x22)\x0d\x0a        \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-                \
-rightPadding: 15\
-\x0d\x0a              \
-                \
-  leftPadding: 1\
-5\x0d\x0a             \
-                \
-   onClicked: se\
-ttingsCtrl.saveP\
-arameters()\x0d\x0a   \
-                \
-         }\x0d\x0a    \
-                \
-    }\x0d\x0a         \
-           }\x0d\x0a\x0d\x0a\
-                \
-    ColumnLayout\
- {\x0d\x0a            \
-            id: \
-laserSettingsLay\
-out\x0d\x0a           \
-             Lay\
-out.fillWidth: t\
-rue\x0d\x0a\x0d\x0a         \
-               G\
-ridLayout {\x0d\x0a   \
-                \
-         id: glL\
-aser\x0d\x0a          \
-                \
-  Layout.fillHei\
-ght: true\x0d\x0a     \
-                \
-       Layout.fi\
-llWidth: true\x0d\x0a \
-                \
-           colum\
-ns: 2\x0d\x0a         \
-                \
-   columnSpacing\
-: 5\x0d\x0a\x0d\x0a         \
-                \
-   Text {\x0d\x0a     \
-                \
-           id: t\
-LaserIp\x0d\x0a       \
-                \
-         text: q\
-sTr(\x22Laser IP\x22)\x0d\
-\x0a               \
-                \
- Layout.minimumW\
-idth: 120\x0d\x0a     \
-                \
-           Layou\
-t.fillWidth: fal\
-se\x0d\x0a            \
-                \
-    font.pixelSi\
-ze: 12\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
-     TextField {\
-\x0d\x0a              \
-                \
-  id: tfLaserIp\x0d\
-\x0a               \
-                \
- text: settingsB\
-ean.pLaserIp\x0d\x0a  \
-                \
-              La\
-yout.columnSpan:\
- 1\x0d\x0a            \
-                \
-    Layout.fillW\
-idth: true\x0d\x0a    \
-                \
-            plac\
-eholderText: \x22La\
-ser IP address\x22\x0d\
-\x0a               \
-                \
- inputMask: \x22000\
-.000.000.000\x22\x0d\x0a \
-                \
-               o\
-nEditingFinished\
-: settingsBean.p\
-LaserIp = text\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-t {\x0d\x0a           \
-                \
-     id: tLaserP\
-ort\x0d\x0a           \
-                \
-     text: qsTr(\
-\x22Laser port\x22)\x0d\x0a \
-                \
-               L\
-ayout.minimumWid\
-th: 120\x0d\x0a       \
-                \
-         font.pi\
-xelSize: 12\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          TextFi\
-eld {\x0d\x0a         \
-                \
-       id: tfLas\
-erPort\x0d\x0a        \
-                \
-        text: \x22%\
-0\x22.arg(settingsB\
-ean.pLaserPort)\x0d\
-\x0a               \
-                \
- Layout.columnSp\
-an: 1\x0d\x0a         \
-                \
-       Layout.fi\
-llWidth: true\x0d\x0a \
-                \
-               p\
-laceholderText: \
-\x22Laser Port\x22\x0d\x0a  \
-                \
-              in\
-putMask: \x2200000\x22\
-\x0d\x0a              \
-                \
-  onEditingFinis\
-hed: settingsBea\
-n.pLaserPort = t\
-fLaserPort.text\x0d\
-\x0a               \
-             }\x0d\x0a\
-\x0d\x0a              \
-              Te\
-xt {\x0d\x0a          \
-                \
-      id: tLaser\
-PollingTimeMs\x0d\x0a \
-                \
-               t\
-ext: qsTr(\x22Polli\
-ng time [ms]\x22)\x0d\x0a\
-                \
-                \
-Layout.minimumWi\
-dth: 120\x0d\x0a      \
+          text: \
+qsTr(\x22Downloadin\
+g path\x22)\x0d\x0a      \
                 \
           font.p\
 ixelSize: 12\x0d\x0a  \
@@ -2963,720 +3552,156 @@ ixelSize: 12\x0d\x0a  \
            TextF\
 ield {\x0d\x0a        \
                 \
-        id: tfLa\
-serPollingTimeMs\
-\x0d\x0a              \
-                \
-  text: settings\
-Bean.pLaserPolli\
-ngTimeMs\x0d\x0a      \
-                \
-          Layout\
-.columnSpan: 1\x0d\x0a\
-                \
-                \
-Layout.fillWidth\
-: true\x0d\x0a        \
-                \
-        validato\
-r: IntValidator \
-{\x0d\x0a             \
-                \
-       bottom: 1\
-00;\x0d\x0a           \
-                \
-         top: 10\
-0000;\x0d\x0a         \
-                \
-       }\x0d\x0a      \
-                \
-          onEdit\
-ingFinished: set\
-tingsBean.pLaser\
-PollingTimeMs = \
-tfLaserPollingTi\
-meMs.text\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
-                \
-                \
-id: tLaserRemote\
-Path\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Laser remote p\
-ath\x22)\x0d\x0a         \
-                \
-       font.pixe\
-lSize: 12\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        TextFiel\
-d {\x0d\x0a           \
-                \
-     id: tfLaser\
-RemotePath\x0d\x0a    \
+        id: tfDo\
+wnloadPath\x0d\x0a    \
                 \
             text\
 : settingsBean.p\
-LaserRemotePath\x0d\
-\x0a               \
-                \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLaserR\
-emotePath = tfLa\
-serRemotePath.te\
-xt\x0d\x0a            \
-                \
-}\x0d\x0a\x0d\x0a           \
-                \
- Item {\x0d\x0a       \
-                \
-         id: ele\
-ment3\x0d\x0a         \
-                \
-       Layout.co\
-lumnSpan: 2\x0d\x0a   \
-                \
-             Lay\
-out.preferredHei\
-ght: 1\x0d\x0a        \
-                \
-        Layout.p\
-referredWidth: 0\
-\x0d\x0a              \
-                \
-  Layout.fillHei\
-ght: true\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
- GridLayout {\x0d\x0a \
-                \
-           id: g\
-ridLayout1\x0d\x0a    \
-                \
-        columns:\
- 2\x0d\x0a            \
-                \
-Layout.fillWidth\
-: true\x0d\x0a\x0d\x0a      \
-                \
-      Button {\x0d\x0a\
-                \
-                \
-id: bLaserSet\x0d\x0a \
-                \
-               t\
-ext: qsTr(\x22Set l\
-aser configurati\
-on\x22)\x0d\x0a          \
+LocalDownloading\
+Path\x0d\x0a          \
                 \
       Layout.fil\
 lWidth: true\x0d\x0a  \
                 \
-              ri\
-ghtPadding: 15\x0d\x0a\
-                \
-                \
-leftPadding: 15\x0d\
-\x0a               \
-                \
- onClicked: sett\
-ingsCtrl.savePar\
-ameters()\x0d\x0a     \
+              on\
+EditingFinished:\
+ settingsBean.pL\
+ocalDownloadingP\
+ath = tfDownload\
+Path.text\x0d\x0a     \
                 \
        }\x0d\x0a\x0d\x0a    \
                 \
-    }\x0d\x0a\x0d\x0a       \
-             }\x0d\x0a\
-\x0d\x0a              \
-      ColumnLayo\
-ut {\x0d\x0a          \
-              id\
-: localSettingsL\
-ayoutL\x0d\x0a        \
-                \
-width: 100\x0d\x0a    \
-                \
-    height: 100\x0d\
-\x0a               \
-         Layout.\
-fillHeight: true\
-\x0d\x0a              \
-          Layout\
-.columnSpan: 1\x0d\x0a\
-\x0d\x0a              \
-          GridLa\
-yout {\x0d\x0a        \
-                \
-    id: gridLayo\
-ut4\x0d\x0a           \
-                \
- width: 100\x0d\x0a   \
-                \
-         height:\
- 100\x0d\x0a          \
-                \
-  columns: 2\x0d\x0a\x0d\x0a\
-                \
-            Text\
- {\x0d\x0a            \
-                \
-    id: tRigheSc\
-arto\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Righe scarto\x22)\
-\x0d\x0a              \
-                \
-  Layout.minimum\
-Width: 120\x0d\x0a    \
-                \
-            font\
-.pixelSize: 12\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-tField {\x0d\x0a      \
-                \
-          id: tf\
-RigheScarto\x0d\x0a   \
-                \
-             tex\
-t: settingsBean.\
-pLocalRowMargin\x0d\
-\x0a               \
-                \
- validator: IntV\
-alidator {\x0d\x0a    \
-                \
-                \
-bottom: 0;\x0d\x0a    \
-                \
-                \
-top: 20;\x0d\x0a      \
-                \
-          }\x0d\x0a   \
-                \
-             onE\
-ditingFinished: \
-settingsBean.pLo\
-calRowMargin = t\
-fRigheScarto.tex\
-t\x0d\x0a             \
-                \
-   Layout.fillWi\
-dth: true\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
-                \
-                \
-id: tWaitTimeBef\
-oreProcess\x0d\x0a    \
-                \
-            text\
-: qsTr(\x22Wait tim\
-e before process\
- [s]\x22)\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         TextFie\
-ld {\x0d\x0a          \
-                \
-      id: tfWait\
-TimeBeforeProces\
-s\x0d\x0a             \
-                \
-   text: setting\
-sBean.pLocalWait\
-TimeBeforeProces\
-s\x0d\x0a             \
-                \
-   validator: In\
-tValidator {\x0d\x0a  \
-                \
-                \
-  bottom: 1;\x0d\x0a  \
-                \
-                \
-  top: 20;\x0d\x0a    \
-                \
-            }\x0d\x0a \
-                \
-               o\
-nEditingFinished\
-: settingsBean.p\
-LocalWaitTimeBef\
-oreProcess = tfW\
-aitTimeBeforePro\
-cess.text\x0d\x0a     \
-                \
-           Layou\
-t.fillWidth: tru\
-e\x0d\x0a             \
-               }\
+        Button {\
 \x0d\x0a\x0d\x0a            \
                 \
-Text {\x0d\x0a        \
-                \
-        id: tCsv\
-Filename\x0d\x0a      \
-                \
-          text: \
-qsTr(\x22Nome file \
-CSV\x22)\x0d\x0a         \
-                \
-       Layout.mi\
-nimumWidth: 120\x0d\
-\x0a               \
-                \
- font.pixelSize:\
- 12\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  TextField {\x0d\x0a \
-                \
-               i\
-d: tfCsvFilename\
+    FileDialog {\
 \x0d\x0a              \
                 \
-  text: settings\
-Bean.pLocalCsvFi\
-lename\x0d\x0a        \
+      id: localD\
+ownloadingPathFi\
+leDialog\x0d\x0a      \
                 \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-                \
-onEditingFinishe\
-d: settingsBean.\
-pLocalCsvFilenam\
-e = tfCsvFilenam\
-e.text\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
-     Text {\x0d\x0a   \
-                \
-             id:\
- tLaserErrorFile\
-name\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Nome file erro\
-re laser\x22)\x0d\x0a    \
-                \
-            font\
-.pixelSize: 12\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-tField {\x0d\x0a      \
-                \
-          id: tf\
-LaserErrorFilena\
-me\x0d\x0a            \
-                \
-    text: settin\
-gsBean.pLocalLas\
-erErrorFilename\x0d\
-\x0a               \
-                \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLocalL\
-aserErrorFilenam\
-e = tfLaserError\
-Filename.text\x0d\x0a \
-                \
-           }\x0d\x0a\x0d\x0a\
-                \
-            Text\
- {\x0d\x0a            \
-                \
-    id: tLaserLo\
-gFilename\x0d\x0a     \
-                \
-           text:\
- qsTr(\x22Nome file\
- log\x22)\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         TextFie\
-ld {\x0d\x0a          \
-                \
-      id: tfLase\
-rLogFilename\x0d\x0a  \
-                \
-              te\
-xt: settingsBean\
-.pLocalLaserLogF\
-ilename\x0d\x0a       \
-                \
-         Layout.\
-fillWidth: true\x0d\
-\x0a               \
-                \
- onEditingFinish\
-ed: settingsBean\
-.pLocalLaserLogF\
-ilename = tfLase\
-rLogFilename.tex\
-t\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-Item {\x0d\x0a        \
-                \
-        id: elem\
-ent5\x0d\x0a          \
-                \
-      width: 200\
-\x0d\x0a              \
-                \
-  height: 200\x0d\x0a \
-                \
-               L\
-ayout.fillHeight\
-: true\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
- }\x0d\x0a            \
-        }\x0d\x0a\x0d\x0a   \
-                \
- ColumnLayout {\x0d\
-\x0a               \
-         id: loc\
-alSettingsLayout\
-R\x0d\x0a             \
-           width\
-: 100\x0d\x0a         \
-               h\
-eight: 100\x0d\x0a    \
-                \
-    Layout.fillW\
-idth: true\x0d\x0a    \
-                \
-    Layout.colum\
-nSpan: 1\x0d\x0a\x0d\x0a    \
-                \
-    GridLayout {\
-\x0d\x0a              \
-              id\
-: gridLayout5\x0d\x0a \
-                \
-           width\
-: 100\x0d\x0a         \
-                \
-   height: 100\x0d\x0a\
-                \
-            colu\
-mns: 2\x0d\x0a        \
-                \
-    Layout.colum\
-nSpan: 1\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
+              ti\
+tle: qsTr(\x22Choos\
+e a folder\x22)\x0d\x0a  \
                 \
                 \
-id: tLoadingPath\
-\x0d\x0a              \
+  selectFolder: \
+true\x0d\x0a          \
                 \
-  text: qsTr(\x22Lo\
-ading path\x22)\x0d\x0a  \
-                \
-              fo\
-nt.pixelSize: 12\
-\x0d\x0a              \
-              }\x0d\
-\x0a\x0d\x0a             \
-               T\
-extField {\x0d\x0a    \
-                \
-            id: \
-tfLoadingPath\x0d\x0a \
-                \
-               t\
-ext: settingsBea\
-n.pLocalLoadingP\
-ath\x0d\x0a           \
-                \
-     Layout.fill\
-Width: true\x0d\x0a   \
-                \
-             onE\
-ditingFinished: \
-processCtrl.setL\
-ocalLoadingPath(\
-tfLoadingPath.te\
-xt)\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  Button {\x0d\x0a\x0d\x0a  \
-                \
-              Fi\
-leDialog {\x0d\x0a    \
-                \
-                \
-id: localLoading\
-PathFileDialog2\x0d\
-\x0a               \
-                \
-     title: qsTr\
-(\x22Choose a folde\
-r\x22)\x0d\x0a           \
-                \
-         selectF\
-older: true\x0d\x0a   \
-                \
-                \
- onAccepted: pro\
-cessCtrl.setLoca\
-lLoadingPath(loc\
-alLoadingPathFil\
-eDialog2.fileUrl\
+          onAcce\
+pted: processCtr\
+l.setLocalDownlo\
+adingPath(localD\
+ownloadingPathFi\
+leDialog.fileUrl\
 )\x0d\x0a             \
                 \
    }\x0d\x0a\x0d\x0a        \
                 \
-        id: bLoa\
-dingPath\x0d\x0a      \
+        id: bDow\
+nloadPath\x0d\x0a     \
                 \
-          text: \
-qsTr(\x22Change loa\
-ding path\x22)\x0d\x0a   \
-                \
-             rig\
-htPadding: 15\x0d\x0a \
-                \
-               l\
-eftPadding: 15\x0d\x0a\
-                \
-                \
-Layout.alignment\
-: Qt.AlignRight \
-| Qt.AlignVCente\
-r\x0d\x0a             \
-                \
-   Layout.column\
-Span: 2\x0d\x0a       \
-                \
-         onClick\
-ed: {\x0d\x0a         \
-                \
-           local\
-LoadingPathFileD\
-ialog2.folder = \
-processCtrl.getU\
-rlFromNativePath\
-(settingsBean.pL\
-ocalLoadingPath)\
+           text:\
+ qsTr(\x22Change do\
+wnloading path\x22)\
 \x0d\x0a              \
                 \
-      localLoadi\
+  rightPadding: \
+15\x0d\x0a            \
+                \
+    leftPadding:\
+ 15\x0d\x0a           \
+                \
+     Layout.colu\
+mnSpan: 2\x0d\x0a     \
+                \
+           Layou\
+t.alignment: Qt.\
+AlignRight | Qt.\
+AlignVCenter\x0d\x0a  \
+                \
+              on\
+Clicked: {\x0d\x0a    \
+                \
+                \
+localDownloading\
+PathFileDialog.f\
+older = processC\
+trl.getUrlFromNa\
+tivePath(setting\
+sBean.pLocalDown\
+loadingPath)\x0d\x0a  \
+                \
+                \
+  localDownloadi\
 ngPathFileDialog\
-2.open()\x0d\x0a      \
+.open()\x0d\x0a       \
                 \
-          }\x0d\x0a   \
-                \
-         }\x0d\x0a\x0d\x0a  \
-                \
-          Text {\
-\x0d\x0a              \
-                \
-  id: tDownloadP\
-ath\x0d\x0a           \
-                \
-     text: qsTr(\
-\x22Downloading pat\
-h\x22)\x0d\x0a           \
-                \
-     font.pixelS\
-ize: 12\x0d\x0a       \
-                \
-     }\x0d\x0a\x0d\x0a      \
-                \
-      TextField \
-{\x0d\x0a             \
-                \
-   id: tfDownloa\
-dPath\x0d\x0a         \
-                \
-       text: set\
-tingsBean.pLocal\
-DownloadingPath\x0d\
-\x0a               \
-                \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLocalD\
-ownloadingPath =\
- tfDownloadPath.\
-text\x0d\x0a          \
-                \
-  }\x0d\x0a\x0d\x0a         \
-                \
-   Button {\x0d\x0a\x0d\x0a \
-                \
-               F\
-ileDialog {\x0d\x0a   \
-                \
-                \
- id: localDownlo\
-adingPathFileDia\
-log\x0d\x0a           \
-                \
-         title: \
-qsTr(\x22Choose a f\
-older\x22)\x0d\x0a       \
-                \
-             sel\
-ectFolder: true\x0d\
-\x0a               \
-                \
-     onAccepted:\
- processCtrl.set\
-LocalDownloading\
-Path(localDownlo\
-adingPathFileDia\
-log.fileUrl)\x0d\x0a  \
-                \
-              }\x0d\
-\x0a\x0d\x0a             \
-                \
-   id: bDownload\
-Path\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Change downloa\
-ding path\x22)\x0d\x0a   \
-                \
-             rig\
-htPadding: 15\x0d\x0a \
-                \
-               l\
-eftPadding: 15\x0d\x0a\
-                \
-                \
-Layout.columnSpa\
-n: 2\x0d\x0a          \
-                \
-      Layout.ali\
-gnment: Qt.Align\
-Right | Qt.Align\
-VCenter\x0d\x0a       \
-                \
-         onClick\
-ed: {\x0d\x0a         \
-                \
-           local\
-DownloadingPathF\
-ileDialog.folder\
- = processCtrl.g\
-etUrlFromNativeP\
-ath(settingsBean\
-.pLocalDownloadi\
-ngPath)\x0d\x0a       \
-                \
-             loc\
-alDownloadingPat\
-hFileDialog.open\
-()\x0d\x0a            \
-                \
-    }\x0d\x0a         \
-                \
-   }\x0d\x0a\x0d\x0a        \
-                \
-    Button {\x0d\x0a  \
-                \
-              id\
-: bLocalSet\x0d\x0a   \
-                \
-             tex\
-t: qsTr(\x22Set loc\
-al configuration\
-\x22)\x0d\x0a            \
-                \
-    Layout.colum\
-nSpan: 2\x0d\x0a      \
-                \
-          Layout\
-.fillWidth: true\
-\x0d\x0a              \
-                \
-  onClicked: set\
-tingsCtrl.savePa\
-rameters()\x0d\x0a    \
+         }\x0d\x0a    \
                 \
         }\x0d\x0a\x0d\x0a   \
                 \
-         Item {\x0d\
-\x0a               \
+         Button \
+{\x0d\x0a             \
                 \
- id: element2\x0d\x0a \
+   id: bLocalSet\
+\x0d\x0a              \
                 \
-               w\
-idth: 200\x0d\x0a     \
+  text: qsTr(\x22Se\
+t local configur\
+ation\x22)\x0d\x0a       \
                 \
-           heigh\
-t: 200\x0d\x0a        \
+         Layout.\
+columnSpan: 2\x0d\x0a \
                 \
-        Layout.f\
-illHeight: true\x0d\
+               L\
+ayout.fillWidth:\
+ true\x0d\x0a         \
+                \
+       onClicked\
+: settingsCtrl.s\
+aveParameters()\x0d\
 \x0a               \
              }\x0d\x0a\
 \x0d\x0a              \
-          }\x0d\x0a   \
+              It\
+em {\x0d\x0a          \
                 \
- }\x0d\x0a\x0d\x0a          \
-          Item {\
+      id: elemen\
+t2\x0d\x0a            \
+                \
+    width: 200\x0d\x0a\
+                \
+                \
+height: 200\x0d\x0a   \
+                \
+             Lay\
+out.fillHeight: \
+true\x0d\x0a          \
+                \
+  }\x0d\x0a\x0d\x0a         \
+               }\
 \x0d\x0a              \
-          id: sp\
-acer2\x0d\x0a         \
-               w\
-idth: 0\x0d\x0a       \
-                \
- height: 0\x0d\x0a    \
-                \
-    Layout.fillH\
-eight: true\x0d\x0a   \
-                \
- }\x0d\x0a\x0d\x0a          \
       }\x0d\x0a\x0d\x0a     \
-       }\x0d\x0a\x0d\x0a    \
-    }\x0d\x0a\x0d\x0a    }\x0d\x0a\
-\x0d\x0a}\x0d\x0a\x0d\x0a\
+               I\
+tem {\x0d\x0a         \
+               i\
+d: spacer2\x0d\x0a    \
+                \
+    width: 0\x0d\x0a  \
+                \
+      height: 0\x0d\
+\x0a               \
+         Layout.\
+fillHeight: true\
+\x0d\x0a              \
+      }\x0d\x0a\x0d\x0a     \
+           }\x0d\x0a\x0d\x0a\
+            }\x0d\x0a\x0d\
+\x0a        }\x0d\x0a\x0d\x0a\x0d\x0a\
+    }\x0d\x0a\x0d\x0a}\x0d\x0a\x0d\x0a\
 "
 
 qt_resource_name = b"\

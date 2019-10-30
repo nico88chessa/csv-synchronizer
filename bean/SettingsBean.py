@@ -19,6 +19,8 @@ class SettingsBean(QObject):
     localDownloadingPathChanged = Signal()
     localWaitTimeBeforeProcessChanged = Signal()
 
+    versionChanged = Signal()
+
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -37,6 +39,8 @@ class SettingsBean(QObject):
         self.__localLoadingPath: str = ""
         self.__localDownloadingPath: str = ""
         self.__localWaitTimeBeforeProcess: int = 1
+
+        self.__version: str = ""
 
     def getCameraRemotePath(self) -> str:
         return self.__cameraRemotePath
@@ -142,6 +146,14 @@ class SettingsBean(QObject):
             self.__localWaitTimeBeforeProcess = waitTimeS
             self.localWaitTimeBeforeProcessChanged.emit()
 
+    def getVersion(self):
+        return self.__version
+
+    def setVersion(self, version: str):
+        if self.__version.lower() != version.lower():
+            self.__version = version
+            self.versionChanged.emit()
+
     pLaserIp = Property(str, getLaserIp, setLaserIp, notify=laserIpChanged)
     pLaserPort = Property(int, getLaserPort, setLaserPort, notify=laserPortChanged)
     pLaserPollingTimeMs = Property(int, getLaserPollingTimeMs, setLaserPollingTimeMs, notify=laserPollingTimeMsChanged)
@@ -162,3 +174,5 @@ class SettingsBean(QObject):
                                      notify=localDownloadingPathChanged)
     pLocalWaitTimeBeforeProcess = Property(int, getLocalWaitTimeBeforeProcess, setLocalWaitTimeBeforeProcess,
                                       notify=localWaitTimeBeforeProcessChanged)
+
+    pVersion = Property(str, getVersion, setVersion, notify=versionChanged)
