@@ -141,12 +141,12 @@ ApplicationWindow {
                         height: 100
                         Layout.fillWidth: true
                         rows: 2
-                        columns: 3
+                        columns: 4
 
                         TextField {
                             id: tfFolderPath
                             text: settingsBean.pLocalLoadingPath
-                            Layout.columnSpan: 2
+                            Layout.columnSpan: 3
                             Layout.fillWidth: true
                             onEditingFinished: processCtrl.setLocalLoadingPath(tfFolderPath.text)
                         }
@@ -196,6 +196,14 @@ ApplicationWindow {
                             text: qsTr("Remove CSV devices")
                             Layout.minimumWidth: 140
                             onClicked: processCtrl.removeCsvFileFromDevices()
+                        }
+
+                        Button {
+                            id: bRemoveErrorFromLaser
+                            width: 120
+                            text: qsTr("Remove Error")
+                            Layout.minimumWidth: 140
+                            onClicked: processCtrl.removeErrorFileFromLaser()
                         }
 
 

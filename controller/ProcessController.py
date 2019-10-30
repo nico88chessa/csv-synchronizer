@@ -264,7 +264,8 @@ class ProcessController(QObject):
 
         except ftplib.all_errors as ftpErr:
             Logger().error("Errore rimozione file: " + str(ftpErr))
-            self.showDialogSignal.emit("Errore cancellazione file csv dal laser")
+            self.showDialogSignal.emit("Errore cancellazione file csv dal laser - " + str(ftpErr))
+        finally:
             ftpController.close()
 
         try:
@@ -277,6 +278,32 @@ class ProcessController(QObject):
                 self.showDialogSignal.emit("Errore cancellazione file csv dalla camera")
 
         Logger().info("Rimozione file cartella laser OK")
+
+    @Slot()
+    def removeErrorFileFromLaser(self):
+        Logger().info("Rimozione file error dal laser")
+
+        ftpController = FTP()
+        ftpController.host = self.__settingsBean.getLaserIp()
+        ftpController.port = self.__settingsBean.getLaserPort()
+        laserFTPRemotePath = self.__settingsBean.getLaserRemotePath()
+        errorFilename = self.__settingsBean.getLocalLaserErrorFilename()
+
+        try:
+            ftpController.connect()
+            ftpController.login()
+            ftpController.cwd(laserFTPRemotePath)
+            Logger().info("Rimozione file: " + errorFilename)
+            ftpController.delete(errorFilename)
+
+        except ftplib.all_errors as ftpErr:
+            Logger().error("Errore rimozione file: " + str(ftpErr))
+            self.showDialogSignal.emit("Errore cancellazione file csv dal laser - "+str(ftpErr))
+        finally:
+            ftpController.close()
+
+        Logger().info("Rimozione file error dal laser")
+
 
     @Slot(bool)
     def changeStopRequestValue(self, stop: bool):
