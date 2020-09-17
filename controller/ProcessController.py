@@ -230,17 +230,22 @@ class ProcessController(QObject):
             self.showDialogSignal.emit("Errore invio file csv al laser")
             return
 
-        # invio il file csv alla camera
-        Logger().info("Invio file " + csvFilename + " alla camera")
-        try:
-            shutil.copy(csvLocalPath, csvCameraPath)
-        except:
-            Logger().error("Impossibile copiare il file csv in camera")
-            self.showDialogSignal.emit("Errore invio file csv alla camera")
-            return
+        if self.__settingsBean.getCameraSendCSV():
+            # invio il file csv alla camera
+            Logger().info("Invio file " + csvFilename + " alla camera")
+            try:
+                shutil.copy(csvLocalPath, csvCameraPath)
+            except:
+                Logger().error("Impossibile copiare il file csv in camera")
+                self.showDialogSignal.emit("Errore invio file csv alla camera")
+                return
+
+            self.showDialogSignal.emit("Invio OK al laser e camera")
+        else:
+            Logger().info("Invio file " + csvFilename + " alla camera non richiesto")
+            self.showDialogSignal.emit("Invio OK al laser")
 
         self.__processBean.setCsvRegThreadCsvNewEmpty(False)
-        self.showDialogSignal.emit("Invio completato correttamente")
 
     @Slot(None)
     def removeCsvFileFromDevices(self):
@@ -357,6 +362,7 @@ class ProcessController(QObject):
             self.__csvRegeneratorThread.setLocalDownloadingPath(self.__settingsBean.getLocalDownloadingPath())
 
             self.__csvRegeneratorThread.setCameraConnectionParameters(self.__settingsBean.getCameraRemotePath())
+            self.__csvRegeneratorThread.setCameraSendCSV(self.__settingsBean.getCameraSendCSV())
 
             self.__csvRegeneratorThread.setCsvFilename(self.__settingsBean.getLocalCsvFilename())
             self.__csvRegeneratorThread.setErrorFilename(self.__settingsBean.getLocalLaserErrorFilename())

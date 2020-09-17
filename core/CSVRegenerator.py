@@ -73,6 +73,7 @@ class CSVRegenerator(QThread):
         self.__laserFTPRemotePath: str = ""
 
         self.__cameraPath: str = ""
+        self.__cameraSendCsv: bool = True
 
         self.__localWaitTimeBeforeStart: int = 1
         self.__localLoadingPath: str = ""
@@ -116,6 +117,14 @@ class CSVRegenerator(QThread):
     def getCameraConnectionParameters(self):
         locker = QMutexLocker(self.__mutex)
         return self.__cameraPath
+
+    def getCameraSendCSV(self):
+        locker = QMutexLocker(self.__mutex)
+        return self.__cameraSendCsv
+
+    def setCameraSendCSV(self, cameraSendCSV: bool):
+        locker = QMutexLocker(self.__mutex)
+        self.__cameraSendCsv = cameraSendCSV
 
     def getLocalWaitTimeBeforeStart(self):
         locker = QMutexLocker(self.__mutex)
@@ -223,6 +232,7 @@ class CSVRegenerator(QThread):
         laserFTPRemotePath = self.__laserFTPRemotePath
 
         cameraPath = self.__cameraPath
+        cameraSendCSV = self.__cameraSendCsv
 
         waitTimeBeforeStart = self.__localWaitTimeBeforeStart
         localDownloadingPath = self.__localDownloadingPath
@@ -239,6 +249,7 @@ class CSVRegenerator(QThread):
         Logger().debug("Laser FTP Port: " + str(laserFTPPort))
         Logger().debug("Laser FTP Remote Path: " + laserFTPRemotePath)
         Logger().debug("Camera Path: " + cameraPath)
+        Logger().debug("Camera Send CSV: " + str(cameraSendCSV))
         Logger().debug("Local Downloading Path: " + localDownloadingPath)
         Logger().debug("Csv Filename: " + csvFilename)
         Logger().debug("Error Filename: " + errorFilename)
@@ -567,20 +578,27 @@ class CSVRegenerator(QThread):
 
             elif stepToProcess == CSVRegeneratorStep.SEND_CSV_TO_CAMERA:
 
-                Logger().info("Invio nuovo file "+csvFilename+" alla camera")
-                self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
+                if cameraSendCSV:
 
-                try:
-                    shutil.copy(csvNewFileLocalPath, csvCameraPath)
-                except:
-                    Logger().error("Impossibile copiare il nuovo fil csv in camera: " + csvNewFileLocalPath)
-                    self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
-                    self.sleep(1)
-                    continue
+                    Logger().info("Invio nuovo file "+csvFilename+" alla camera")
+                    self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.IN_PROGRESS)
 
-                self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
-                stepToProcess += 1
-                Logger().info("Invio nuovo file " + csvFilename + " alla camera OK")
+                    try:
+                        shutil.copy(csvNewFileLocalPath, csvCameraPath)
+                    except:
+                        Logger().error("Impossibile copiare il nuovo fil csv in camera: " + csvNewFileLocalPath)
+                        self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.ENDED_KO)
+                        self.sleep(1)
+                        continue
+
+                    self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
+                    stepToProcess += 1
+                    Logger().info("Invio nuovo file " + csvFilename + " alla camera OK")
+
+                else:
+                    Logger().info("Invio nuovo file " + csvFilename + " alla camera non richiesto")
+                    stepToProcess += 1
+                    self.sendCsvToCameraStepSignal.emit(CSVRegeneratorStepStatus.ENDED_OK)
 
 
         Logger().info("Processo terminato correttamente")

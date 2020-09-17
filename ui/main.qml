@@ -1037,6 +1037,22 @@ ApplicationWindow {
                             }
 
                             Item {
+                                id: element6
+                                width: 0
+                                height: 0
+                                Layout.fillWidth: true
+                            }
+
+                            CheckBox {
+                                id: cbCameraSendCsv
+                                text: qsTr("Send CSV to camera")
+                                checked: settingsBean.pCameraSendCSV
+                                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                leftPadding: 0
+                                onCheckedChanged: settingsBean.pCameraSendCSV = cbCameraSendCsv.checked
+                            }
+
+                            Item {
                                 id: element4
                                 Layout.columnSpan: 2
                                 Layout.fillWidth: false

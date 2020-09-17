@@ -36,6 +36,7 @@ class SettingsController(QObject):
 
         self.__settingsBean.setCameraPollingTimeMs(s.getCameraPollingTimeMs())
         self.__settingsBean.setCameraRemotePath(s.getCameraRemotePath())
+        self.__settingsBean.setCameraSendCSV(s.getCameraSendCSV())
 
         self.__settingsBean.setLocalRowMargin(s.getLocalRowMargin())
         self.__settingsBean.setLocalCsvFilename(s.getLocalCsvFilename())
@@ -53,6 +54,7 @@ class SettingsController(QObject):
         Logger().info("Laser Remote Path: " + self.__settingsBean.getLaserRemotePath())
         Logger().info("Camera Polling Time [ms]: " + str(self.__settingsBean.getCameraPollingTimeMs()))
         Logger().info("Camera Remote Path: " + self.__settingsBean.getCameraRemotePath())
+        Logger().info("Camera Send CSV: " + str(self.__settingsBean.getCameraSendCSV()))
         Logger().info("Local Row Margin: " + str(self.__settingsBean.getLocalRowMargin()))
         Logger().info("Local Csv Filename: " + self.__settingsBean.getLocalCsvFilename())
         Logger().info("Local Laser Error Filename: " + self.__settingsBean.getLocalLaserErrorFilename())
@@ -76,6 +78,7 @@ class SettingsController(QObject):
 
         s.setCameraPollingTimeMs(self.__settingsBean.getCameraPollingTimeMs())
         s.setCameraRemotePath(self.__settingsBean.getCameraRemotePath())
+        s.setCameraSendCSV(self.__settingsBean.getCameraSendCSV())
 
         s.setLocalRowMargin(self.__settingsBean.getLocalRowMargin())
         s.setLocalCsvFilename(self.__settingsBean.getLocalCsvFilename())
@@ -91,6 +94,7 @@ class SettingsController(QObject):
         Logger().info("Laser Remote Path: " + self.__settingsBean.getLaserRemotePath())
         Logger().info("Camera Polling Time [ms]: " + str(self.__settingsBean.getCameraPollingTimeMs()))
         Logger().info("Camera Remote Path: " + self.__settingsBean.getCameraRemotePath())
+        Logger().info("Camera Send CSV: " + str(self.__settingsBean.getCameraSendCSV()))
         Logger().info("Local Row Margin: " + str(self.__settingsBean.getLocalRowMargin()))
         Logger().info("Local Csv Filename: " + self.__settingsBean.getLocalCsvFilename())
         Logger().info("Local Laser Error Filename: " + self.__settingsBean.getLocalLaserErrorFilename())

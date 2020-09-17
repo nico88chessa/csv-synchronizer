@@ -17,7 +17,7 @@ if __name__ == "__main__":
     # Set up the application window
     app = QGuiApplication(sys.argv)
 
-    version = "1.0.1"
+    version = "1.0.2"
 
     app.setOrganizationName("DV")
     app.setApplicationName("CSV-Synchronizer")

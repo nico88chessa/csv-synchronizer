@@ -5,6 +5,7 @@ class SettingsBean(QObject):
 
     cameraRemotePathChanged = Signal()
     cameraPollingTimeMsChanged = Signal()
+    cameraSendCSVChanged = Signal()
 
     laserIpChanged = Signal()
     laserPortChanged = Signal()
@@ -26,6 +27,7 @@ class SettingsBean(QObject):
 
         self.__cameraRemotePath: str = ""
         self.__cameraPollingTimeMs = 0
+        self.__cameraSendCSV = True
 
         self.__laserIp: str = ""
         self.__laserPort: int = 0
@@ -57,6 +59,14 @@ class SettingsBean(QObject):
         if pollingTimeMs != self.__cameraPollingTimeMs:
             self.__cameraPollingTimeMs = pollingTimeMs
             self.cameraPollingTimeMsChanged.emit()
+
+    def getCameraSendCSV(self):
+        return self.__cameraSendCSV
+
+    def setCameraSendCSV(self, sendToCamera):
+        if sendToCamera != self.__cameraSendCSV:
+            self.__cameraSendCSV = sendToCamera
+            self.cameraSendCSVChanged.emit()
 
     def getLaserIp(self):
         return self.__laserIp
@@ -162,6 +172,7 @@ class SettingsBean(QObject):
     pCameraRemotePath = Property(str, getCameraRemotePath, setCameraRemotePath, notify=cameraRemotePathChanged)
     pCameraPollingTimeMs = Property(int, getCameraPollingTimeMs, setCameraPollingTimeMs,
                                     notify=cameraPollingTimeMsChanged)
+    pCameraSendCSV = Property(bool, getCameraSendCSV, setCameraSendCSV, notify=cameraSendCSVChanged)
 
     pLocalRowMargin = Property(int, getLocalRowMargin, setLocalRowMargin, notify=localRowMarginChanged)
     pLocalCsvFilename = Property(str, getLocalCsvFilename, setLocalCsvFilename, notify=localCsvFilenameChanged)

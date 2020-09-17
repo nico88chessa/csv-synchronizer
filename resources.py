@@ -2,7 +2,7 @@
 
 # Resource object code
 #
-# Created: mer ott 30 16:29:37 2019
+# Created: gio set 17 15:34:10 2020
 #      by: The Resource Compiler for PySide2 (Qt v5.13.1)
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,7 +10,7 @@
 from PySide2 import QtCore
 
 qt_resource_data = b"\
-\x00\x00\xe7\xfa\
+\x00\x00\xea\xec\
 \xef\
 \xbb\xbfimport QtQuick\
  2.12\x0d\x0aimport Qt\
@@ -2798,47 +2798,381 @@ TimeMs.text\x0d\x0a   \
           Item {\
 \x0d\x0a              \
                 \
-  id: element4\x0d\x0a\
+  id: element6\x0d\x0a\
+                \
+                \
+width: 0\x0d\x0a      \
+                \
+          height\
+: 0\x0d\x0a           \
+                \
+     Layout.fill\
+Width: true\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+          CheckB\
+ox {\x0d\x0a          \
+                \
+      id: cbCame\
+raSendCsv\x0d\x0a     \
+                \
+           text:\
+ qsTr(\x22Send CSV \
+to camera\x22)\x0d\x0a   \
+                \
+             che\
+cked: settingsBe\
+an.pCameraSendCS\
+V\x0d\x0a             \
+                \
+   Layout.alignm\
+ent: Qt.AlignRig\
+ht | Qt.AlignVCe\
+nter\x0d\x0a          \
+                \
+      leftPaddin\
+g: 0\x0d\x0a          \
+                \
+      onCheckedC\
+hanged: settings\
+Bean.pCameraSend\
+CSV = cbCameraSe\
+ndCsv.checked\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Item\
+ {\x0d\x0a            \
+                \
+    id: element4\
+\x0d\x0a              \
+                \
+  Layout.columnS\
+pan: 2\x0d\x0a        \
+                \
+        Layout.f\
+illWidth: false\x0d\
+\x0a               \
+                \
+ Layout.fillHeig\
+ht: true\x0d\x0a      \
+                \
+          Layout\
+.preferredWidth:\
+ 0\x0d\x0a            \
+                \
+    Layout.prefe\
+rredHeight: 1\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+\x0d\x0a\x0d\x0a\x0d\x0a          \
+              }\x0d\
+\x0a\x0d\x0a             \
+           GridL\
+ayout {\x0d\x0a       \
+                \
+     id: gridLay\
+out3\x0d\x0a          \
+                \
+  Layout.fillWid\
+th: true\x0d\x0a\x0d\x0a    \
+                \
+        Button {\
+\x0d\x0a              \
+                \
+  id: bCameraSet\
+\x0d\x0a              \
+                \
+  text: qsTr(\x22Se\
+t camera configu\
+ration\x22)\x0d\x0a      \
+                \
+          Layout\
+.fillWidth: true\
+\x0d\x0a              \
+                \
+  rightPadding: \
+15\x0d\x0a            \
+                \
+    leftPadding:\
+ 15\x0d\x0a           \
+                \
+     onClicked: \
+settingsCtrl.sav\
+eParameters()\x0d\x0a \
+                \
+           }\x0d\x0a  \
+                \
+      }\x0d\x0a       \
+             }\x0d\x0a\
+\x0d\x0a              \
+      ColumnLayo\
+ut {\x0d\x0a          \
+              id\
+: laserSettingsL\
+ayout\x0d\x0a         \
+               L\
+ayout.fillWidth:\
+ true\x0d\x0a\x0d\x0a       \
+                \
+ GridLayout {\x0d\x0a \
+                \
+           id: g\
+lLaser\x0d\x0a        \
+                \
+    Layout.fillH\
+eight: true\x0d\x0a   \
+                \
+         Layout.\
+fillWidth: true\x0d\
+\x0a               \
+             col\
+umns: 2\x0d\x0a       \
+                \
+     columnSpaci\
+ng: 5\x0d\x0a\x0d\x0a       \
+                \
+     Text {\x0d\x0a   \
+                \
+             id:\
+ tLaserIp\x0d\x0a     \
+                \
+           text:\
+ qsTr(\x22Laser IP\x22\
+)\x0d\x0a             \
+                \
+   Layout.minimu\
+mWidth: 120\x0d\x0a   \
+                \
+             Lay\
+out.fillWidth: f\
+alse\x0d\x0a          \
+                \
+      font.pixel\
+Size: 12\x0d\x0a      \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+       TextField\
+ {\x0d\x0a            \
+                \
+    id: tfLaserI\
+p\x0d\x0a             \
+                \
+   text: setting\
+sBean.pLaserIp\x0d\x0a\
                 \
                 \
 Layout.columnSpa\
-n: 2\x0d\x0a          \
+n: 1\x0d\x0a          \
                 \
       Layout.fil\
-lWidth: false\x0d\x0a \
+lWidth: true\x0d\x0a  \
                 \
-               L\
-ayout.fillHeight\
-: true\x0d\x0a        \
+              pl\
+aceholderText: \x22\
+Laser IP address\
+\x22\x0d\x0a             \
                 \
-        Layout.p\
-referredWidth: 0\
+   inputMask: \x220\
+00.000.000.000\x22\x0d\
+\x0a               \
+                \
+ onEditingFinish\
+ed: settingsBean\
+.pLaserIp = text\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+ext {\x0d\x0a         \
+                \
+       id: tLase\
+rPort\x0d\x0a         \
+                \
+       text: qsT\
+r(\x22Laser port\x22)\x0d\
+\x0a               \
+                \
+ Layout.minimumW\
+idth: 120\x0d\x0a     \
+                \
+           font.\
+pixelSize: 12\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Text\
+Field {\x0d\x0a       \
+                \
+         id: tfL\
+aserPort\x0d\x0a      \
+                \
+          text: \
+\x22%0\x22.arg(setting\
+sBean.pLaserPort\
+)\x0d\x0a             \
+                \
+   Layout.column\
+Span: 1\x0d\x0a       \
+                \
+         Layout.\
+fillWidth: true\x0d\
+\x0a               \
+                \
+ placeholderText\
+: \x22Laser Port\x22\x0d\x0a\
+                \
+                \
+inputMask: \x220000\
+0\x22\x0d\x0a            \
+                \
+    onEditingFin\
+ished: settingsB\
+ean.pLaserPort =\
+ tfLaserPort.tex\
+t\x0d\x0a             \
+               }\
+\x0d\x0a\x0d\x0a            \
+                \
+Text {\x0d\x0a        \
+                \
+        id: tLas\
+erPollingTimeMs\x0d\
+\x0a               \
+                \
+ text: qsTr(\x22Pol\
+ling time [ms]\x22)\
 \x0d\x0a              \
                 \
-  Layout.preferr\
-edHeight: 1\x0d\x0a   \
+  Layout.minimum\
+Width: 120\x0d\x0a    \
                 \
-         }\x0d\x0a\x0d\x0a\x0d\x0a\
-\x0d\x0a\x0d\x0a            \
+            font\
+.pixelSize: 12\x0d\x0a\
+                \
             }\x0d\x0a\x0d\
 \x0a               \
-         GridLay\
-out {\x0d\x0a         \
+             Tex\
+tField {\x0d\x0a      \
                 \
-   id: gridLayou\
-t3\x0d\x0a            \
+          id: tf\
+LaserPollingTime\
+Ms\x0d\x0a            \
                 \
-Layout.fillWidth\
-: true\x0d\x0a\x0d\x0a      \
+    text: settin\
+gsBean.pLaserPol\
+lingTimeMs\x0d\x0a    \
                 \
-      Button {\x0d\x0a\
+            Layo\
+ut.columnSpan: 1\
+\x0d\x0a              \
                 \
+  Layout.fillWid\
+th: true\x0d\x0a      \
                 \
-id: bCameraSet\x0d\x0a\
+          valida\
+tor: IntValidato\
+r {\x0d\x0a           \
                 \
+         bottom:\
+ 100;\x0d\x0a         \
                 \
-text: qsTr(\x22Set \
-camera configura\
+           top: \
+100000;\x0d\x0a       \
+                \
+         }\x0d\x0a    \
+                \
+            onEd\
+itingFinished: s\
+ettingsBean.pLas\
+erPollingTimeMs \
+= tfLaserPolling\
+TimeMs.text\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+          Text {\
+\x0d\x0a              \
+                \
+  id: tLaserRemo\
+tePath\x0d\x0a        \
+                \
+        text: qs\
+Tr(\x22Laser remote\
+ path\x22)\x0d\x0a       \
+                \
+         font.pi\
+xelSize: 12\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+          TextFi\
+eld {\x0d\x0a         \
+                \
+       id: tfLas\
+erRemotePath\x0d\x0a  \
+                \
+              te\
+xt: settingsBean\
+.pLaserRemotePat\
+h\x0d\x0a             \
+                \
+   Layout.fillWi\
+dth: true\x0d\x0a     \
+                \
+           onEdi\
+tingFinished: se\
+ttingsBean.pLase\
+rRemotePath = tf\
+LaserRemotePath.\
+text\x0d\x0a          \
+                \
+  }\x0d\x0a\x0d\x0a         \
+                \
+   Item {\x0d\x0a     \
+                \
+           id: e\
+lement3\x0d\x0a       \
+                \
+         Layout.\
+columnSpan: 2\x0d\x0a \
+                \
+               L\
+ayout.preferredH\
+eight: 1\x0d\x0a      \
+                \
+          Layout\
+.preferredWidth:\
+ 0\x0d\x0a            \
+                \
+    Layout.fillH\
+eight: true\x0d\x0a   \
+                \
+         }\x0d\x0a\x0d\x0a  \
+                \
+      }\x0d\x0a\x0d\x0a     \
+                \
+   GridLayout {\x0d\
+\x0a               \
+             id:\
+ gridLayout1\x0d\x0a  \
+                \
+          column\
+s: 2\x0d\x0a          \
+                \
+  Layout.fillWid\
+th: true\x0d\x0a\x0d\x0a    \
+                \
+        Button {\
+\x0d\x0a              \
+                \
+  id: bLaserSet\x0d\
+\x0a               \
+                \
+ text: qsTr(\x22Set\
+ laser configura\
 tion\x22)\x0d\x0a        \
                 \
         Layout.f\
@@ -2855,609 +3189,52 @@ rightPadding: 15\
 ttingsCtrl.saveP\
 arameters()\x0d\x0a   \
                 \
-         }\x0d\x0a    \
-                \
-    }\x0d\x0a         \
-           }\x0d\x0a\x0d\x0a\
-                \
-    ColumnLayout\
- {\x0d\x0a            \
-            id: \
-laserSettingsLay\
-out\x0d\x0a           \
-             Lay\
-out.fillWidth: t\
-rue\x0d\x0a\x0d\x0a         \
-               G\
-ridLayout {\x0d\x0a   \
-                \
-         id: glL\
-aser\x0d\x0a          \
-                \
-  Layout.fillHei\
-ght: true\x0d\x0a     \
-                \
-       Layout.fi\
-llWidth: true\x0d\x0a \
-                \
-           colum\
-ns: 2\x0d\x0a         \
-                \
-   columnSpacing\
-: 5\x0d\x0a\x0d\x0a         \
-                \
-   Text {\x0d\x0a     \
-                \
-           id: t\
-LaserIp\x0d\x0a       \
-                \
-         text: q\
-sTr(\x22Laser IP\x22)\x0d\
-\x0a               \
-                \
- Layout.minimumW\
-idth: 120\x0d\x0a     \
-                \
-           Layou\
-t.fillWidth: fal\
-se\x0d\x0a            \
-                \
-    font.pixelSi\
-ze: 12\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
-     TextField {\
-\x0d\x0a              \
-                \
-  id: tfLaserIp\x0d\
-\x0a               \
-                \
- text: settingsB\
-ean.pLaserIp\x0d\x0a  \
-                \
-              La\
-yout.columnSpan:\
- 1\x0d\x0a            \
-                \
-    Layout.fillW\
-idth: true\x0d\x0a    \
-                \
-            plac\
-eholderText: \x22La\
-ser IP address\x22\x0d\
-\x0a               \
-                \
- inputMask: \x22000\
-.000.000.000\x22\x0d\x0a \
-                \
-               o\
-nEditingFinished\
-: settingsBean.p\
-LaserIp = text\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-t {\x0d\x0a           \
-                \
-     id: tLaserP\
-ort\x0d\x0a           \
-                \
-     text: qsTr(\
-\x22Laser port\x22)\x0d\x0a \
-                \
-               L\
-ayout.minimumWid\
-th: 120\x0d\x0a       \
-                \
-         font.pi\
-xelSize: 12\x0d\x0a   \
-                \
          }\x0d\x0a\x0d\x0a  \
                 \
-          TextFi\
-eld {\x0d\x0a         \
+      }\x0d\x0a\x0d\x0a     \
+               }\
+\x0d\x0a\x0d\x0a            \
+        ColumnLa\
+yout {\x0d\x0a        \
                 \
-       id: tfLas\
-erPort\x0d\x0a        \
+id: localSetting\
+sLayoutL\x0d\x0a      \
                 \
-        text: \x22%\
-0\x22.arg(settingsB\
-ean.pLaserPort)\x0d\
-\x0a               \
+  width: 100\x0d\x0a  \
                 \
- Layout.columnSp\
-an: 1\x0d\x0a         \
+      height: 10\
+0\x0d\x0a             \
+           Layou\
+t.fillHeight: tr\
+ue\x0d\x0a            \
+            Layo\
+ut.columnSpan: 1\
+\x0d\x0a\x0d\x0a            \
+            Grid\
+Layout {\x0d\x0a      \
                 \
-       Layout.fi\
-llWidth: true\x0d\x0a \
+      id: gridLa\
+yout4\x0d\x0a         \
                 \
-               p\
-laceholderText: \
-\x22Laser Port\x22\x0d\x0a  \
+   width: 100\x0d\x0a \
                 \
-              in\
-putMask: \x2200000\x22\
-\x0d\x0a              \
+           heigh\
+t: 100\x0d\x0a        \
                 \
-  onEditingFinis\
-hed: settingsBea\
-n.pLaserPort = t\
-fLaserPort.text\x0d\
-\x0a               \
-             }\x0d\x0a\
+    columns: 2\x0d\x0a\
 \x0d\x0a              \
               Te\
 xt {\x0d\x0a          \
                 \
-      id: tLaser\
-PollingTimeMs\x0d\x0a \
-                \
-               t\
-ext: qsTr(\x22Polli\
-ng time [ms]\x22)\x0d\x0a\
-                \
-                \
-Layout.minimumWi\
-dth: 120\x0d\x0a      \
-                \
-          font.p\
-ixelSize: 12\x0d\x0a  \
-                \
-          }\x0d\x0a\x0d\x0a \
-                \
-           TextF\
-ield {\x0d\x0a        \
-                \
-        id: tfLa\
-serPollingTimeMs\
-\x0d\x0a              \
-                \
-  text: settings\
-Bean.pLaserPolli\
-ngTimeMs\x0d\x0a      \
-                \
-          Layout\
-.columnSpan: 1\x0d\x0a\
-                \
-                \
-Layout.fillWidth\
-: true\x0d\x0a        \
-                \
-        validato\
-r: IntValidator \
-{\x0d\x0a             \
-                \
-       bottom: 1\
-00;\x0d\x0a           \
-                \
-         top: 10\
-0000;\x0d\x0a         \
-                \
-       }\x0d\x0a      \
-                \
-          onEdit\
-ingFinished: set\
-tingsBean.pLaser\
-PollingTimeMs = \
-tfLaserPollingTi\
-meMs.text\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
-                \
-                \
-id: tLaserRemote\
-Path\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Laser remote p\
-ath\x22)\x0d\x0a         \
-                \
-       font.pixe\
-lSize: 12\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        TextFiel\
-d {\x0d\x0a           \
-                \
-     id: tfLaser\
-RemotePath\x0d\x0a    \
-                \
-            text\
-: settingsBean.p\
-LaserRemotePath\x0d\
-\x0a               \
-                \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLaserR\
-emotePath = tfLa\
-serRemotePath.te\
-xt\x0d\x0a            \
-                \
-}\x0d\x0a\x0d\x0a           \
-                \
- Item {\x0d\x0a       \
-                \
-         id: ele\
-ment3\x0d\x0a         \
-                \
-       Layout.co\
-lumnSpan: 2\x0d\x0a   \
-                \
-             Lay\
-out.preferredHei\
-ght: 1\x0d\x0a        \
-                \
-        Layout.p\
-referredWidth: 0\
-\x0d\x0a              \
-                \
-  Layout.fillHei\
-ght: true\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
- GridLayout {\x0d\x0a \
-                \
-           id: g\
-ridLayout1\x0d\x0a    \
-                \
-        columns:\
- 2\x0d\x0a            \
-                \
-Layout.fillWidth\
-: true\x0d\x0a\x0d\x0a      \
-                \
-      Button {\x0d\x0a\
-                \
-                \
-id: bLaserSet\x0d\x0a \
-                \
-               t\
-ext: qsTr(\x22Set l\
-aser configurati\
-on\x22)\x0d\x0a          \
-                \
-      Layout.fil\
-lWidth: true\x0d\x0a  \
-                \
-              ri\
-ghtPadding: 15\x0d\x0a\
-                \
-                \
-leftPadding: 15\x0d\
-\x0a               \
-                \
- onClicked: sett\
-ingsCtrl.savePar\
-ameters()\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-    }\x0d\x0a\x0d\x0a       \
-             }\x0d\x0a\
-\x0d\x0a              \
-      ColumnLayo\
-ut {\x0d\x0a          \
-              id\
-: localSettingsL\
-ayoutL\x0d\x0a        \
-                \
-width: 100\x0d\x0a    \
-                \
-    height: 100\x0d\
-\x0a               \
-         Layout.\
-fillHeight: true\
-\x0d\x0a              \
-          Layout\
-.columnSpan: 1\x0d\x0a\
-\x0d\x0a              \
-          GridLa\
-yout {\x0d\x0a        \
-                \
-    id: gridLayo\
-ut4\x0d\x0a           \
-                \
- width: 100\x0d\x0a   \
-                \
-         height:\
- 100\x0d\x0a          \
-                \
-  columns: 2\x0d\x0a\x0d\x0a\
-                \
-            Text\
- {\x0d\x0a            \
-                \
-    id: tRigheSc\
-arto\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Righe scarto\x22)\
-\x0d\x0a              \
-                \
-  Layout.minimum\
-Width: 120\x0d\x0a    \
-                \
-            font\
-.pixelSize: 12\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-tField {\x0d\x0a      \
-                \
-          id: tf\
-RigheScarto\x0d\x0a   \
-                \
-             tex\
-t: settingsBean.\
-pLocalRowMargin\x0d\
-\x0a               \
-                \
- validator: IntV\
-alidator {\x0d\x0a    \
-                \
-                \
-bottom: 0;\x0d\x0a    \
-                \
-                \
-top: 20;\x0d\x0a      \
-                \
-          }\x0d\x0a   \
-                \
-             onE\
-ditingFinished: \
-settingsBean.pLo\
-calRowMargin = t\
-fRigheScarto.tex\
-t\x0d\x0a             \
-                \
-   Layout.fillWi\
-dth: true\x0d\x0a     \
-                \
-       }\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
-                \
-                \
-id: tWaitTimeBef\
-oreProcess\x0d\x0a    \
-                \
-            text\
-: qsTr(\x22Wait tim\
-e before process\
- [s]\x22)\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         TextFie\
-ld {\x0d\x0a          \
-                \
-      id: tfWait\
-TimeBeforeProces\
-s\x0d\x0a             \
-                \
-   text: setting\
-sBean.pLocalWait\
-TimeBeforeProces\
-s\x0d\x0a             \
-                \
-   validator: In\
-tValidator {\x0d\x0a  \
-                \
-                \
-  bottom: 1;\x0d\x0a  \
-                \
-                \
-  top: 20;\x0d\x0a    \
-                \
-            }\x0d\x0a \
-                \
-               o\
-nEditingFinished\
-: settingsBean.p\
-LocalWaitTimeBef\
-oreProcess = tfW\
-aitTimeBeforePro\
-cess.text\x0d\x0a     \
-                \
-           Layou\
-t.fillWidth: tru\
-e\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-Text {\x0d\x0a        \
-                \
-        id: tCsv\
-Filename\x0d\x0a      \
-                \
-          text: \
-qsTr(\x22Nome file \
-CSV\x22)\x0d\x0a         \
-                \
-       Layout.mi\
-nimumWidth: 120\x0d\
-\x0a               \
-                \
- font.pixelSize:\
- 12\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  TextField {\x0d\x0a \
-                \
-               i\
-d: tfCsvFilename\
-\x0d\x0a              \
-                \
-  text: settings\
-Bean.pLocalCsvFi\
-lename\x0d\x0a        \
-                \
-        Layout.f\
-illWidth: true\x0d\x0a\
-                \
-                \
-onEditingFinishe\
-d: settingsBean.\
-pLocalCsvFilenam\
-e = tfCsvFilenam\
-e.text\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
-     Text {\x0d\x0a   \
-                \
-             id:\
- tLaserErrorFile\
-name\x0d\x0a          \
-                \
-      text: qsTr\
-(\x22Nome file erro\
-re laser\x22)\x0d\x0a    \
-                \
-            font\
-.pixelSize: 12\x0d\x0a\
-                \
-            }\x0d\x0a\x0d\
-\x0a               \
-             Tex\
-tField {\x0d\x0a      \
-                \
-          id: tf\
-LaserErrorFilena\
-me\x0d\x0a            \
-                \
-    text: settin\
-gsBean.pLocalLas\
-erErrorFilename\x0d\
-\x0a               \
-                \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLocalL\
-aserErrorFilenam\
-e = tfLaserError\
-Filename.text\x0d\x0a \
-                \
-           }\x0d\x0a\x0d\x0a\
-                \
-            Text\
- {\x0d\x0a            \
-                \
-    id: tLaserLo\
-gFilename\x0d\x0a     \
-                \
-           text:\
- qsTr(\x22Nome file\
- log\x22)\x0d\x0a        \
-                \
-        font.pix\
-elSize: 12\x0d\x0a    \
-                \
-        }\x0d\x0a\x0d\x0a   \
-                \
-         TextFie\
-ld {\x0d\x0a          \
-                \
-      id: tfLase\
-rLogFilename\x0d\x0a  \
-                \
-              te\
-xt: settingsBean\
-.pLocalLaserLogF\
-ilename\x0d\x0a       \
-                \
-         Layout.\
-fillWidth: true\x0d\
-\x0a               \
-                \
- onEditingFinish\
-ed: settingsBean\
-.pLocalLaserLogF\
-ilename = tfLase\
-rLogFilename.tex\
-t\x0d\x0a             \
-               }\
-\x0d\x0a\x0d\x0a            \
-                \
-Item {\x0d\x0a        \
-                \
-        id: elem\
-ent5\x0d\x0a          \
-                \
-      width: 200\
-\x0d\x0a              \
-                \
-  height: 200\x0d\x0a \
-                \
-               L\
-ayout.fillHeight\
-: true\x0d\x0a        \
-                \
-    }\x0d\x0a\x0d\x0a       \
-                \
- }\x0d\x0a            \
-        }\x0d\x0a\x0d\x0a   \
-                \
- ColumnLayout {\x0d\
-\x0a               \
-         id: loc\
-alSettingsLayout\
-R\x0d\x0a             \
-           width\
-: 100\x0d\x0a         \
-               h\
-eight: 100\x0d\x0a    \
-                \
-    Layout.fillW\
-idth: true\x0d\x0a    \
-                \
-    Layout.colum\
-nSpan: 1\x0d\x0a\x0d\x0a    \
-                \
-    GridLayout {\
-\x0d\x0a              \
-              id\
-: gridLayout5\x0d\x0a \
-                \
-           width\
-: 100\x0d\x0a         \
-                \
-   height: 100\x0d\x0a\
-                \
-            colu\
-mns: 2\x0d\x0a        \
-                \
-    Layout.colum\
-nSpan: 1\x0d\x0a\x0d\x0a    \
-                \
-        Text {\x0d\x0a\
-                \
-                \
-id: tLoadingPath\
-\x0d\x0a              \
-                \
-  text: qsTr(\x22Lo\
-ading path\x22)\x0d\x0a  \
+      id: tRighe\
+Scarto\x0d\x0a        \
+                \
+        text: qs\
+Tr(\x22Righe scarto\
+\x22)\x0d\x0a            \
+                \
+    Layout.minim\
+umWidth: 120\x0d\x0a  \
                 \
               fo\
 nt.pixelSize: 12\
@@ -3468,262 +3245,532 @@ nt.pixelSize: 12\
 extField {\x0d\x0a    \
                 \
             id: \
-tfLoadingPath\x0d\x0a \
+tfRigheScarto\x0d\x0a \
                 \
                t\
 ext: settingsBea\
-n.pLocalLoadingP\
-ath\x0d\x0a           \
+n.pLocalRowMargi\
+n\x0d\x0a             \
+                \
+   validator: In\
+tValidator {\x0d\x0a  \
+                \
+                \
+  bottom: 0;\x0d\x0a  \
+                \
+                \
+  top: 20;\x0d\x0a    \
+                \
+            }\x0d\x0a \
+                \
+               o\
+nEditingFinished\
+: settingsBean.p\
+LocalRowMargin =\
+ tfRigheScarto.t\
+ext\x0d\x0a           \
                 \
      Layout.fill\
 Width: true\x0d\x0a   \
-                \
-             onE\
-ditingFinished: \
-processCtrl.setL\
-ocalLoadingPath(\
-tfLoadingPath.te\
-xt)\x0d\x0a           \
-                \
- }\x0d\x0a\x0d\x0a          \
-                \
-  Button {\x0d\x0a\x0d\x0a  \
-                \
-              Fi\
-leDialog {\x0d\x0a    \
-                \
-                \
-id: localLoading\
-PathFileDialog2\x0d\
-\x0a               \
-                \
-     title: qsTr\
-(\x22Choose a folde\
-r\x22)\x0d\x0a           \
-                \
-         selectF\
-older: true\x0d\x0a   \
-                \
-                \
- onAccepted: pro\
-cessCtrl.setLoca\
-lLoadingPath(loc\
-alLoadingPathFil\
-eDialog2.fileUrl\
-)\x0d\x0a             \
-                \
-   }\x0d\x0a\x0d\x0a        \
-                \
-        id: bLoa\
-dingPath\x0d\x0a      \
-                \
-          text: \
-qsTr(\x22Change loa\
-ding path\x22)\x0d\x0a   \
-                \
-             rig\
-htPadding: 15\x0d\x0a \
-                \
-               l\
-eftPadding: 15\x0d\x0a\
-                \
-                \
-Layout.alignment\
-: Qt.AlignRight \
-| Qt.AlignVCente\
-r\x0d\x0a             \
-                \
-   Layout.column\
-Span: 2\x0d\x0a       \
-                \
-         onClick\
-ed: {\x0d\x0a         \
-                \
-           local\
-LoadingPathFileD\
-ialog2.folder = \
-processCtrl.getU\
-rlFromNativePath\
-(settingsBean.pL\
-ocalLoadingPath)\
-\x0d\x0a              \
-                \
-      localLoadi\
-ngPathFileDialog\
-2.open()\x0d\x0a      \
-                \
-          }\x0d\x0a   \
                 \
          }\x0d\x0a\x0d\x0a  \
                 \
           Text {\
 \x0d\x0a              \
                 \
-  id: tDownloadP\
-ath\x0d\x0a           \
+  id: tWaitTimeB\
+eforeProcess\x0d\x0a  \
                 \
-     text: qsTr(\
-\x22Downloading pat\
-h\x22)\x0d\x0a           \
+              te\
+xt: qsTr(\x22Wait t\
+ime before proce\
+ss [s]\x22)\x0d\x0a      \
                 \
-     font.pixelS\
-ize: 12\x0d\x0a       \
+          font.p\
+ixelSize: 12\x0d\x0a  \
                 \
-     }\x0d\x0a\x0d\x0a      \
+          }\x0d\x0a\x0d\x0a \
                 \
-      TextField \
-{\x0d\x0a             \
+           TextF\
+ield {\x0d\x0a        \
                 \
-   id: tfDownloa\
-dPath\x0d\x0a         \
+        id: tfWa\
+itTimeBeforeProc\
+ess\x0d\x0a           \
                 \
-       text: set\
-tingsBean.pLocal\
-DownloadingPath\x0d\
-\x0a               \
+     text: setti\
+ngsBean.pLocalWa\
+itTimeBeforeProc\
+ess\x0d\x0a           \
                 \
- Layout.fillWidt\
-h: true\x0d\x0a       \
-                \
-         onEditi\
-ngFinished: sett\
-ingsBean.pLocalD\
-ownloadingPath =\
- tfDownloadPath.\
-text\x0d\x0a          \
-                \
-  }\x0d\x0a\x0d\x0a         \
-                \
-   Button {\x0d\x0a\x0d\x0a \
-                \
-               F\
-ileDialog {\x0d\x0a   \
+     validator: \
+IntValidator {\x0d\x0a\
                 \
                 \
- id: localDownlo\
-adingPathFileDia\
-log\x0d\x0a           \
+    bottom: 1;\x0d\x0a\
                 \
-         title: \
-qsTr(\x22Choose a f\
-older\x22)\x0d\x0a       \
                 \
-             sel\
-ectFolder: true\x0d\
-\x0a               \
-                \
-     onAccepted:\
- processCtrl.set\
-LocalDownloading\
-Path(localDownlo\
-adingPathFileDia\
-log.fileUrl)\x0d\x0a  \
+    top: 20;\x0d\x0a  \
                 \
               }\x0d\
-\x0a\x0d\x0a             \
+\x0a               \
                 \
-   id: bDownload\
-Path\x0d\x0a          \
+ onEditingFinish\
+ed: settingsBean\
+.pLocalWaitTimeB\
+eforeProcess = t\
+fWaitTimeBeforeP\
+rocess.text\x0d\x0a   \
                 \
-      text: qsTr\
-(\x22Change downloa\
-ding path\x22)\x0d\x0a   \
+             Lay\
+out.fillWidth: t\
+rue\x0d\x0a           \
                 \
-             rig\
-htPadding: 15\x0d\x0a \
+ }\x0d\x0a\x0d\x0a          \
                 \
-               l\
-eftPadding: 15\x0d\x0a\
+  Text {\x0d\x0a      \
                 \
+          id: tC\
+svFilename\x0d\x0a    \
                 \
-Layout.columnSpa\
-n: 2\x0d\x0a          \
+            text\
+: qsTr(\x22Nome fil\
+e CSV\x22)\x0d\x0a       \
                 \
-      Layout.ali\
-gnment: Qt.Align\
-Right | Qt.Align\
-VCenter\x0d\x0a       \
+         Layout.\
+minimumWidth: 12\
+0\x0d\x0a             \
                 \
-         onClick\
-ed: {\x0d\x0a         \
-                \
-           local\
-DownloadingPathF\
-ileDialog.folder\
- = processCtrl.g\
-etUrlFromNativeP\
-ath(settingsBean\
-.pLocalDownloadi\
-ngPath)\x0d\x0a       \
-                \
-             loc\
-alDownloadingPat\
-hFileDialog.open\
-()\x0d\x0a            \
-                \
-    }\x0d\x0a         \
+   font.pixelSiz\
+e: 12\x0d\x0a         \
                 \
    }\x0d\x0a\x0d\x0a        \
                 \
-    Button {\x0d\x0a  \
+    TextField {\x0d\
+\x0a               \
                 \
-              id\
-: bLocalSet\x0d\x0a   \
+ id: tfCsvFilena\
+me\x0d\x0a            \
                 \
-             tex\
-t: qsTr(\x22Set loc\
-al configuration\
-\x22)\x0d\x0a            \
-                \
-    Layout.colum\
-nSpan: 2\x0d\x0a      \
+    text: settin\
+gsBean.pLocalCsv\
+Filename\x0d\x0a      \
                 \
           Layout\
 .fillWidth: true\
 \x0d\x0a              \
                 \
-  onClicked: set\
-tingsCtrl.savePa\
-rameters()\x0d\x0a    \
+  onEditingFinis\
+hed: settingsBea\
+n.pLocalCsvFilen\
+ame = tfCsvFilen\
+ame.text\x0d\x0a      \
                 \
-        }\x0d\x0a\x0d\x0a   \
+      }\x0d\x0a\x0d\x0a     \
                 \
-         Item {\x0d\
-\x0a               \
+       Text {\x0d\x0a \
                 \
- id: element2\x0d\x0a \
+               i\
+d: tLaserErrorFi\
+lename\x0d\x0a        \
                 \
-               w\
-idth: 200\x0d\x0a     \
+        text: qs\
+Tr(\x22Nome file er\
+rore laser\x22)\x0d\x0a  \
                 \
-           heigh\
-t: 200\x0d\x0a        \
+              fo\
+nt.pixelSize: 12\
+\x0d\x0a              \
+              }\x0d\
+\x0a\x0d\x0a             \
+               T\
+extField {\x0d\x0a    \
                 \
-        Layout.f\
-illHeight: true\x0d\
+            id: \
+tfLaserErrorFile\
+name\x0d\x0a          \
+                \
+      text: sett\
+ingsBean.pLocalL\
+aserErrorFilenam\
+e\x0d\x0a             \
+                \
+   Layout.fillWi\
+dth: true\x0d\x0a     \
+                \
+           onEdi\
+tingFinished: se\
+ttingsBean.pLoca\
+lLaserErrorFilen\
+ame = tfLaserErr\
+orFilename.text\x0d\
 \x0a               \
              }\x0d\x0a\
 \x0d\x0a              \
-          }\x0d\x0a   \
+              Te\
+xt {\x0d\x0a          \
+                \
+      id: tLaser\
+LogFilename\x0d\x0a   \
+                \
+             tex\
+t: qsTr(\x22Nome fi\
+le log\x22)\x0d\x0a      \
+                \
+          font.p\
+ixelSize: 12\x0d\x0a  \
+                \
+          }\x0d\x0a\x0d\x0a \
+                \
+           TextF\
+ield {\x0d\x0a        \
+                \
+        id: tfLa\
+serLogFilename\x0d\x0a\
+                \
+                \
+text: settingsBe\
+an.pLocalLaserLo\
+gFilename\x0d\x0a     \
+                \
+           Layou\
+t.fillWidth: tru\
+e\x0d\x0a             \
+                \
+   onEditingFini\
+shed: settingsBe\
+an.pLocalLaserLo\
+gFilename = tfLa\
+serLogFilename.t\
+ext\x0d\x0a           \
                 \
  }\x0d\x0a\x0d\x0a          \
-          Item {\
-\x0d\x0a              \
-          id: sp\
-acer2\x0d\x0a         \
-               w\
-idth: 0\x0d\x0a       \
                 \
- height: 0\x0d\x0a    \
+  Item {\x0d\x0a      \
                 \
-    Layout.fillH\
-eight: true\x0d\x0a   \
+          id: el\
+ement5\x0d\x0a        \
                 \
- }\x0d\x0a\x0d\x0a          \
+        width: 2\
+00\x0d\x0a            \
+                \
+    height: 200\x0d\
+\x0a               \
+                \
+ Layout.fillHeig\
+ht: true\x0d\x0a      \
+                \
       }\x0d\x0a\x0d\x0a     \
+                \
+   }\x0d\x0a          \
+          }\x0d\x0a\x0d\x0a \
+                \
+   ColumnLayout \
+{\x0d\x0a             \
+           id: l\
+ocalSettingsLayo\
+utR\x0d\x0a           \
+             wid\
+th: 100\x0d\x0a       \
+                \
+ height: 100\x0d\x0a  \
+                \
+      Layout.fil\
+lWidth: true\x0d\x0a  \
+                \
+      Layout.col\
+umnSpan: 1\x0d\x0a\x0d\x0a  \
+                \
+      GridLayout\
+ {\x0d\x0a            \
+                \
+id: gridLayout5\x0d\
+\x0a               \
+             wid\
+th: 100\x0d\x0a       \
+                \
+     height: 100\
+\x0d\x0a              \
+              co\
+lumns: 2\x0d\x0a      \
+                \
+      Layout.col\
+umnSpan: 1\x0d\x0a\x0d\x0a  \
+                \
+          Text {\
+\x0d\x0a              \
+                \
+  id: tLoadingPa\
+th\x0d\x0a            \
+                \
+    text: qsTr(\x22\
+Loading path\x22)\x0d\x0a\
+                \
+                \
+font.pixelSize: \
+12\x0d\x0a            \
+                \
+}\x0d\x0a\x0d\x0a           \
+                \
+ TextField {\x0d\x0a  \
+                \
+              id\
+: tfLoadingPath\x0d\
+\x0a               \
+                \
+ text: settingsB\
+ean.pLocalLoadin\
+gPath\x0d\x0a         \
+                \
+       Layout.fi\
+llWidth: true\x0d\x0a \
+                \
+               o\
+nEditingFinished\
+: processCtrl.se\
+tLocalLoadingPat\
+h(tfLoadingPath.\
+text)\x0d\x0a         \
+                \
+   }\x0d\x0a\x0d\x0a        \
+                \
+    Button {\x0d\x0a\x0d\x0a\
+                \
+                \
+FileDialog {\x0d\x0a  \
+                \
+                \
+  id: localLoadi\
+ngPathFileDialog\
+2\x0d\x0a             \
+                \
+       title: qs\
+Tr(\x22Choose a fol\
+der\x22)\x0d\x0a         \
+                \
+           selec\
+tFolder: true\x0d\x0a \
+                \
+                \
+   onAccepted: p\
+rocessCtrl.setLo\
+calLoadingPath(l\
+ocalLoadingPathF\
+ileDialog2.fileU\
+rl)\x0d\x0a           \
+                \
+     }\x0d\x0a\x0d\x0a      \
+                \
+          id: bL\
+oadingPath\x0d\x0a    \
+                \
+            text\
+: qsTr(\x22Change l\
+oading path\x22)\x0d\x0a \
+                \
+               r\
+ightPadding: 15\x0d\
+\x0a               \
+                \
+ leftPadding: 15\
+\x0d\x0a              \
+                \
+  Layout.alignme\
+nt: Qt.AlignRigh\
+t | Qt.AlignVCen\
+ter\x0d\x0a           \
+                \
+     Layout.colu\
+mnSpan: 2\x0d\x0a     \
+                \
+           onCli\
+cked: {\x0d\x0a       \
+                \
+             loc\
+alLoadingPathFil\
+eDialog2.folder \
+= processCtrl.ge\
+tUrlFromNativePa\
+th(settingsBean.\
+pLocalLoadingPat\
+h)\x0d\x0a            \
+                \
+        localLoa\
+dingPathFileDial\
+og2.open()\x0d\x0a    \
+                \
+            }\x0d\x0a \
+                \
+           }\x0d\x0a\x0d\x0a\
+                \
+            Text\
+ {\x0d\x0a            \
+                \
+    id: tDownloa\
+dPath\x0d\x0a         \
+                \
+       text: qsT\
+r(\x22Downloading p\
+ath\x22)\x0d\x0a         \
+                \
+       font.pixe\
+lSize: 12\x0d\x0a     \
+                \
        }\x0d\x0a\x0d\x0a    \
-    }\x0d\x0a\x0d\x0a\x0d\x0a    }\
-\x0d\x0a\x0d\x0a}\x0d\x0a\x0d\x0a\
+                \
+        TextFiel\
+d {\x0d\x0a           \
+                \
+     id: tfDownl\
+oadPath\x0d\x0a       \
+                \
+         text: s\
+ettingsBean.pLoc\
+alDownloadingPat\
+h\x0d\x0a             \
+                \
+   Layout.fillWi\
+dth: true\x0d\x0a     \
+                \
+           onEdi\
+tingFinished: se\
+ttingsBean.pLoca\
+lDownloadingPath\
+ = tfDownloadPat\
+h.text\x0d\x0a        \
+                \
+    }\x0d\x0a\x0d\x0a       \
+                \
+     Button {\x0d\x0a\x0d\
+\x0a               \
+                \
+ FileDialog {\x0d\x0a \
+                \
+                \
+   id: localDown\
+loadingPathFileD\
+ialog\x0d\x0a         \
+                \
+           title\
+: qsTr(\x22Choose a\
+ folder\x22)\x0d\x0a     \
+                \
+               s\
+electFolder: tru\
+e\x0d\x0a             \
+                \
+       onAccepte\
+d: processCtrl.s\
+etLocalDownloadi\
+ngPath(localDown\
+loadingPathFileD\
+ialog.fileUrl)\x0d\x0a\
+                \
+                \
+}\x0d\x0a\x0d\x0a           \
+                \
+     id: bDownlo\
+adPath\x0d\x0a        \
+                \
+        text: qs\
+Tr(\x22Change downl\
+oading path\x22)\x0d\x0a \
+                \
+               r\
+ightPadding: 15\x0d\
+\x0a               \
+                \
+ leftPadding: 15\
+\x0d\x0a              \
+                \
+  Layout.columnS\
+pan: 2\x0d\x0a        \
+                \
+        Layout.a\
+lignment: Qt.Ali\
+gnRight | Qt.Ali\
+gnVCenter\x0d\x0a     \
+                \
+           onCli\
+cked: {\x0d\x0a       \
+                \
+             loc\
+alDownloadingPat\
+hFileDialog.fold\
+er = processCtrl\
+.getUrlFromNativ\
+ePath(settingsBe\
+an.pLocalDownloa\
+dingPath)\x0d\x0a     \
+                \
+               l\
+ocalDownloadingP\
+athFileDialog.op\
+en()\x0d\x0a          \
+                \
+      }\x0d\x0a       \
+                \
+     }\x0d\x0a\x0d\x0a      \
+                \
+      Button {\x0d\x0a\
+                \
+                \
+id: bLocalSet\x0d\x0a \
+                \
+               t\
+ext: qsTr(\x22Set l\
+ocal configurati\
+on\x22)\x0d\x0a          \
+                \
+      Layout.col\
+umnSpan: 2\x0d\x0a    \
+                \
+            Layo\
+ut.fillWidth: tr\
+ue\x0d\x0a            \
+                \
+    onClicked: s\
+ettingsCtrl.save\
+Parameters()\x0d\x0a  \
+                \
+          }\x0d\x0a\x0d\x0a \
+                \
+           Item \
+{\x0d\x0a             \
+                \
+   id: element2\x0d\
+\x0a               \
+                \
+ width: 200\x0d\x0a   \
+                \
+             hei\
+ght: 200\x0d\x0a      \
+                \
+          Layout\
+.fillHeight: tru\
+e\x0d\x0a             \
+               }\
+\x0d\x0a\x0d\x0a            \
+            }\x0d\x0a \
+                \
+   }\x0d\x0a\x0d\x0a        \
+            Item\
+ {\x0d\x0a            \
+            id: \
+spacer2\x0d\x0a       \
+                \
+ width: 0\x0d\x0a     \
+                \
+   height: 0\x0d\x0a  \
+                \
+      Layout.fil\
+lHeight: true\x0d\x0a \
+                \
+   }\x0d\x0a\x0d\x0a        \
+        }\x0d\x0a\x0d\x0a   \
+         }\x0d\x0a\x0d\x0a  \
+      }\x0d\x0a\x0d\x0a\x0d\x0a   \
+ }\x0d\x0a\x0d\x0a}\x0d\x0a\x0d\x0a\
 "
 
 qt_resource_name = b"\

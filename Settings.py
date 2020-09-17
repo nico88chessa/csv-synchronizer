@@ -30,6 +30,7 @@ class Settings(metaclass=Singleton):
             config["Camera"] = {
                 "remotePath": QStandardPaths.writableLocation(QStandardPaths.HomeLocation),
                 "pollingTimeMs": 1000,
+                "sendCSVToCamera": False,
             }
             config["SW"] = {
                 "rowMargin": 10,
@@ -60,6 +61,7 @@ class Settings(metaclass=Singleton):
 
         self.__cameraRemotePath = config["Camera"]["remotePath"]
         self.__cameraPollingTimeMs = int(config["Camera"]["pollingTimeMs"])
+        self.__cameraSendCSV = config.getboolean("Camera", "sendCSVToCamera")
 
         self.__localRowMargin = int(config["SW"]["rowMargin"])
         self.__localCsvFilename = config["SW"]["csvFilename"]
@@ -109,6 +111,12 @@ class Settings(metaclass=Singleton):
 
     def setCameraRemotePath(self, path: str):
         self.__cameraRemotePath = path
+
+    def getCameraSendCSV(self):
+        return self.__cameraSendCSV
+
+    def setCameraSendCSV(self, sendCSV: False):
+        self.__cameraSendCSV = sendCSV
 
     def getLocalRowMargin(self) -> int:
         return self.__localRowMargin
@@ -185,6 +193,7 @@ class Settings(metaclass=Singleton):
         config["Camera"] = {
             "pollingTimeMs": self.getCameraPollingTimeMs(),
             "remotePath": self.getCameraRemotePath(),
+            "sendCSVToCamera": self.getCameraSendCSV(),
         }
         config["SW"] = {
             "rowMargin": self.getLocalRowMargin(),
